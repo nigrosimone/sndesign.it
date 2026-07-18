@@ -7,13 +7,15 @@
 import { writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import prettier from 'prettier';
 
 const GITHUB_USER = 'nigrosimone';
 const NPM_MAINTAINER = 'nigro.simone';
 const DEVTO_USER = 'nigrosimone';
 const DATA_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'app', 'data');
 
-// Descrizioni italiane curate: i nomi qui sotto definiscono anche l'ordine in pagina.
+// Descrizioni italiane curate (selezione dei progetti mostrati). L'ordine qui è
+// irrilevante: in pagina i progetti sono ordinati per stelle (vedi sort sotto).
 const PROJECT_DESCRIPTIONS = new Map([
   ['ng-http-caching', 'Cache per le richieste HTTP nelle applicazioni Angular.'],
   ['ng-let', 'Direttiva strutturale per dichiarare variabili locali nei template HTML.'],
@@ -27,10 +29,24 @@ const PROJECT_DESCRIPTIONS = new Map([
   ['express-fast-json-stringify', 'fast-json-stringify in Express: serializzazione JSON più veloce con JSON Schema.'],
 ]);
 
+// Elementi da nascondere in pagina (e nei tool WebMCP): vengono esclusi del tutto
+// dai file generati, così non finiscono nemmeno nel bundle. Questa è l'unica fonte
+// di verità e sopravvive alla rigenerazione (editare i file generati a mano no).
+// Progetti/pacchetti per nome; articoli per slug (ultimo segmento dell'URL dev.to).
+const HIDDEN_PROJECTS = new Set([
+  // 'ng-lock',
+]);
+const HIDDEN_ARTICLES = new Set([
+  // 'turbo-array-supercharge-your-javascript-array-operations-4fmc',
+]);
+const HIDDEN_PACKAGES = new Set([
+  // 'piffero',
+]);
+
 async function fetchJson(url) {
   const res = await fetch(url, { headers: { accept: 'application/json' } });
   if (!res.ok) {
-    throw new Error(`${res.status} ${res.statusText} — ${url}`);
+    throw new Error(`${res.status} ${res.statusText} - ${url}`);
   }
   return res.json();
 }
@@ -80,28 +96,44 @@ for (const repo of originalRepos) {
   }
 }
 
-const projects = [...PROJECT_DESCRIPTIONS.entries()].map(([name, description]) => {
-  const repo = reposByName.get(name);
-  if (!repo) {
-    throw new Error(`Repository GitHub non trovato: ${name}`);
-  }
-  const isPhp = repo.language === 'PHP';
-  const downloads = downloadsByPackage.get(name);
-  return {
-    name,
-    description,
-    language: repo.language ?? 'TypeScript',
-    stars: repo.stargazers_count,
-    monthlyDownloads: isPhp ? undefined : downloads,
-    repoUrl: repo.html_url,
-    packageUrl: isPhp
-      ? `https://packagist.org/packages/${GITHUB_USER}/codicefiscale`
-      : `https://www.npmjs.com/package/${name}`,
-    archived: repo.archived || undefined,
-  };
-});
+const projects = [...PROJECT_DESCRIPTIONS.entries()]
+  .filter(([name]) => {
+    if (HIDDEN_PROJECTS.has(name)) {
+      return false;
+    }
+    const repo = reposByName.get(name);
+    if (!repo) {
+      throw new Error(`Repository GitHub non trovato: ${name}`);
+    }
+    // Escludiamo i repo archiviati e quelli senza stelle.
+    return !repo.archived && repo.stargazers_count > 0;
+  })
+  .map(([name, description]) => {
+    const repo = reposByName.get(name);
+    const isPhp = repo.language === 'PHP';
+    const downloads = downloadsByPackage.get(name);
+    return {
+      name,
+      description,
+      language: repo.language ?? 'TypeScript',
+      stars: repo.stargazers_count,
+      monthlyDownloads: isPhp ? undefined : downloads,
+      repoUrl: repo.html_url,
+      packageUrl: isPhp
+        ? `https://packagist.org/packages/${GITHUB_USER}/codicefiscale`
+        : `https://www.npmjs.com/package/${name}`,
+    };
+  })
+  // Ordine per stelle (decrescente); a parità, per download e poi per nome.
+  .sort(
+    (a, b) =>
+      b.stars - a.stars ||
+      (b.monthlyDownloads ?? 0) - (a.monthlyDownloads ?? 0) ||
+      a.name.localeCompare(b.name),
+  );
 
 const packages = search.objects
+  .filter((o) => !HIDDEN_PACKAGES.has(o.package.name))
   .map((o) => ({
     name: o.package.name,
     description: o.package.description ?? '',
@@ -120,6 +152,7 @@ const stats = {
 };
 
 const articles = devtoArticles
+  .filter((a) => !HIDDEN_ARTICLES.has(a.slug))
   .map((a) => ({
     title: a.title,
     url: a.url,
@@ -130,8 +163,11 @@ const articles = devtoArticles
   }))
   .sort((a, b) => b.date.localeCompare(a.date));
 
-// JSON.stringify produce TypeScript valido (stringhe con doppi apici):
-// nessuna riscrittura degli apici, che corromperebbe i testi con apostrofi.
+// JSON.stringify serializza i valori senza toccare gli apici interni (evita di
+// corrompere i testi con apostrofi); poi Prettier riscrive il file nello stile
+// del repo (.prettierrc: apici singoli, chiavi senza virgolette, array corti in
+// linea), così ogni rigenerazione produce solo diff sui dati reali, non sul
+// formato. Le stringhe con apostrofo restano tra doppi apici (scelta di Prettier).
 const ts = (value) => JSON.stringify(value, null, 2);
 
 const openSourceFile = `// Dati raccolti dalle API pubbliche di GitHub e npm il ${formatDate(stats.updatedAt)}.
@@ -152,8 +188,15 @@ import type { Article } from './types';
 export const ARTICLES: readonly Article[] = ${ts(articles)};
 `;
 
-await writeFile(join(DATA_DIR, 'open-source.ts'), openSourceFile);
-await writeFile(join(DATA_DIR, 'articles.ts'), articlesFile);
+async function writeFormatted(fileName, source) {
+  const filePath = join(DATA_DIR, fileName);
+  const config = await prettier.resolveConfig(filePath);
+  const formatted = await prettier.format(source, { ...config, filepath: filePath });
+  await writeFile(filePath, formatted);
+}
+
+await writeFormatted('open-source.ts', openSourceFile);
+await writeFormatted('articles.ts', articlesFile);
 
 console.log(`✔ Dati aggiornati al ${formatDate(stats.updatedAt)}:`);
 console.log(`  ${stats.npmPackages} pacchetti npm, ${stats.npmMonthlyDownloads} download/mese`);

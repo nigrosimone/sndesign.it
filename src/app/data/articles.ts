@@ -8,11 +8,12 @@ export const ARTICLES: readonly Article[] = [
     url: 'https://dev.to/nigrosimone/stop-hitting-your-backend-twice-smart-http-caching-in-angular-with-nghttpcaching-3fjd',
     date: '2026-03-03',
     readingMinutes: 2,
-    tags: ['angular', 'typescript', 'performance'],
+    tags: ['angular', 'typescript', 'performance', 'javascript'],
     reactions: 2,
   },
   {
-    title: 'Benchmarking PostgreSQL Drivers in Node.js: node-postgres vs postgres.js, who is the faster?',
+    title:
+      'Benchmarking PostgreSQL Drivers in Node.js: node-postgres vs postgres.js, who is the faster?',
     url: 'https://dev.to/nigrosimone/benchmarking-postgresql-drivers-in-nodejs-node-postgres-vs-postgresjs-17kl',
     date: '2025-09-06',
     readingMinutes: 2,
@@ -20,11 +21,11 @@ export const ARTICLES: readonly Article[] = [
     reactions: 1,
   },
   {
-    title: 'Turbo Array: Supercharge Your JavaScript Array Operations',
+    title: 'Turbo Array: Supercharge Your JavaScript Array Operations 🚀',
     url: 'https://dev.to/nigrosimone/turbo-array-supercharge-your-javascript-array-operations-4fmc',
     date: '2025-02-04',
     readingMinutes: 2,
-    tags: ['javascript', 'performance', 'npm'],
+    tags: ['javascript', 'performance', 'node', 'npm'],
     reactions: 0,
   },
   {
@@ -36,7 +37,8 @@ export const ARTICLES: readonly Article[] = [
     reactions: 6,
   },
   {
-    title: 'Enhancing JSON Serialization Performance in Express.js with express-fast-json-stringify',
+    title:
+      'Enhancing JSON Serialization Performance in Express.js with express-fast-json-stringify',
     url: 'https://dev.to/nigrosimone/enhancing-json-serialization-performance-in-expressjs-with-express-fast-json-stringify-64g',
     date: '2024-09-29',
     readingMinutes: 3,
@@ -60,7 +62,8 @@ export const ARTICLES: readonly Article[] = [
     reactions: 3,
   },
   {
-    title: 'Come creare in Angular una direttiva per dichiarare variabili nei template HTML dei componenti',
+    title:
+      'Come creare in Angular una direttiva per dichiarare variabili nei template HTML dei componenti',
     url: 'https://dev.to/nigrosimone/come-creare-in-angular-una-direttiva-per-dichiarare-variabili-nei-template-html-dei-componenti-62a',
     date: '2022-04-04',
     readingMinutes: 5,
@@ -68,7 +71,8 @@ export const ARTICLES: readonly Article[] = [
     reactions: 8,
   },
   {
-    title: 'Angular structural directive for sharing data as local variable into html component template',
+    title:
+      'Angular structural directive for sharing data as local variable into html component template',
     url: 'https://dev.to/nigrosimone/angular-structural-directive-for-sharing-data-as-local-variable-into-html-component-template-31po',
     date: '2022-03-31',
     readingMinutes: 2,
@@ -76,7 +80,7 @@ export const ARTICLES: readonly Article[] = [
     reactions: 7,
   },
   {
-    title: 'Angular global ngFor track by property directive with strict type checking',
+    title: 'Angular global ngFor track by property directive with strict type checking.',
     url: 'https://dev.to/nigrosimone/angular-global-ngfor-trackby-property-directive-with-strict-type-checking-1kik',
     date: '2022-03-05',
     readingMinutes: 2,
@@ -84,11 +88,12 @@ export const ARTICLES: readonly Article[] = [
     reactions: 8,
   },
   {
-    title: 'NgSimpleState. Simple state management in Angular with only Services and RxJS or Signal',
+    title:
+      'NgSimpleState. Simple state management in Angular with only Services and RxJS or Signal.',
     url: 'https://dev.to/nigrosimone/ngsimplestate-simple-state-management-in-angular-with-only-services-and-rxjs-34if',
     date: '2021-06-02',
     readingMinutes: 2,
-    tags: ['angular', 'javascript', 'typescript'],
+    tags: ['angular', 'javascript', 'typescript', 'webmcp'],
     reactions: 7,
   },
 ];

@@ -6,7 +6,6 @@ export interface Project {
   monthlyDownloads?: number;
   repoUrl: string;
   packageUrl?: string;
-  archived?: boolean;
 }
 
 export interface NpmPackage {

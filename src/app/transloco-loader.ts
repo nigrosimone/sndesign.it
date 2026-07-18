@@ -8,7 +8,7 @@ const TRANSLATIONS: Record<string, Translation> = { it, en };
 
 /**
  * Loader statico: importa le traduzioni ottimizzate da Transloco Optimize
- * (chiavi flat, senza commenti — vedi scripts/optimize-i18n.mjs) direttamente
+ * (chiavi flat, senza commenti - vedi scripts/optimize-i18n.mjs) direttamente
  * nel bundle: niente HTTP e rendering sincrono anche durante il prerendering SSG.
  */
 @Injectable({ providedIn: 'root' })

@@ -24,10 +24,10 @@ export const SKILL_GROUPS = [
   },
   {
     labelKey: 'about.groups.backend',
-    skills: ['Node.js', 'Express', 'PHP', 'PostgreSQL', 'MySQL', 'Delphi'],
+    skills: ['Node.js', 'Express', 'PHP'],
   },
   {
     labelKey: 'about.groups.other',
-    skills: ['WordPress', 'Web Performance', 'SEO', 'Accessibility', 'Open Source', 'WebMCP'],
+    skills: ['PostgreSQL', 'MySQL', 'Delphi', 'WordPress', 'Web Performance', 'SEO', 'Accessibility', 'Open Source', 'WebMCP'],
   },
 ] as const;

@@ -1,4 +1,4 @@
-# Simone Nigro — Full-Stack Developer
+# Simone Nigro - Full-Stack Developer
 
 > Portfolio personale di Simone Nigro, full-stack developer italiano (Avellino, Campania) in
 > ACCA software S.p.A. Autore di librerie open source Angular e Node.js pubblicate su npm con
@@ -17,11 +17,11 @@
 
 ## Progetti open source principali (dati npm/GitHub del 18/07/2026)
 
-- [ng-let](https://www.npmjs.com/package/ng-let): direttiva strutturale Angular — 50.361 download/mese, 47 stelle
-- [ng-http-caching](https://www.npmjs.com/package/ng-http-caching): cache HTTP per Angular — 15.772 download/mese, 53 stelle
-- [ng-generic-pipe](https://www.npmjs.com/package/ng-generic-pipe): pipe generica per Angular — 5.213 download/mese
-- [ng-as](https://www.npmjs.com/package/ng-as): type casting nei template Angular — 3.984 download/mese
-- [ng-simple-state](https://www.npmjs.com/package/ng-simple-state): state management con Signal, supporto WebMCP — 46 stelle
+- [ng-let](https://www.npmjs.com/package/ng-let): direttiva strutturale Angular - 50.361 download/mese, 47 stelle
+- [ng-http-caching](https://www.npmjs.com/package/ng-http-caching): cache HTTP per Angular - 15.772 download/mese, 53 stelle
+- [ng-generic-pipe](https://www.npmjs.com/package/ng-generic-pipe): pipe generica per Angular - 5.213 download/mese
+- [ng-as](https://www.npmjs.com/package/ng-as): type casting nei template Angular - 3.984 download/mese
+- [ng-simple-state](https://www.npmjs.com/package/ng-simple-state): state management con Signal, supporto WebMCP - 46 stelle
 - [ng-for-track-by-property](https://www.npmjs.com/package/ng-for-track-by-property): trackBy globale type-safe
 - [codice-fiscale](https://packagist.org/packages/nigrosimone/codicefiscale): validazione codici fiscali italiani (PHP)
 - Totale: 10 pacchetti npm, ~77.700 download/mese, 263 stelle GitHub

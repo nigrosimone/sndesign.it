@@ -1,4 +1,4 @@
-# SN.DESIGN v4 — Portfolio di Simone Nigro
+# SN.DESIGN v4 - Portfolio di Simone Nigro
 
 Sito personale in **Angular 22** (zoneless, signals, standalone): SSG bilingue con stile
 cyber-minimal. Successore di [sndesign.it/v3](https://www.sndesign.it/v3/).
