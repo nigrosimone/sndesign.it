@@ -1,0 +1,52 @@
+<section class="hero container" id="top" aria-labelledby="hero-title" *transloco="let t">
+  <p class="term font-mono" aria-hidden="true">
+    <span class="term-prompt">simone&#64;sndesign:~$</span>
+    <span class="term-cmd">whoami</span><span class="caret"></span>
+  </p>
+  <h1 id="hero-title" class="glitch" data-text="Simone Nigro">Simone Nigro</h1>
+  <p class="hero-role">
+    <strong>{{ t('hero.role') }}</strong>
+    <span class="hero-sep" aria-hidden="true">//</span>
+    {{ t('hero.focus') }}
+  </p>
+  <p class="hero-claim">{{ t('hero.claim') }}</p>
+  <p class="hero-meta font-mono">
+    <span class="accent" aria-hidden="true">&gt;</span>
+    {{ t('hero.meta') }}
+  </p>
+
+  <ul class="hero-stats" role="list">
+    @for (s of stats(); track s.labelKey; let i = $index) {
+      <li class="stat" [appReveal]="i * 90">
+        <span
+          class="stat-value font-mono"
+          aria-hidden="true"
+          [appCountUp]="s.value"
+          [countUpSuffix]="s.suffix"
+          >{{ s.valueFmt }}</span
+        >
+        <span class="sr-only">{{ s.valueFmt }} {{ t(s.labelKey) }}</span>
+        <span class="stat-label" aria-hidden="true">{{ t(s.labelKey) }}</span>
+      </li>
+    }
+  </ul>
+
+  <div class="hero-cta">
+    <a class="btn" [href]="base + '#progetti'">{{ t('hero.cta') }}</a>
+    <ul class="link-row font-mono" role="list">
+      @for (s of socials; track s.label) {
+        <li>
+          <a
+            class="bracket-link"
+            [href]="s.url"
+            target="_blank"
+            rel="me noopener"
+            [attr.aria-label]="s.label + ' — ' + s.name + ' (' + t('nav.newTab') + ')'"
+          >
+            [{{ s.label }}]
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+<app-header />
+<main id="main">
+  <app-hero />
+  @defer (hydrate on viewport) {
+    <app-about />
+  }
+  @defer (hydrate on viewport) {
+    <app-projects />
+  }
+  @defer (hydrate on viewport) {
+    <app-articles />
+  }
+  @defer (hydrate on viewport) {
+    <app-contact />
+  }
+</main>
+<footer class="site-footer font-mono" *transloco="let t">
+  <div class="container footer-inner">
+    <p>&copy; {{ year }} {{ t('footer.rights') }}</p>
+    <p>
+      {{ t('footer.made') }} {{ ngVersion }} ·
+      <a href="https://www.sndesign.it/v3/">{{ t('footer.archive') }}</a> ·
+      <a href="https://github.com/nigrosimone" rel="me">github</a>
+    </p>
+  </div>
+</footer>

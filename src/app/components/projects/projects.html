@@ -1,0 +1,67 @@
+<section id="progetti" class="section container" aria-labelledby="projects-title" *transloco="let t">
+  <h2 id="projects-title" class="section-title" appReveal>
+    <span class="section-idx font-mono" aria-hidden="true">02.</span>{{ t('projects.title') }}
+  </h2>
+  <p class="section-sub" appReveal>
+    {{ t('projects.sub', { count: packagesCount, downloads: downloadsFmt() }) }}
+  </p>
+
+  <ul class="cards" role="list">
+    @for (p of projects(); track p.name; let i = $index) {
+      <li>
+        <article class="card" [appReveal]="(i % 3) * 80">
+          <header class="card-head">
+            <h3 class="card-title font-mono">
+              <a [href]="p.repoUrl" target="_blank" rel="noopener">{{ p.name }}</a>
+            </h3>
+            <span class="card-lang font-mono" [class.lang-php]="p.language === 'PHP'">{{ p.language }}</span>
+          </header>
+          <p class="card-desc">{{ t('projects.desc.' + p.name) }}</p>
+          <footer class="card-meta font-mono">
+            <span class="card-stat">
+              <span aria-hidden="true">★</span> {{ p.stars
+              }}<span class="sr-only"> {{ t('projects.starsSr') }}</span>
+            </span>
+            @if (p.downloadsFmt) {
+              <span class="card-stat">
+                <span aria-hidden="true">↓</span> {{ p.downloadsFmt }}{{ t('projects.perMonth')
+                }}<span class="sr-only"> {{ t('projects.downloadsSr') }}</span>
+              </span>
+            }
+            <span class="card-links">
+              <a
+                class="bracket-link"
+                [href]="p.repoUrl"
+                target="_blank"
+                rel="noopener"
+                [attr.aria-label]="t('projects.onRegistry', { name: p.name, registry: 'GitHub' }) + ' (' + t('nav.newTab') + ')'"
+                >[github]</a
+              >
+              @if (p.packageUrl) {
+                <a
+                  class="bracket-link"
+                  [href]="p.packageUrl"
+                  target="_blank"
+                  rel="noopener"
+                  [attr.aria-label]="t('projects.onRegistry', { name: p.name, registry: p.registry }) + ' (' + t('nav.newTab') + ')'"
+                  >[{{ p.registry }}]</a
+                >
+              }
+            </span>
+          </footer>
+        </article>
+      </li>
+    }
+  </ul>
+
+  <p class="section-cta font-mono" appReveal>
+    <a
+      class="bracket-link"
+      href="https://github.com/nigrosimone?tab=repositories"
+      target="_blank"
+      rel="noopener"
+    >
+      [{{ t('projects.all') }}]
+    </a>
+  </p>
+</section>

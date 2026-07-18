@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="10" fill="#05070d"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="9" fill="none" stroke="#1b2434" stroke-width="1"/>
+  <path d="M14 14 h8 v2 h-6 v6 h-2 z" fill="#00e5ff" opacity="0.9"/>
+  <path d="M50 50 h-8 v-2 h6 v-6 h2 z" fill="#00e5ff" opacity="0.9"/>
+  <text x="32" y="42" text-anchor="middle" font-family="Consolas, 'Cascadia Code', monospace" font-size="26" font-weight="700" fill="#00e5ff">SN</text>
+</svg>

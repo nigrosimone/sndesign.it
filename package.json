@@ -1,0 +1,52 @@
+{
+  "name": "portfolio",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "prestart": "node scripts/optimize-i18n.mjs",
+    "start": "ng serve",
+    "prebuild": "node scripts/optimize-i18n.mjs",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "pretest": "node scripts/optimize-i18n.mjs",
+    "test": "ng test",
+    "e2e": "npm run build && playwright test",
+    "update-data": "node scripts/update-data.mjs",
+    "i18n:optimize": "node scripts/optimize-i18n.mjs",
+    "prelint": "node scripts/optimize-i18n.mjs",
+    "lint": "ng lint",
+    "prepare": "husky"
+  },
+  "private": true,
+  "packageManager": "npm@11.17.0",
+  "dependencies": {
+    "@angular/common": "^22.0.0",
+    "@angular/compiler": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/forms": "^22.0.0",
+    "@angular/platform-browser": "^22.0.0",
+    "@angular/platform-server": "^22.0.7",
+    "@angular/router": "^22.0.0",
+    "@angular/ssr": "^22.0.7",
+    "@jsverse/transloco": "^8.4.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.0.7",
+    "@angular/cli": "^22.0.7",
+    "@angular/compiler-cli": "^22.0.0",
+    "@eslint/js": "^10.0.1",
+    "@jsverse/transloco-optimize": "^8.4.0",
+    "@playwright/test": "^1.61.1",
+    "angular-eslint": "22.1.0",
+    "eslint": "^10.6.0",
+    "http-server": "^14.1.1",
+    "husky": "^9.1.7",
+    "jsdom": "^28.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "8.62.1",
+    "vitest": "^4.0.8"
+  }
+}

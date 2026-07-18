@@ -1,0 +1,53 @@
+<ng-container *transloco="let t">
+  <a class="skip-link" [href]="base + '#main'">{{ t('nav.skip') }}</a>
+  <header class="site-header">
+    <nav class="container site-nav" [attr.aria-label]="t('nav.label')">
+      <a class="logo font-mono" [href]="base + '#top'" [attr.aria-label]="t('nav.logoAria')">
+        SN<span class="logo-cursor" aria-hidden="true">_</span>
+      </a>
+      <ul class="nav-links font-mono" role="list">
+        <li>
+          <a [href]="base + '#chi-sono'"
+            ><span class="nav-idx" aria-hidden="true">01.</span>{{ t('nav.about') }}</a
+          >
+        </li>
+        <li>
+          <a [href]="base + '#progetti'"
+            ><span class="nav-idx" aria-hidden="true">02.</span>{{ t('nav.projects') }}</a
+          >
+        </li>
+        <li>
+          <a [href]="base + '#articoli'"
+            ><span class="nav-idx" aria-hidden="true">03.</span>{{ t('nav.articles') }}</a
+          >
+        </li>
+        <li>
+          <a [href]="base + '#contatti'"
+            ><span class="nav-idx" aria-hidden="true">04.</span>{{ t('nav.contacts') }}</a
+          >
+        </li>
+      </ul>
+      <div class="lang-switch font-mono" role="group" [attr.aria-label]="t('nav.langLabel')">
+        <a
+          href="/"
+          hreflang="it"
+          lang="it"
+          aria-label="Italiano"
+          [class.is-active]="lang === 'it'"
+          [attr.aria-current]="lang === 'it' ? 'true' : null"
+          >it</a
+        >
+        <span aria-hidden="true">/</span>
+        <a
+          href="/en/"
+          hreflang="en"
+          lang="en"
+          aria-label="English"
+          [class.is-active]="lang === 'en'"
+          [attr.aria-current]="lang === 'en' ? 'true' : null"
+          >en</a
+        >
+      </div>
+    </nav>
+  </header>
+</ng-container>

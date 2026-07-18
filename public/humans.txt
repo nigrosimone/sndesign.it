@@ -1,0 +1,12 @@
+/* TEAM */
+Developer & Designer: Simone Nigro
+Site: https://www.sndesign.it/
+Location: Avellino, Campania, Italia
+GitHub: @nigrosimone
+
+/* SITE */
+Stack: Angular (zoneless, signals), SCSS, TypeScript
+Fonts: Space Grotesk (self-hosted)
+Doctype: HTML5
+Standards: WCAG 2.2, schema.org, llms.txt, WebMCP
+SN.DESIGN — dal 1984. Questa è la v4.

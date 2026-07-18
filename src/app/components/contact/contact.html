@@ -1,0 +1,32 @@
+<section
+  id="contatti"
+  class="section container contact"
+  aria-labelledby="contact-title"
+  *transloco="let t"
+>
+  <h2 id="contact-title" class="section-title" appReveal>
+    <span class="section-idx font-mono" aria-hidden="true">04.</span>{{ t('contact.title') }}
+  </h2>
+  <p class="contact-text" appReveal>
+    {{ t('contact.text1') }}<br />
+    {{ t('contact.text2') }}
+  </p>
+  <p appReveal>
+    <a class="btn btn-lg font-mono" [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+  </p>
+  <ul class="link-row link-row-center font-mono" role="list" appReveal>
+    @for (s of socials; track s.label) {
+      <li>
+        <a
+          class="bracket-link"
+          [href]="s.url"
+          target="_blank"
+          rel="me noopener"
+          [attr.aria-label]="s.label + ' — ' + s.name + ' (' + t('nav.newTab') + ')'"
+        >
+          [{{ s.label }}]
+        </a>
+      </li>
+    }
+  </ul>
+</section>

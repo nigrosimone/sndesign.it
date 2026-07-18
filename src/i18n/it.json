@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "title": "Simone Nigro — Full-Stack Developer · Angular & Node.js",
+    "description": "Simone Nigro, full-stack developer di Avellino. Autore di librerie open source Angular e Node.js con oltre 75.000 download al mese su npm: ng-let, ng-http-caching, ng-simple-state e altre.",
+    "ogDescription": "Librerie open source Angular e Node.js con oltre 75.000 download al mese su npm. Full-stack developer @ ACCA software."
+  },
+  "nav": {
+    "label": "Navigazione principale",
+    "skip": "Salta al contenuto",
+    "logoAria": "SN — torna all'inizio",
+    "about": "chi sono",
+    "projects": "progetti",
+    "articles": "articoli",
+    "contacts": "contatti",
+    "langLabel": "Lingua",
+    "newTab": "nuova scheda"
+  },
+  "hero": {
+    "role": "Full-Stack Developer",
+    "focus": "Angular · Node.js · TypeScript",
+    "claim": "Costruisco librerie open source «che nessuno ha chiesto ma che, a quanto pare, qualcuno usa».",
+    "meta": "Avellino, Italia — full-stack developer @ ACCA software S.p.A.",
+    "cta": "Esplora i progetti",
+    "stats": {
+      "downloads": "download npm / mese",
+      "stars": "stelle su GitHub",
+      "packages": "pacchetti npm",
+      "years": "anni di codice"
+    }
+  },
+  "about": {
+    "title": "Chi sono",
+    "photoAlt": "Ritratto di Simone Nigro",
+    "bio1": "Mi occupo di sviluppo web dal 2000: prima grafica e web design da freelance con il marchio SN.DESIGN, oggi sviluppo full-stack in ACCA software S.p.A. Laureato in Scienze della Comunicazione all'Università di Salerno.",
+    "bio2": "La mia passione è l'open source: mantengo una decina di librerie Angular e Node.js pubblicate su npm — oltre 75.000 download al mese — sono stato contributor del core di WordPress (5.5) e autore della serie di plugin «Speed Up». Scrivo di Angular, Node.js e performance su DEV Community.",
+    "bio3": "Il mio stile è sempre lo stesso: pulito, quasi minimalista, senza tralasciare la user experience. Con un'ossessione in più: le performance.",
+    "groups": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "other": "Altro"
+    }
+  },
+  "projects": {
+    "title": "Open source",
+    "sub": "{{count}} librerie Angular e Node.js pubblicate su npm, {{downloads}} download al mese.",
+    "starsSr": "stelle su GitHub",
+    "downloadsSr": "download al mese",
+    "perMonth": "/mese",
+    "onRegistry": "{{name}} su {{registry}}",
+    "all": "tutti i repository su github",
+    "desc": {
+      "ng-http-caching": "Cache per le richieste HTTP nelle applicazioni Angular.",
+      "ng-let": "Direttiva strutturale per dichiarare variabili locali nei template HTML.",
+      "ng-simple-state": "State management semplice per Angular, con soli Services e Signal. Supporta WebMCP.",
+      "ng-for-track-by-property": "trackBy globale per i cicli nei template, con type checking rigoroso.",
+      "ng-generic-pipe": "Pipe generica per usare i metodi del componente nel template.",
+      "codice-fiscale": "Libreria PHP per la validazione dei codici fiscali italiani, con supporto omocodia.",
+      "ng-as": "Pipe e direttiva per il type casting delle variabili nei template.",
+      "ng-lock": "Decorator Angular per bloccare funzioni e interfaccia durante i task asincroni.",
+      "turbo-array": "Pipeline lazy ad alte prestazioni per gli array JavaScript, fino a 4× più veloci.",
+      "express-fast-json-stringify": "fast-json-stringify in Express: serializzazione JSON più veloce con JSON Schema."
+    }
+  },
+  "articles": {
+    "title": "Articoli",
+    "sub": "Scrivo di Angular, Node.js e web performance su DEV Community.",
+    "min": "min",
+    "all": "tutti gli articoli su dev.to"
+  },
+  "contact": {
+    "title": "Contatti",
+    "text1": "Vuoi parlare di Angular, open source o web performance?",
+    "text2": "La mia inbox è sempre aperta."
+  },
+  "footer": {
+    "rights": "Simone Nigro — SN.DESIGN · dal 1984",
+    "made": "Fatto con Angular",
+    "archive": "archivio v3"
+  }
+}

@@ -1,0 +1,31 @@
+<section id="articoli" class="section container" aria-labelledby="articles-title" *transloco="let t">
+  <h2 id="articles-title" class="section-title" appReveal>
+    <span class="section-idx font-mono" aria-hidden="true">03.</span>{{ t('articles.title') }}
+  </h2>
+  <p class="section-sub" appReveal>{{ t('articles.sub') }}</p>
+
+  <ol class="articles" role="list">
+    @for (a of articles; track a.url; let i = $index) {
+      <li [appReveal]="i * 60">
+        <article class="article-row">
+          <h3 class="article-title">
+            <a [href]="a.url" target="_blank" rel="noopener">{{ a.title }}</a>
+          </h3>
+          <p class="article-meta font-mono">
+            <time [attr.datetime]="a.date">{{ a.dateFmt }}</time>
+            <span aria-hidden="true">·</span> {{ a.readingMinutes }} {{ t('articles.min') }}
+            @for (tag of a.tags; track tag) {
+              <span class="article-tag">#{{ tag }}</span>
+            }
+          </p>
+        </article>
+      </li>
+    }
+  </ol>
+
+  <p class="section-cta font-mono" appReveal>
+    <a class="bracket-link" href="https://dev.to/nigrosimone" target="_blank" rel="noopener">
+      [{{ t('articles.all') }}]
+    </a>
+  </p>
+</section>

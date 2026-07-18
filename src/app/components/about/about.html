@@ -1,0 +1,38 @@
+<section id="chi-sono" class="section container" aria-labelledby="about-title" *transloco="let t">
+  <h2 id="about-title" class="section-title" appReveal>
+    <span class="section-idx font-mono" aria-hidden="true">01.</span>{{ t('about.title') }}
+  </h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      @for (key of bioKeys; track key; let i = $index) {
+        <p [appReveal]="i * 90">{{ t(key) }}</p>
+      }
+    </div>
+    <figure class="about-photo" appReveal>
+      <img
+        src="avatar.jpg"
+        [alt]="t('about.photoAlt')"
+        width="320"
+        height="320"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  </div>
+
+  <div class="skills">
+    @for (group of skillGroups; track group.labelKey; let i = $index) {
+      <div class="skill-group" [appReveal]="i * 90">
+        <h3 class="skill-title font-mono">
+          <span aria-hidden="true">&gt; </span>{{ t(group.labelKey) }}
+        </h3>
+        <ul class="chips" role="list">
+          @for (skill of group.skills; track skill) {
+            <li class="chip font-mono">{{ skill }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+</section>

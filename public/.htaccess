@@ -1,0 +1,75 @@
+# ============================================================
+# SN.DESIGN v4 — Apache config per Angular SSG
+# Compressione + cache degli asset + sicurezza di base
+# ============================================================
+
+# --- Charset e MIME -----------------------------------------
+AddDefaultCharset utf-8
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/svg+xml .svg
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+# --- Compressione (Brotli se disponibile, altrimenti gzip) --
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS application/xml image/svg+xml
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml
+  # I font woff2 e le immagini sono già compressi: non ricomprimerli
+  SetEnvIfNoCase Request_URI \.(?:woff2?|png|jpe?g|webp|avif|ico)$ no-gzip
+</IfModule>
+
+# --- Cache --------------------------------------------------
+# Gli asset con hash nel nome (main-XXXX.js, styles-XXXX.css) sono immutabili:
+# cache lunga un anno. index.html e i file "vivi" sempre rivalidati.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/xml "access plus 1 day"
+  ExpiresByType text/plain "access plus 1 day"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Bundle con hash: immutabili
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # HTML prerenderizzato: sempre fresco
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  # File per crawler e agenti AI: rivalida ogni giorno
+  <FilesMatch "^(robots\.txt|sitemap\.xml|llms\.txt|humans\.txt)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+
+  # Sicurezza di base
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# --- Routing ------------------------------------------------
+# Sito SSG: / e /en/ esistono come file statici. Le rotte inesistenti
+# devono restituire 404 (index.csr.html è il fallback client-side di Angular).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # /en -> /en/ (slash finale, coerente con canonical e sitemap)
+  RewriteRule ^en$ /en/ [R=301,L]
+</IfModule>
+
+# --- Niente listing delle directory -------------------------
+Options -Indexes
