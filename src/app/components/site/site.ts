@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   DOCUMENT,
   VERSION,
@@ -38,8 +37,7 @@ const META = {
 @Component({
   selector: 'app-site',
   templateUrl: './site.html',
-  imports: [Header, Hero, About, Projects, Articles, Contact, TranslocoDirective],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [Header, Hero, About, Projects, Articles, Contact, TranslocoDirective]
 })
 export class Site {
   protected readonly year = new Date().getFullYear();

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { formatNumber, type Lang } from '../../data/format';
 import { OS_STATS } from '../../data/open-source';
@@ -10,8 +10,7 @@ import { LiveStats } from '../../services/live-stats';
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.html',
-  imports: [CountUp, Reveal, TranslocoDirective],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CountUp, Reveal, TranslocoDirective]
 })
 export class Hero {
   private readonly live = inject(LiveStats);

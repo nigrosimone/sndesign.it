@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 import { Translation, TranslocoLoader } from '@jsverse/transloco';
 import { Observable, of } from 'rxjs';
 import en from '../i18n/optimized/en.json';
@@ -11,7 +11,7 @@ const TRANSLATIONS: Record<string, Translation> = { it, en };
  * (chiavi flat, senza commenti - vedi scripts/optimize-i18n.mjs) direttamente
  * nel bundle: niente HTTP e rendering sincrono anche durante il prerendering SSG.
  */
-@Injectable({ providedIn: 'root' })
+@Service()
 export class TranslocoStaticLoader implements TranslocoLoader {
   getTranslation(lang: string): Observable<Translation> {
     return of(TRANSLATIONS[lang] ?? TRANSLATIONS['it']);

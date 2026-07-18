@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Service, signal } from '@angular/core';
 import { OS_STATS, PACKAGES } from '../data/open-source';
 
 const GITHUB_REPOS_URL = 'https://api.github.com/users/nigrosimone/repos?per_page=100&type=owner';
@@ -22,7 +22,7 @@ interface NpmDownloads {
  * in idle, vengono aggiornati con una fetch alle API pubbliche.
  * Se la rete o le API falliscono restano i valori statici.
  */
-@Injectable({ providedIn: 'root' })
+@Service()
 export class LiveStats {
   readonly npmDownloads = signal(OS_STATS.npmMonthlyDownloads);
   readonly githubStars = signal(OS_STATS.githubStars);

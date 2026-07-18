@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { ARTICLES } from '../../data/articles';
 import { formatMonthYear, type Lang } from '../../data/format';
@@ -9,8 +9,7 @@ const VISIBLE_ARTICLES = 6;
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.html',
-  imports: [Reveal, TranslocoDirective],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [Reveal, TranslocoDirective]
 })
 export class Articles {
   private readonly lang = inject(TranslocoService).getActiveLang() as Lang;

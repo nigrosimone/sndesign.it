@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { formatNumber, type Lang } from '../../data/format';
 import { OS_STATS, PROJECTS } from '../../data/open-source';
@@ -8,8 +8,7 @@ import { LiveStats } from '../../services/live-stats';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.html',
-  imports: [Reveal, TranslocoDirective],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [Reveal, TranslocoDirective]
 })
 export class Projects {
   private readonly live = inject(LiveStats);
