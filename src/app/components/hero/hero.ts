@@ -24,7 +24,7 @@ export class Hero {
     this.stat(this.live.npmDownloads(), '', 'hero.stats.downloads'),
     this.stat(this.live.githubStars(), '+', 'hero.stats.stars'),
     this.stat(OS_STATS.npmPackages, '', 'hero.stats.packages'),
-    this.stat(new Date().getFullYear() - PROFILE.sinceYear, '', 'hero.stats.years'),
+    this.stat(new Date().getFullYear() - PROFILE.codingSinceYear, '', 'hero.stats.years'),
   ]);
 
   private stat(value: number, suffix: string, labelKey: string) {

@@ -17,7 +17,7 @@
 
   <ul class="hero-stats" role="list">
     @for (s of stats(); track s.labelKey; let i = $index) {
-      <li class="stat" [appReveal]="i * 90">
+      <li class="stat" [appReveal]="i * 60">
         <span
           class="stat-value font-mono"
           aria-hidden="true"

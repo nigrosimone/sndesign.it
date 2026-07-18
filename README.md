@@ -1,59 +1,40 @@
-# Portfolio
+# SN.DESIGN v4 — Portfolio di Simone Nigro
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.7.
+Sito personale in **Angular 22** (zoneless, signals, standalone): SSG bilingue con stile
+cyber-minimal. Successore di [sndesign.it/v3](https://www.sndesign.it/v3/).
 
-## Development server
+## Caratteristiche
 
-To start a local development server, run:
+- **SSG / prerendering statico** (`outputMode: static`): `/` (italiano) e `/en/` (inglese)
+  sono HTML completi, funzionanti anche senza JavaScript
+- **i18n** con [@jsverse/transloco](https://jsverse.gitbook.io/transloco/) (`TranslocoDirective`)
+  e traduzioni ottimizzate in prebuild con transloco-optimize (`src/i18n/optimized/`, generata)
+- **WebMCP**: contenuti esposti agli agenti AI con l'API sperimentale di Angular
+  (`provideExperimentalWebMcpTools`) + `llms.txt`, sitemap con hreflang, JSON-LD schema.org
+- **Stats live**: download npm e stelle GitHub aggiornati via fetch in idle,
+  con fallback ai dati statici della build (`src/app/data/`)
+- **Animazioni** CSS-first (glitch, typing, reveal, contatori) che rispettano
+  `prefers-reduced-motion`; contenuti visibili senza JS grazie a `@media (scripting: enabled)`
+- **Qualità**: ESLint strict type-checked + angular-eslint, Husky pre-commit (lint + test),
+  unit test Vitest, e2e Playwright
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Comandi
 
 ```bash
-ng generate --help
+npm start            # dev server (genera prima le traduzioni ottimizzate)
+npm run build        # build di produzione + prerendering in dist/portfolio/browser
+npm test             # unit test (Vitest)
+npm run e2e          # build + test end-to-end (Playwright, canale Chrome)
+npm run lint         # ESLint strict su TS e template
+npm run update-data  # rigenera src/app/data/{open-source,articles}.ts dalle API pubbliche
 ```
 
-## Building
+## Deploy
 
-To build the project run:
+La build è statica: carica il contenuto di `dist/portfolio/browser/` su qualunque hosting.
+Per Apache è incluso `.htaccess` (compressione Brotli/gzip, cache immutable per gli asset
+con hash, no-cache per l'HTML, redirect `/en → /en/`).
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Se cambia il dominio (oggi `https://www.sndesign.it/`), aggiornare: `src/index.html`
+(canonical, hreflang, Open Graph, JSON-LD), `src/app/components/site/site.ts` (`SITE_URL`),
+`public/sitemap.xml`, `public/robots.txt`, `public/llms.txt`.

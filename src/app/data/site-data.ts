@@ -4,7 +4,8 @@ export const PROFILE = {
   company: 'ACCA software S.p.A.',
   location: 'Avellino, Campania, Italia',
   email: 'nigro.simone@gmail.com',
-  sinceYear: 1984,
+  bornYear: 1984,
+  codingSinceYear: 2000,
   siteUrl: 'https://www.sndesign.it/',
 } as const;
 
