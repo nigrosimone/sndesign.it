@@ -5,7 +5,7 @@ import type { NpmPackage, OpenSourceStats, Project } from './types';
 export const PROJECTS: readonly Project[] = [
   {
     name: 'ng-http-caching',
-    description: 'Cache per le richieste HTTP nelle applicazioni Angular.',
+    description: 'Cache for HTTP requests in Angular application.',
     language: 'TypeScript',
     stars: 53,
     monthlyDownloads: 15659,
@@ -14,7 +14,8 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     name: 'ng-let',
-    description: 'Direttiva strutturale per dichiarare variabili locali nei template HTML.',
+    description:
+      'Angular structural directive for sharing data as local variable into html component template.',
     language: 'TypeScript',
     stars: 47,
     monthlyDownloads: 52325,
@@ -23,8 +24,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     name: 'ng-simple-state',
-    description:
-      'State management semplice per Angular, con soli Services e Signal. Supporta WebMCP.',
+    description: 'Simple state management in Angular with only Services and Signal.',
     language: 'TypeScript',
     stars: 46,
     monthlyDownloads: 826,
@@ -33,7 +33,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     name: 'ng-for-track-by-property',
-    description: 'trackBy globale per i cicli nei template, con type checking rigoroso.',
+    description: 'Angular global trackBy property directive with strict type checking.',
     language: 'TypeScript',
     stars: 28,
     monthlyDownloads: 1334,
@@ -42,7 +42,8 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     name: 'ng-generic-pipe',
-    description: 'Pipe generica per usare i metodi del componente nel template.',
+    description:
+      'Generic pipe for Angular application for use a component method into component template',
     language: 'TypeScript',
     stars: 20,
     monthlyDownloads: 5212,
@@ -52,7 +53,7 @@ export const PROJECTS: readonly Project[] = [
   {
     name: 'codice-fiscale',
     description:
-      'Libreria PHP per la validazione dei codici fiscali italiani, con supporto omocodia.',
+      "Libreria PHP per la validazione dei Codici Fiscali italiani a 16 caratteri con supporto per l'omocodia",
     language: 'PHP',
     stars: 15,
     repoUrl: 'https://github.com/nigrosimone/codice-fiscale',
@@ -60,7 +61,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     name: 'ng-lock',
-    description: 'Decorator Angular per bloccare funzioni e interfaccia durante i task asincroni.',
+    description: 'Angular decorator for lock a function and user interface while a task running.',
     language: 'TypeScript',
     stars: 9,
     monthlyDownloads: 463,
@@ -69,7 +70,7 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     name: 'ng-as',
-    description: 'Pipe e direttiva per il type casting delle variabili nei template.',
+    description: 'Angular pipe and directive for type casting template variables.',
     language: 'TypeScript',
     stars: 8,
     monthlyDownloads: 3991,
@@ -79,7 +80,7 @@ export const PROJECTS: readonly Project[] = [
   {
     name: 'turbo-array',
     description:
-      'Pipeline lazy ad alte prestazioni per gli array JavaScript, fino a 4× più veloci.',
+      'Turbo Array is a lightweight, high-performance library that allows you to build lazy evaluation pipelines for arrays. It supports operations like filter, map, reduce, forEach, and join, executing them efficiently.  A method build with Turbo Array is 4x faster than vanilla version.',
     language: 'TypeScript',
     stars: 2,
     monthlyDownloads: 29,
@@ -88,7 +89,8 @@ export const PROJECTS: readonly Project[] = [
   },
   {
     name: 'express-fast-json-stringify',
-    description: 'fast-json-stringify in Express: serializzazione JSON più veloce con JSON Schema.',
+    description:
+      'With express-fast-json-stringify, you can leverage fast-json-stringify in your Express application to improve JSON serialization performance',
     language: 'TypeScript',
     stars: 1,
     monthlyDownloads: 53,

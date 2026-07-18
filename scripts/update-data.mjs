@@ -12,35 +12,23 @@ import prettier from 'prettier';
 const GITHUB_USER = 'nigrosimone';
 const NPM_MAINTAINER = 'nigro.simone';
 const DEVTO_USER = 'nigrosimone';
-const DATA_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'src', 'app', 'data');
-
-// Descrizioni italiane curate (selezione dei progetti mostrati). L'ordine qui è
-// irrilevante: in pagina i progetti sono ordinati per stelle (vedi sort sotto).
-const PROJECT_DESCRIPTIONS = new Map([
-  ['ng-http-caching', 'Cache per le richieste HTTP nelle applicazioni Angular.'],
-  ['ng-let', 'Direttiva strutturale per dichiarare variabili locali nei template HTML.'],
-  ['ng-simple-state', 'State management semplice per Angular, con soli Services e Signal. Supporta WebMCP.'],
-  ['ng-for-track-by-property', 'trackBy globale per i cicli nei template, con type checking rigoroso.'],
-  ['ng-generic-pipe', 'Pipe generica per usare i metodi del componente nel template.'],
-  ['codice-fiscale', 'Libreria PHP per la validazione dei codici fiscali italiani, con supporto omocodia.'],
-  ['ng-as', 'Pipe e direttiva per il type casting delle variabili nei template.'],
-  ['ng-lock', 'Decorator Angular per bloccare funzioni e interfaccia durante i task asincroni.'],
-  ['turbo-array', 'Pipeline lazy ad alte prestazioni per gli array JavaScript, fino a 4× più veloci.'],
-  ['express-fast-json-stringify', 'fast-json-stringify in Express: serializzazione JSON più veloce con JSON Schema.'],
-]);
+const ROOT_DIR = join(dirname(fileURLToPath(import.meta.url)), '..');
+const DATA_DIR = join(ROOT_DIR, 'src', 'app', 'data');
+const PUBLIC_DIR = join(ROOT_DIR, 'public');
 
 // Elementi da nascondere in pagina (e nei tool WebMCP): vengono esclusi del tutto
 // dai file generati, così non finiscono nemmeno nel bundle. Questa è l'unica fonte
 // di verità e sopravvive alla rigenerazione (editare i file generati a mano no).
 // Progetti/pacchetti per nome; articoli per slug (ultimo segmento dell'URL dev.to).
 const HIDDEN_PROJECTS = new Set([
-  // 'ng-lock',
+  // Repo che qualificano (stelle > 0) ma non sono librerie da mettere in vetrina:
+  //'postgres-benchmarks',
 ]);
 const HIDDEN_ARTICLES = new Set([
-  // 'turbo-array-supercharge-your-javascript-array-operations-4fmc',
+  'turbo-array-supercharge-your-javascript-array-operations-4fmc',
 ]);
 const HIDDEN_PACKAGES = new Set([
-  // 'piffero',
+  'piffero',
 ]);
 
 async function fetchJson(url) {
@@ -85,43 +73,27 @@ const devtoArticles = await fetchJson(
   `https://dev.to/api/articles?username=${DEVTO_USER}&per_page=100`,
 );
 
-const reposByName = new Map(repos.map((r) => [r.name, r]));
 const originalRepos = repos.filter((r) => !r.fork && r.name !== GITHUB_USER);
+const npmPackageNames = new Set(packageNames);
 
-for (const repo of originalRepos) {
-  if (!PROJECT_DESCRIPTIONS.has(repo.name) && repo.stargazers_count >= 5 && !repo.archived) {
-    console.warn(
-      `⚠ ${repo.name} (${repo.stargazers_count}★) non è tra i progetti curati: valutane l'aggiunta in PROJECT_DESCRIPTIONS.`,
-    );
-  }
-}
-
-const projects = [...PROJECT_DESCRIPTIONS.entries()]
-  .filter(([name]) => {
-    if (HIDDEN_PROJECTS.has(name)) {
-      return false;
-    }
-    const repo = reposByName.get(name);
-    if (!repo) {
-      throw new Error(`Repository GitHub non trovato: ${name}`);
-    }
-    // Escludiamo i repo archiviati e quelli senza stelle.
-    return !repo.archived && repo.stargazers_count > 0;
-  })
-  .map(([name, description]) => {
-    const repo = reposByName.get(name);
+// Progetti = repo originali con stelle, non archiviati e non nascosti. Selezione,
+// descrizione (da GitHub) e link al pacchetto sono automatici: nessuna curatela.
+const projects = originalRepos
+  .filter((repo) => !repo.archived && repo.stargazers_count > 0 && !HIDDEN_PROJECTS.has(repo.name))
+  .map((repo) => {
     const isPhp = repo.language === 'PHP';
-    const downloads = downloadsByPackage.get(name);
     return {
-      name,
-      description,
+      name: repo.name,
+      description: repo.description ?? '',
       language: repo.language ?? 'TypeScript',
       stars: repo.stargazers_count,
-      monthlyDownloads: isPhp ? undefined : downloads,
+      monthlyDownloads: isPhp ? undefined : downloadsByPackage.get(repo.name),
       repoUrl: repo.html_url,
       packageUrl: isPhp
         ? `https://packagist.org/packages/${GITHUB_USER}/codicefiscale`
-        : `https://www.npmjs.com/package/${name}`,
+        : npmPackageNames.has(repo.name)
+          ? `https://www.npmjs.com/package/${repo.name}`
+          : undefined,
     };
   })
   // Ordine per stelle (decrescente); a parità, per download e poi per nome.
@@ -198,7 +170,51 @@ async function writeFormatted(fileName, source) {
 await writeFormatted('open-source.ts', openSourceFile);
 await writeFormatted('articles.ts', articlesFile);
 
+// public/llms.txt: scheda leggibile dagli agenti AI, con gli stessi dati di sopra.
+const fmt = (n) => n.toLocaleString('it-IT');
+const projectLine = (p) => {
+  const link = p.packageUrl ?? p.repoUrl;
+  const desc = p.description ? `: ${p.description}` : '';
+  const dl = p.monthlyDownloads ? `${fmt(p.monthlyDownloads)} download/mese, ` : '';
+  const stars = `${p.stars} ${p.stars === 1 ? 'stella' : 'stelle'}`;
+  return `- [${p.name}](${link})${desc} — ${dl}${stars}`;
+};
+
+const llmsTxt = `# Simone Nigro - Full-Stack Developer
+
+> Portfolio personale di Simone Nigro, full-stack developer italiano (Avellino, Campania) in
+> ACCA software S.p.A. Autore di librerie open source Angular e Node.js pubblicate su npm con
+> oltre ${fmt(Math.floor(stats.npmMonthlyDownloads / 1000) * 1000)} download al mese. Sviluppa per il web dal 2000. Contributor
+> del core di WordPress (5.5). Sito bilingue: italiano su /, inglese su /en/. Il sito espone i
+> propri contenuti anche via WebMCP (navigator.modelContext): get_profile,
+> list_open_source_projects, list_articles, get_contacts.
+
+## Profilo
+
+- Ruolo: Full-Stack Developer (Angular, TypeScript, Node.js, PHP, PostgreSQL)
+- Azienda: ACCA software S.p.A.
+- Località: Avellino, Campania, Italia
+- Formazione: Laurea in Scienze della Comunicazione, Università degli Studi di Salerno
+- Email: nigro.simone@gmail.com
+
+## Progetti open source (dati npm/GitHub del ${formatDate(stats.updatedAt)})
+
+${projects.map(projectLine).join('\n')}
+- Totale: ${stats.npmPackages} pacchetti npm, ${fmt(stats.npmMonthlyDownloads)} download/mese, ${fmt(stats.githubStars)} stelle GitHub
+
+## Collegamenti
+
+- [GitHub](https://github.com/${GITHUB_USER}): ${stats.githubRepos} repository pubblici
+- [npm](https://www.npmjs.com/~${NPM_MAINTAINER}): tutti i pacchetti
+- [DEV Community](https://dev.to/${DEVTO_USER}): ${articles.length} articoli su Angular, Node.js e performance
+- [LinkedIn](https://www.linkedin.com/in/simonenigro/): profilo professionale
+- [WordPress.org](https://profiles.wordpress.org/${GITHUB_USER}/): contributi WordPress
+`;
+
+await writeFile(join(PUBLIC_DIR, 'llms.txt'), llmsTxt);
+
 console.log(`✔ Dati aggiornati al ${formatDate(stats.updatedAt)}:`);
 console.log(`  ${stats.npmPackages} pacchetti npm, ${stats.npmMonthlyDownloads} download/mese`);
 console.log(`  ${stats.githubStars} stelle GitHub, ${articles.length} articoli dev.to`);
-console.log('Ricontrolla il diff prima del commit (descrizioni curate, undefined nei campi opzionali).');
+console.log('  Rigenerati: src/app/data/*.ts e public/llms.txt.');
+console.log('Ricontrolla il diff prima del commit.');
