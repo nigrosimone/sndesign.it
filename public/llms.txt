@@ -34,6 +34,6 @@
 
 - [GitHub](https://github.com/nigrosimone): 47 repository pubblici
 - [npm](https://www.npmjs.com/~nigro.simone): tutti i pacchetti
-- [DEV Community](https://dev.to/nigrosimone): 10 articoli su Angular, Node.js e performance
+- [DEV Community](https://dev.to/nigrosimone): 11 articoli su Angular, Node.js e performance
 - [LinkedIn](https://www.linkedin.com/in/simonenigro/): profilo professionale
 - [WordPress.org](https://profiles.wordpress.org/nigrosimone/): contributi WordPress

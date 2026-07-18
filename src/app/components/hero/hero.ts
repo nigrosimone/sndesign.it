@@ -14,7 +14,8 @@ import { LiveStats } from '../../services/live-stats';
 })
 export class Hero {
   private readonly live = inject(LiveStats);
-  private readonly lang = inject(TranslocoService).getActiveLang() as Lang;
+  private readonly transloco = inject(TranslocoService);
+  private readonly lang = this.transloco.getActiveLang() as Lang;
 
   // Con <base href="/"> gli href solo-frammento risolverebbero sulla home italiana.
   protected readonly base = this.lang === 'en' ? '/en/' : '/';

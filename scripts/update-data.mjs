@@ -16,17 +16,10 @@ const ROOT_DIR = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_DIR = join(ROOT_DIR, 'src', 'app', 'data');
 const PUBLIC_DIR = join(ROOT_DIR, 'public');
 
-// Elementi da nascondere in pagina (e nei tool WebMCP): vengono esclusi del tutto
-// dai file generati, così non finiscono nemmeno nel bundle. Questa è l'unica fonte
-// di verità e sopravvive alla rigenerazione (editare i file generati a mano no).
-// Progetti/pacchetti per nome; articoli per slug (ultimo segmento dell'URL dev.to).
-const HIDDEN_PROJECTS = new Set([
-  // Repo che qualificano (stelle > 0) ma non sono librerie da mettere in vetrina:
-  //'postgres-benchmarks',
-]);
-const HIDDEN_ARTICLES = new Set([
-  'turbo-array-supercharge-your-javascript-array-operations-4fmc',
-]);
+const HIDDEN_PROJECTS = new Set([]);
+
+const HIDDEN_ARTICLES = new Set([]);
+
 const HIDDEN_PACKAGES = new Set([
   'piffero',
 ]);

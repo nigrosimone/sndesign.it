@@ -22,15 +22,16 @@ export class CountUp {
   readonly appCountUp = input.required<number>();
   readonly countUpSuffix = input('');
 
-  private readonly el = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
-  private readonly lang = inject(TranslocoService).getActiveLang() as Lang;
+  private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly transloco = inject(TranslocoService);
+  private readonly el = this.elementRef.nativeElement;
+  private readonly lang = this.transloco.getActiveLang() as Lang;
   private observer?: IntersectionObserver;
   private rafId = 0;
   private settled = false;
 
   constructor() {
-    const destroyRef = inject(DestroyRef);
-
     effect(() => {
       const value = this.appCountUp();
       const suffix = this.countUpSuffix();
@@ -42,7 +43,7 @@ export class CountUp {
     // afterNextRender gira solo nel browser: le API qui dentro (e nel
     // cleanup) non esistono in Node durante il prerendering.
     afterNextRender(() => {
-      destroyRef.onDestroy(() => {
+      this.destroyRef.onDestroy(() => {
         this.observer?.disconnect();
         cancelAnimationFrame(this.rafId);
       });

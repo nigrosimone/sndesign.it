@@ -21,6 +21,14 @@ export const ARTICLES: readonly Article[] = [
     reactions: 1,
   },
   {
+    title: 'Turbo Array: Supercharge Your JavaScript Array Operations 🚀',
+    url: 'https://dev.to/nigrosimone/turbo-array-supercharge-your-javascript-array-operations-4fmc',
+    date: '2025-02-04',
+    readingMinutes: 2,
+    tags: ['javascript', 'performance', 'node', 'npm'],
+    reactions: 0,
+  },
+  {
     title: 'Introducing Ultimate Express: The 5x Fastest Drop-In Replacement for Express.js',
     url: 'https://dev.to/nigrosimone/introducing-ultimate-express-the-5x-fastest-drop-in-replacement-for-expressjs-4kfc',
     date: '2024-10-20',

@@ -40,33 +40,37 @@ const META = {
   imports: [Header, Hero, About, Projects, Articles, Contact, TranslocoDirective]
 })
 export class Site {
+  private readonly route = inject(ActivatedRoute);
+  private readonly transloco = inject(TranslocoService);
+  private readonly doc = inject(DOCUMENT);
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+  private readonly liveStats = inject(LiveStats);
+
   protected readonly year = new Date().getFullYear();
   protected readonly ngVersion = VERSION.major;
 
   constructor() {
-    const lang = (inject(ActivatedRoute).snapshot.data['lang'] as 'it' | 'en' | undefined) ?? 'it';
-    inject(TranslocoService).setActiveLang(lang);
+    const lang = (this.route.snapshot.data['lang'] as 'it' | 'en' | undefined) ?? 'it';
+    this.transloco.setActiveLang(lang);
 
     // Lingua, title, meta e canonical per rotta: durante il prerendering
     // finiscono direttamente nell'HTML statico di / e /en.
-    const doc = inject(DOCUMENT);
-    doc.documentElement.lang = lang;
+    this.doc.documentElement.lang = lang;
 
     const url = lang === 'en' ? `${SITE_URL}en/` : SITE_URL;
     const strings = META[lang];
-    inject(Title).setTitle(strings.title);
-    const meta = inject(Meta);
-    meta.updateTag({ name: 'description', content: strings.description });
-    meta.updateTag({ property: 'og:title', content: strings.title });
-    meta.updateTag({ property: 'og:description', content: strings.ogDescription });
-    meta.updateTag({ property: 'og:url', content: url });
-    meta.updateTag({ property: 'og:locale', content: lang === 'en' ? 'en_US' : 'it_IT' });
-    meta.updateTag({ name: 'twitter:description', content: strings.ogDescription });
-    doc.querySelector('link[rel="canonical"]')?.setAttribute('href', url);
+    this.title.setTitle(strings.title);
+    this.meta.updateTag({ name: 'description', content: strings.description });
+    this.meta.updateTag({ property: 'og:title', content: strings.title });
+    this.meta.updateTag({ property: 'og:description', content: strings.ogDescription });
+    this.meta.updateTag({ property: 'og:url', content: url });
+    this.meta.updateTag({ property: 'og:locale', content: lang === 'en' ? 'en_US' : 'it_IT' });
+    this.meta.updateTag({ name: 'twitter:description', content: strings.ogDescription });
+    this.doc.querySelector('link[rel="canonical"]')?.setAttribute('href', url);
 
-    const stats = inject(LiveStats);
     afterNextRender(() => {
-      stats.start();
+      this.liveStats.start();
     });
   }
 }

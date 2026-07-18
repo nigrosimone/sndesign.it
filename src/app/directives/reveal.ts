@@ -22,16 +22,16 @@ import { prefersReducedMotion } from './motion';
 export class Reveal {
   readonly appReveal = input(0, { transform: numberAttribute });
 
-  private readonly el = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly el = this.elementRef.nativeElement;
   private observer?: IntersectionObserver;
 
   constructor() {
-    const destroyRef = inject(DestroyRef);
-
     // afterNextRender gira solo nel browser: niente API browser in Node
     // durante il prerendering (né nel cleanup registrato qui dentro).
     afterNextRender(() => {
-      destroyRef.onDestroy(() => this.observer?.disconnect());
+      this.destroyRef.onDestroy(() => this.observer?.disconnect());
       if (prefersReducedMotion() || !('IntersectionObserver' in window)) {
         this.el.classList.add('reveal-in');
         return;

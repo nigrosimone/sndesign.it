@@ -12,7 +12,8 @@ import { LiveStats } from '../../services/live-stats';
 })
 export class Projects {
   private readonly live = inject(LiveStats);
-  private readonly lang = inject(TranslocoService).getActiveLang() as Lang;
+  private readonly transloco = inject(TranslocoService);
+  private readonly lang = this.transloco.getActiveLang() as Lang;
 
   protected readonly packagesCount = OS_STATS.npmPackages;
   protected readonly downloadsFmt = computed(() =>

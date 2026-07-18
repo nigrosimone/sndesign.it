@@ -12,7 +12,8 @@ const VISIBLE_ARTICLES = 6;
   imports: [Reveal, TranslocoDirective]
 })
 export class Articles {
-  private readonly lang = inject(TranslocoService).getActiveLang() as Lang;
+  private readonly transloco = inject(TranslocoService);
+  private readonly lang = this.transloco.getActiveLang() as Lang;
 
   protected readonly articles = ARTICLES.slice(0, VISIBLE_ARTICLES).map((a) => ({
     ...a,
