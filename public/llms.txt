@@ -25,14 +25,15 @@
 - [codice-fiscale](https://packagist.org/packages/nigrosimone/codicefiscale): Libreria PHP per la validazione dei Codici Fiscali italiani a 16 caratteri con supporto per l'omocodia — 15 stelle
 - [ng-lock](https://www.npmjs.com/package/ng-lock): Angular decorator for lock a function and user interface while a task running. — 463 download/mese, 9 stelle
 - [ng-as](https://www.npmjs.com/package/ng-as): Angular pipe and directive for type casting template variables. — 3991 download/mese, 8 stelle
+- [postgres-benchmarks](https://github.com/nigrosimone/postgres-benchmarks): A benchmark focusing on the performance of Postgres client libraries for Node.js, brianc/node-postgres VS porsager/postgres — 4 stelle
 - [turbo-array](https://www.npmjs.com/package/turbo-array): Turbo Array is a lightweight, high-performance library that allows you to build lazy evaluation pipelines for arrays. It supports operations like filter, map, reduce, forEach, and join, executing them efficiently.  A method build with Turbo Array is 4x faster than vanilla version. — 29 download/mese, 2 stelle
 - [express-fast-json-stringify](https://www.npmjs.com/package/express-fast-json-stringify): With express-fast-json-stringify, you can leverage fast-json-stringify in your Express application to improve JSON serialization performance — 53 download/mese, 1 stella
-- Totale: 10 pacchetti npm, 79.953 download/mese, 263 stelle GitHub
+- Totale: 9 pacchetti npm, 79.892 download/mese, 263 stelle GitHub
 
 ## Collegamenti
 
 - [GitHub](https://github.com/nigrosimone): 47 repository pubblici
 - [npm](https://www.npmjs.com/~nigro.simone): tutti i pacchetti
-- [DEV Community](https://dev.to/nigrosimone): 11 articoli su Angular, Node.js e performance
+- [DEV Community](https://dev.to/nigrosimone): 10 articoli su Angular, Node.js e performance
 - [LinkedIn](https://www.linkedin.com/in/simonenigro/): profilo professionale
 - [WordPress.org](https://profiles.wordpress.org/nigrosimone/): contributi WordPress

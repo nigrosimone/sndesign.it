@@ -78,6 +78,14 @@ export const PROJECTS: readonly Project[] = [
     packageUrl: 'https://www.npmjs.com/package/ng-as',
   },
   {
+    name: 'postgres-benchmarks',
+    description:
+      'A benchmark focusing on the performance of Postgres client libraries for Node.js, brianc/node-postgres VS porsager/postgres',
+    language: 'TypeScript',
+    stars: 4,
+    repoUrl: 'https://github.com/nigrosimone/postgres-benchmarks',
+  },
+  {
     name: 'turbo-array',
     description:
       'Turbo Array is a lightweight, high-performance library that allows you to build lazy evaluation pipelines for arrays. It supports operations like filter, map, reduce, forEach, and join, executing them efficiently.  A method build with Turbo Array is 4x faster than vanilla version.',
@@ -152,13 +160,6 @@ export const PACKAGES: readonly NpmPackage[] = [
     url: 'https://www.npmjs.com/package/ng-lock',
   },
   {
-    name: 'piffero',
-    description: 'The ultimate JSON parser',
-    version: '1.1.13',
-    monthlyDownloads: 61,
-    url: 'https://www.npmjs.com/package/piffero',
-  },
-  {
     name: 'express-fast-json-stringify',
     description:
       'With express-fast-json-stringify, you can leverage fast-json-stringify in your Express application to improve JSON serialization performance',
@@ -177,8 +178,8 @@ export const PACKAGES: readonly NpmPackage[] = [
 ];
 
 export const OS_STATS: OpenSourceStats = {
-  npmMonthlyDownloads: 79953,
-  npmPackages: 10,
+  npmMonthlyDownloads: 79892,
+  npmPackages: 9,
   githubStars: 263,
   githubRepos: 47,
   updatedAt: '2026-07-18',
