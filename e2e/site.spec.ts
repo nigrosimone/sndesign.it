@@ -27,11 +27,11 @@ test('content is visible without JavaScript (SSG)', async ({ browser }) => {
   await context.close();
 });
 
-test('navigation anchor scrolls to the projects section with 10 cards', async ({ page }) => {
+test('navigation anchor scrolls to the projects section with n cards', async ({ page }) => {
   await page.goto('/');
   await page.locator('.nav-links a[href$="#progetti"]').click();
   await expect(page.locator('#progetti')).toBeInViewport();
-  await expect(page.locator('#progetti article.card')).toHaveCount(10);
+  await expect(page.locator('#progetti article.card')).toHaveCount(11);
 });
 
 test('anchors on the English page stay on the English page', async ({ page }) => {
