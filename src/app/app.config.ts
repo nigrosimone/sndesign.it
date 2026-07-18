@@ -8,7 +8,7 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideTransloco } from '@jsverse/transloco';
 import { routes } from './app.routes';
-import { TranslocoStaticLoader } from './transloco-loader';
+import { provideTranslocoPreload } from './transloco';
 import { WEBMCP_TOOLS } from './webmcp-tools';
 
 export const appConfig: ApplicationConfig = {
@@ -27,8 +27,8 @@ export const appConfig: ApplicationConfig = {
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
       },
-      loader: TranslocoStaticLoader,
     }),
+    provideTranslocoPreload(),
     provideExperimentalWebMcpTools(WEBMCP_TOOLS),
   ],
 };

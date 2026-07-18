@@ -8,7 +8,7 @@ import {
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
-// I file "optimized" sono già nel bundle (li importa il TranslocoStaticLoader):
+// I file "optimized" sono già nel bundle (li precarica provideTranslocoPreload):
 // riusarli evita di impacchettare anche i JSON grezzi solo per i meta.
 import en from '../../../i18n/optimized/en.json';
 import it from '../../../i18n/optimized/it.json';
