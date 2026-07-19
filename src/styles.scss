@@ -81,8 +81,8 @@ html::before {
   z-index: -2;
   pointer-events: none;
   background:
-    linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(0, 229, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.045) 1px, transparent 1px);
   background-size: 44px 44px;
 }
 
@@ -97,21 +97,24 @@ body::before {
     radial-gradient(ellipse 45% 32% at 92% 108%, rgba(255, 61, 129, 0.09), transparent 60%);
 }
 
-/* Respiro dei bagliori + micro-parallax della griglia: solo motion-safe. L'aurora
-   parte a 1.5s (l'LCP è già dipinto e il movimento è lento) così è percepibile
-   subito; transform/opacity restano sul compositor, quindi niente costo di layout.
-   Il parallax usa animation-timeline: scroll(), assente il quale la griglia resta
-   semplicemente ferma. */
+/* Sfondo vivo (solo motion-safe): la griglia scorre in diagonale con continuità
+   (il pattern è di 44px, quindi una traslazione di 44px chiude il loop senza
+   stacchi) e i bagliori "respirano". Tutto su transform/opacity → gira sul
+   compositor, nessun costo di layout. L'aurora parte a 1.5s: l'LCP è già dipinto
+   e il movimento è lento. */
 @media (prefers-reduced-motion: no-preference) {
+  html::before {
+    animation: grid-flow 9s linear infinite;
+  }
+
   body::before {
     animation: aurora 16s ease-in-out 1.5s infinite;
   }
+}
 
-  @supports (animation-timeline: scroll()) {
-    html::before {
-      animation: grid-parallax linear both;
-      animation-timeline: scroll(root block);
-    }
+@keyframes grid-flow {
+  to {
+    transform: translate(-44px, -44px);
   }
 }
 
@@ -125,12 +128,6 @@ body::before {
   50% {
     transform: translate3d(2.5%, 1.5%, 0) scale(1.12);
     opacity: 1;
-  }
-}
-
-@keyframes grid-parallax {
-  to {
-    transform: translateY(-40px);
   }
 }
 
