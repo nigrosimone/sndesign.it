@@ -4,13 +4,15 @@ import { formatNumber, type Lang } from '../../data/format';
 import { OS_STATS } from '../../data/open-source';
 import { PROFILE, SOCIALS } from '../../data/site-data';
 import { CountUp } from '../../directives/count-up';
+import { PointerFx } from '../../directives/pointer-fx';
 import { Reveal } from '../../directives/reveal';
+import { Scramble } from '../../directives/scramble';
 import { LiveStats } from '../../services/live-stats';
 
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.html',
-  imports: [CountUp, Reveal, TranslocoDirective]
+  imports: [CountUp, PointerFx, Reveal, Scramble, TranslocoDirective]
 })
 export class Hero {
   private readonly live = inject(LiveStats);

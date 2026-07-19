@@ -81,8 +81,8 @@ html::before {
   z-index: -2;
   pointer-events: none;
   background:
-    linear-gradient(rgba(0, 229, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 229, 255, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(0, 229, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 229, 255, 0.08) 1px, transparent 1px);
   background-size: 44px 44px;
 }
 
@@ -93,8 +93,8 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 45% at 50% -5%, rgba(0, 229, 255, 0.13), transparent 60%),
-    radial-gradient(ellipse 45% 32% at 92% 108%, rgba(255, 61, 129, 0.09), transparent 60%);
+    radial-gradient(ellipse 60% 45% at 50% -5%, rgba(0, 229, 255, 0.2), transparent 60%),
+    radial-gradient(ellipse 45% 32% at 92% 108%, rgba(255, 61, 129, 0.14), transparent 60%);
 }
 
 /* Sfondo vivo (solo motion-safe): la griglia scorre in diagonale con continuità
@@ -104,11 +104,11 @@ body::before {
    e il movimento è lento. */
 @media (prefers-reduced-motion: no-preference) {
   html::before {
-    animation: grid-flow 9s linear infinite;
+    animation: grid-flow 6s linear infinite;
   }
 
   body::before {
-    animation: aurora 16s ease-in-out 1.5s infinite;
+    animation: aurora 12s ease-in-out 1.5s infinite;
   }
 }
 
@@ -121,12 +121,12 @@ body::before {
 @keyframes aurora {
   0%,
   100% {
-    transform: translate3d(-2.5%, -1.5%, 0) scale(1.04);
-    opacity: 0.55;
+    transform: translate3d(-4%, -2.5%, 0) scale(1.03);
+    opacity: 0.4;
   }
 
   50% {
-    transform: translate3d(2.5%, 1.5%, 0) scale(1.12);
+    transform: translate3d(4%, 2.5%, 0) scale(1.16);
     opacity: 1;
   }
 }
@@ -615,6 +615,7 @@ ol[role='list'] {
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .stat {
@@ -754,6 +755,7 @@ ol[role='list'] {
 .about-photo {
   margin: 0;
   position: relative;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .about-photo img {
@@ -919,6 +921,15 @@ ol[role='list'] {
     border-color 0.25s,
     box-shadow 0.25s,
     --spot 0.3s;
+}
+
+/* Foto profilo e pannello statistiche: stessa directive appPointerFx, solo tilt
+   (niente spotlight). Mentre inclina, transform istantaneo; al leave torna con la
+   sua transition. */
+.about-photo.is-tilting,
+.hero-stats.is-tilting {
+  transition: none;
+  will-change: transform;
 }
 
 .card-head {

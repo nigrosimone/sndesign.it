@@ -11,7 +11,7 @@
         <p [appReveal]="i * 90">{{ t(key) }}</p>
       }
     </div>
-    <figure class="about-photo" appReveal>
+    <figure class="about-photo" appReveal appPointerFx>
       <img
         src="avatar.jpg"
         [alt]="t('about.photoAlt')"
@@ -27,7 +27,9 @@
     @for (group of skillGroups; track group.labelKey; let i = $index) {
       <div class="skill-group" [appReveal]="i * 90">
         <h3 class="skill-title font-mono">
-          <span aria-hidden="true">&gt; </span>{{ t(group.labelKey) }}
+          <span aria-hidden="true">&gt; </span>
+          <span class="sr-only">{{ t(group.labelKey) }}</span>
+          <span aria-hidden="true" appScramble>{{ t(group.labelKey) }}</span>
         </h3>
         <ul class="chips" role="list">
           @for (skill of group.skills; track skill) {

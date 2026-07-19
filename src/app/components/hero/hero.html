@@ -3,7 +3,10 @@
     <span class="term-prompt">simone&#64;sndesign:~$</span>
     <span class="term-cmd">whoami</span><span class="caret"></span>
   </p>
-  <h1 id="hero-title" class="glitch" data-text="Simone Nigro">Simone Nigro</h1>
+  <h1 id="hero-title" class="glitch" data-text="Simone Nigro">
+    <span class="sr-only">Simone Nigro</span>
+    <span aria-hidden="true" appScramble>Simone Nigro</span>
+  </h1>
   <p class="hero-role">
     <strong>{{ t('hero.role') }}</strong>
     <span class="hero-sep" aria-hidden="true">//</span>
@@ -15,7 +18,7 @@
     {{ t('hero.meta') }}
   </p>
 
-  <ul class="hero-stats" role="list">
+  <ul class="hero-stats" role="list" appPointerFx>
     @for (s of stats(); track s.labelKey; let i = $index) {
       <li class="stat" [appReveal]="i * 60">
         <span
