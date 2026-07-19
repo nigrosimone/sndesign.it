@@ -13,6 +13,7 @@ import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import en from '../../../i18n/optimized/en.json';
 import it from '../../../i18n/optimized/it.json';
 import { LiveStats } from '../../services/live-stats';
+import { MatrixRain } from '../../directives/matrix-rain';
 import { About } from '../about/about';
 import { Articles } from '../articles/articles';
 import { Contact } from '../contact/contact';
@@ -37,7 +38,7 @@ const META = {
 @Component({
   selector: 'app-site',
   templateUrl: './site.html',
-  imports: [Header, Hero, About, Projects, Articles, Contact, TranslocoDirective]
+  imports: [MatrixRain, Header, Hero, About, Projects, Articles, Contact, TranslocoDirective]
 })
 export class Site {
   private readonly route = inject(ActivatedRoute);
