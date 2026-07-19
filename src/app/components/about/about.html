@@ -1,6 +1,8 @@
 <section id="chi-sono" class="section container" aria-labelledby="about-title" *transloco="let t">
   <h2 id="about-title" class="section-title" appReveal>
-    <span class="section-idx font-mono" aria-hidden="true">01.</span>{{ t('about.title') }}
+    <span class="section-idx font-mono" aria-hidden="true">01.</span>
+    <span class="sr-only">{{ t('about.title') }}</span>
+    <span appScramble aria-hidden="true">{{ t('about.title') }}</span>
   </h2>
 
   <div class="about-grid">

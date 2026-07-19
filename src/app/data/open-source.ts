@@ -1,4 +1,4 @@
-// Dati raccolti dalle API pubbliche di GitHub e npm il 18/07/2026.
+// Dati raccolti dalle API pubbliche di GitHub e npm il 19/07/2026.
 // Per aggiornarli: npm run update-data (rigenera questo file).
 import type { NpmPackage, OpenSourceStats, Project } from './types';
 
@@ -8,7 +8,7 @@ export const PROJECTS: readonly Project[] = [
     description: 'Cache for HTTP requests in Angular application.',
     language: 'TypeScript',
     stars: 53,
-    monthlyDownloads: 15659,
+    monthlyDownloads: 15091,
     repoUrl: 'https://github.com/nigrosimone/ng-http-caching',
     packageUrl: 'https://www.npmjs.com/package/ng-http-caching',
   },
@@ -18,7 +18,7 @@ export const PROJECTS: readonly Project[] = [
       'Angular structural directive for sharing data as local variable into html component template.',
     language: 'TypeScript',
     stars: 47,
-    monthlyDownloads: 52325,
+    monthlyDownloads: 51259,
     repoUrl: 'https://github.com/nigrosimone/ng-let',
     packageUrl: 'https://www.npmjs.com/package/ng-let',
   },
@@ -27,7 +27,7 @@ export const PROJECTS: readonly Project[] = [
     description: 'Simple state management in Angular with only Services and Signal.',
     language: 'TypeScript',
     stars: 46,
-    monthlyDownloads: 826,
+    monthlyDownloads: 790,
     repoUrl: 'https://github.com/nigrosimone/ng-simple-state',
     packageUrl: 'https://www.npmjs.com/package/ng-simple-state',
   },
@@ -36,7 +36,7 @@ export const PROJECTS: readonly Project[] = [
     description: 'Angular global trackBy property directive with strict type checking.',
     language: 'TypeScript',
     stars: 28,
-    monthlyDownloads: 1334,
+    monthlyDownloads: 1290,
     repoUrl: 'https://github.com/nigrosimone/ng-for-track-by-property',
     packageUrl: 'https://www.npmjs.com/package/ng-for-track-by-property',
   },
@@ -46,7 +46,7 @@ export const PROJECTS: readonly Project[] = [
       'Generic pipe for Angular application for use a component method into component template',
     language: 'TypeScript',
     stars: 20,
-    monthlyDownloads: 5212,
+    monthlyDownloads: 5073,
     repoUrl: 'https://github.com/nigrosimone/ng-generic-pipe',
     packageUrl: 'https://www.npmjs.com/package/ng-generic-pipe',
   },
@@ -64,7 +64,7 @@ export const PROJECTS: readonly Project[] = [
     description: 'Angular decorator for lock a function and user interface while a task running.',
     language: 'TypeScript',
     stars: 9,
-    monthlyDownloads: 463,
+    monthlyDownloads: 465,
     repoUrl: 'https://github.com/nigrosimone/ng-lock',
     packageUrl: 'https://www.npmjs.com/package/ng-lock',
   },
@@ -73,7 +73,7 @@ export const PROJECTS: readonly Project[] = [
     description: 'Angular pipe and directive for type casting template variables.',
     language: 'TypeScript',
     stars: 8,
-    monthlyDownloads: 3991,
+    monthlyDownloads: 3870,
     repoUrl: 'https://github.com/nigrosimone/ng-as',
     packageUrl: 'https://www.npmjs.com/package/ng-as',
   },
@@ -101,7 +101,7 @@ export const PROJECTS: readonly Project[] = [
       'With express-fast-json-stringify, you can leverage fast-json-stringify in your Express application to improve JSON serialization performance',
     language: 'TypeScript',
     stars: 1,
-    monthlyDownloads: 53,
+    monthlyDownloads: 55,
     repoUrl: 'https://github.com/nigrosimone/express-fast-json-stringify',
     packageUrl: 'https://www.npmjs.com/package/express-fast-json-stringify',
   },
@@ -113,14 +113,14 @@ export const PACKAGES: readonly NpmPackage[] = [
     description:
       'Angular structural directive for sharing data as local variable into html component template.',
     version: '21.0.1',
-    monthlyDownloads: 52325,
+    monthlyDownloads: 51259,
     url: 'https://www.npmjs.com/package/ng-let',
   },
   {
     name: 'ng-http-caching',
     description: 'Cache for HTTP requests in Angular application.',
     version: '22.0.1',
-    monthlyDownloads: 15659,
+    monthlyDownloads: 15091,
     url: 'https://www.npmjs.com/package/ng-http-caching',
   },
   {
@@ -128,35 +128,35 @@ export const PACKAGES: readonly NpmPackage[] = [
     description:
       'Generic pipe for Angular application for use a component method into component template.',
     version: '21.0.1',
-    monthlyDownloads: 5212,
+    monthlyDownloads: 5073,
     url: 'https://www.npmjs.com/package/ng-generic-pipe',
   },
   {
     name: 'ng-as',
     description: 'Angular pipe and directive for type casting template variables.',
     version: '22.0.1',
-    monthlyDownloads: 3991,
+    monthlyDownloads: 3870,
     url: 'https://www.npmjs.com/package/ng-as',
   },
   {
     name: 'ng-for-track-by-property',
     description: 'Angular global trackBy property directive with strict type checking.',
     version: '21.0.1',
-    monthlyDownloads: 1334,
+    monthlyDownloads: 1290,
     url: 'https://www.npmjs.com/package/ng-for-track-by-property',
   },
   {
     name: 'ng-simple-state',
     description: 'Simple state management in Angular with only Services and Signal.',
     version: '22.0.4',
-    monthlyDownloads: 826,
+    monthlyDownloads: 790,
     url: 'https://www.npmjs.com/package/ng-simple-state',
   },
   {
     name: 'ng-lock',
     description: 'Angular decorator for lock a function and user interface while a task running.',
     version: '20.0.1',
-    monthlyDownloads: 463,
+    monthlyDownloads: 465,
     url: 'https://www.npmjs.com/package/ng-lock',
   },
   {
@@ -164,7 +164,7 @@ export const PACKAGES: readonly NpmPackage[] = [
     description:
       'With express-fast-json-stringify, you can leverage fast-json-stringify in your Express application to improve JSON serialization performance',
     version: '1.2.9',
-    monthlyDownloads: 53,
+    monthlyDownloads: 55,
     url: 'https://www.npmjs.com/package/express-fast-json-stringify',
   },
   {
@@ -178,9 +178,9 @@ export const PACKAGES: readonly NpmPackage[] = [
 ];
 
 export const OS_STATS: OpenSourceStats = {
-  npmMonthlyDownloads: 79892,
+  npmMonthlyDownloads: 77922,
   npmPackages: 9,
   githubStars: 263,
   githubRepos: 47,
-  updatedAt: '2026-07-18',
+  updatedAt: '2026-07-19',
 };

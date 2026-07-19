@@ -5,7 +5,9 @@
   *transloco="let t"
 >
   <h2 id="contact-title" class="section-title" appReveal>
-    <span class="section-idx font-mono" aria-hidden="true">04.</span>{{ t('contact.title') }}
+    <span class="section-idx font-mono" aria-hidden="true">04.</span>
+    <span class="sr-only">{{ t('contact.title') }}</span>
+    <span appScramble aria-hidden="true">{{ t('contact.title') }}</span>
   </h2>
   <p class="contact-text" appReveal>
     {{ t('contact.text1') }}<br />

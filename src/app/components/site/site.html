@@ -1,18 +1,10 @@
 <app-header />
 <main id="main">
   <app-hero />
-  @defer (hydrate on viewport) {
-    <app-about />
-  }
-  @defer (hydrate on viewport) {
-    <app-projects />
-  }
-  @defer (hydrate on viewport) {
-    <app-articles />
-  }
-  @defer (hydrate on viewport) {
-    <app-contact />
-  }
+  <app-about />
+  <app-projects />
+  <app-articles />
+  <app-contact />
 </main>
 <footer class="site-footer font-mono" *transloco="let t">
   <div class="container footer-inner">

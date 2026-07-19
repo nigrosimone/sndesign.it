@@ -1,6 +1,8 @@
 <section id="articoli" class="section container" aria-labelledby="articles-title" *transloco="let t">
   <h2 id="articles-title" class="section-title" appReveal>
-    <span class="section-idx font-mono" aria-hidden="true">03.</span>{{ t('articles.title') }}
+    <span class="section-idx font-mono" aria-hidden="true">03.</span>
+    <span class="sr-only">{{ t('articles.title') }}</span>
+    <span appScramble aria-hidden="true">{{ t('articles.title') }}</span>
   </h2>
   <p class="section-sub" appReveal>{{ t('articles.sub') }}</p>
 

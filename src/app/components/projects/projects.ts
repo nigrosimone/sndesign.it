@@ -2,13 +2,15 @@ import { Component, computed, inject } from '@angular/core';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { formatNumber, type Lang } from '../../data/format';
 import { OS_STATS, PROJECTS } from '../../data/open-source';
+import { PointerFx } from '../../directives/pointer-fx';
 import { Reveal } from '../../directives/reveal';
+import { Scramble } from '../../directives/scramble';
 import { LiveStats } from '../../services/live-stats';
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.html',
-  imports: [Reveal, TranslocoDirective]
+  imports: [PointerFx, Reveal, Scramble, TranslocoDirective]
 })
 export class Projects {
   private readonly live = inject(LiveStats);

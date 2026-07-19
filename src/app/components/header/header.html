@@ -1,11 +1,12 @@
 <ng-container *transloco="let t">
   <a class="skip-link" [href]="base + '#main'">{{ t('nav.skip') }}</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <header class="site-header">
     <nav class="container site-nav" [attr.aria-label]="t('nav.label')">
       <a class="logo font-mono" [href]="base + '#top'" [attr.aria-label]="t('nav.logoAria')">
         SN<span class="logo-cursor" aria-hidden="true">_</span>
       </a>
-      <ul class="nav-links font-mono" role="list">
+      <ul class="nav-links font-mono" role="list" appScrollSpy>
         <li>
           <a [href]="base + '#chi-sono'"
             ><span class="nav-idx" aria-hidden="true">01.</span>{{ t('nav.about') }}</a

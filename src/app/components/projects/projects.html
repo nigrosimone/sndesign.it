@@ -1,6 +1,8 @@
 <section id="progetti" class="section container" aria-labelledby="projects-title" *transloco="let t">
   <h2 id="projects-title" class="section-title" appReveal>
-    <span class="section-idx font-mono" aria-hidden="true">02.</span>{{ t('projects.title') }}
+    <span class="section-idx font-mono" aria-hidden="true">02.</span>
+    <span class="sr-only">{{ t('projects.title') }}</span>
+    <span appScramble aria-hidden="true">{{ t('projects.title') }}</span>
   </h2>
   <p class="section-sub" appReveal>
     {{ t('projects.sub', { count: packagesCount, downloads: downloadsFmt() }) }}
@@ -9,7 +11,7 @@
   <ul class="cards" role="list">
     @for (p of projects(); track p.name; let i = $index) {
       <li>
-        <article class="card" [appReveal]="(i % 3) * 80">
+        <article class="card" appPointerFx [appReveal]="(i % 3) * 80">
           <header class="card-head">
             <h3 class="card-title font-mono">
               <a [href]="p.repoUrl" target="_blank" rel="noopener">{{ p.name }}</a>

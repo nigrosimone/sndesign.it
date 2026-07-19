@@ -3,13 +3,14 @@ import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { ARTICLES } from '../../data/articles';
 import { formatMonthYear, type Lang } from '../../data/format';
 import { Reveal } from '../../directives/reveal';
+import { Scramble } from '../../directives/scramble';
 
 const VISIBLE_ARTICLES = 6;
 
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.html',
-  imports: [Reveal, TranslocoDirective]
+  imports: [Reveal, Scramble, TranslocoDirective]
 })
 export class Articles {
   private readonly transloco = inject(TranslocoService);
