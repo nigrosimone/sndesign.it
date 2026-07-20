@@ -7,8 +7,8 @@ export function formatNumber(value: number, lang: Lang = 'it'): string {
 }
 
 export function formatMonthYear(isoDate: string, lang: Lang = 'it'): string {
-  // timeZone UTC: le date ISO senza orario sono UTC; senza questa opzione un
-  // fuso negativo mostrerebbe il mese precedente per gli articoli del giorno 1.
+  // timeZone UTC: date-only ISO strings are UTC; without it a negative offset
+  // would show the previous month for articles dated the 1st.
   return new Intl.DateTimeFormat(LOCALES[lang], {
     month: 'short',
     year: 'numeric',

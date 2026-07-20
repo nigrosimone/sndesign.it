@@ -19,7 +19,7 @@ export class Hero {
   private readonly transloco = inject(TranslocoService);
   private readonly lang = this.transloco.getActiveLang() as Lang;
 
-  // Con <base href="/"> gli href solo-frammento risolverebbero sulla home italiana.
+  // With <base href="/"> fragment-only hrefs would resolve to the Italian home.
   protected readonly base = this.lang === 'en' ? '/en/' : '/';
   protected readonly socials = SOCIALS;
   protected readonly stats = computed(() => [

@@ -14,9 +14,8 @@ const tool = (name: string, description: string, data: unknown) => ({
 });
 
 /**
- * Tool WebMCP esposti agli agenti AI tramite l'API sperimentale di Angular
- * (provideExperimentalWebMcpTools). Le descrizioni sono in inglese per
- * massimizzare l'interoperabilità con gli agenti.
+ * WebMCP tools exposed to AI agents through Angular's experimental
+ * provideExperimentalWebMcpTools API.
  */
 export const WEBMCP_TOOLS = [
   tool(

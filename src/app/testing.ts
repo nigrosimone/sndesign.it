@@ -3,7 +3,7 @@ import { provideTransloco } from '@jsverse/transloco';
 import { LiveStats } from './services/live-stats';
 import { provideTranslocoPreload } from './transloco';
 
-/** Provider Transloco reale (traduzioni precaricate) per i test. */
+/** Real Transloco providers (preloaded translations) for tests. */
 export function provideTranslocoTesting() {
   return [
     provideTransloco({
@@ -19,7 +19,7 @@ export function provideTranslocoTesting() {
   ];
 }
 
-/** Stub di LiveStats: valori fissi, nessuna fetch. */
+/** LiveStats stub: fixed values, no fetch. */
 export function provideLiveStatsStub(): Provider {
   return {
     provide: LiveStats,
@@ -29,7 +29,7 @@ export function provideLiveStatsStub(): Provider {
       packageDownloads: signal(new Map<string, number>()),
       repoStars: signal(new Map<string, number>()),
       start: () => {
-        /* nessuna fetch nei test */
+        /* no fetch in tests */
       },
     },
   };

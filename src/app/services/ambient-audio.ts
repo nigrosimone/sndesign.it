@@ -1,47 +1,16 @@
 import { PLATFORM_ID, Service, computed, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-/**
- * Motore audio generativo "dark ambient / cyberpunk". Ricrea, senza alcun file,
- * l'idea del vecchio sito in Flash: quattro basi sonore che si miscelano da sole
- * in una trama unica e sempre diversa, con la miscela personalizzabile dall'utente.
- *
- * Tutto è sintetizzato dal vivo con la Web Audio API (oscillatori + rumore filtrato
- * + LFO lenti), quindi ha peso zero sul bundle e variazione infinita. Le quattro
- * "voci":
- *   0. Drone    - sub-bass ronzante (fondamenta)
- *   1. Pad      - accordo minore che deriva lentamente (parte "musicale")
- *   2. Air      - rumore in banda passante che vaga (vento/atmosfera)
- *   3. Signals  - bleep digitali sparsi con eco (vita, carattere cyberpunk)
- *
- * La "miscelazione automatica" è un random-walk lento e indipendente sul livello di
- * ogni voce: ogni pochi secondi ognuna sceglie un nuovo target e ci scivola sopra,
- * così la combinazione non è mai identica. Il livello dal vivo è esposto in
- * {@link levels} (i cursori del mixer lo mostrano e si muovono da soli). Se l'utente
- * tocca una voce questa si "blocca" ({@link pinned}) sul valore scelto ed esce dalla
- * randomizzazione; {@link resetPins} le rimette tutte in automatico.
- *
- * L'animazione è pilotata da un loop requestAnimationFrame in JS: unica fonte di
- * verità che aggiorna sia il guadagno audio sia il segnale dei livelli, senza
- * dipendere dalla lettura di AudioParam.value. Il segnale visuale viene aggiornato
- * solo quando il pannello è aperto ({@link setVisualize}), per non sprecare
- * change-detection quando non serve.
- *
- * SSR-safe: nulla tocca il browser nel costruttore. L'AudioContext nasce lazy solo
- * al primo play (gesto utente, come impone la policy di autoplay). Le preferenze
- * sono persistite in localStorage e ripristinate dal componente in afterNextRender.
- */
-
-/** Numero di voci (basi sonore). */
+/** Number of sound voices. */
 export const VOICE_COUNT = 4;
 
-/** Bande dello spettro, usate solo come texture delle colonne della pioggia. */
+/** Spectrum bands, used only as texture for the rain columns. */
 export const BAND_COUNT = 32;
 
-/** Chiavi i18n delle voci, nell'ordine del grafo audio. */
+/** Voice i18n keys, in audio-graph order. */
 export const VOICE_KEYS = ['drone', 'pad', 'air', 'signals'] as const;
 
-/** Indici delle voci: ogni voce pilota un effetto visivo preciso. */
+/** Voice indexes: each voice drives one visual effect. */
 export const VOICE = { drone: 0, pad: 1, air: 2, signals: 3 } as const;
 
 interface Settings {
@@ -60,31 +29,39 @@ const DEFAULTS = {
   levels: [0.75, 0.6, 0.45, 0.5],
 };
 
-// Random-walk: centro attorno a cui vaga il livello e ampiezza/durata governate
-// dallo slider "movimento".
+/** Center the random walk drifts around; the "movement" slider sets its span. */
 const WALK_CENTER = 0.62;
 const clamp01 = (n: number): number => (n < 0 ? 0 : n > 1 ? 1 : n);
 const toNum = (v: unknown, fallback: number): number => {
   const n = Number(v);
   return Number.isFinite(n) ? n : fallback;
 };
-// Smoothstep: interpolazione morbida (niente scatti) tra due target del walk.
+/** Smoothstep, so walk segments join without a kink. */
 const ease = (p: number): number => p * p * (3 - 2 * p);
-// Guadagno visivo: l'ambient è di per sé quieto, senza boost le bande resterebbero
-// quasi piatte. Attacco rapido / rilascio lento = pulsazione "da visualizzatore".
+// Ambient material is quiet: without a boost the bands would stay almost flat.
+// Fast attack / slow release gives the usual visualizer pulse.
 const VISUAL_GAIN = 2.6;
 const ATTACK = 0.5;
 const RELEASE = 0.12;
-// Decadimento per frame del lampo dei bleep: ~1s per tornare a zero a 60fps.
+/** Per-frame decay of the bleep flash: ~1s back to zero at 60fps. */
 const SIGNAL_DECAY = 0.94;
-// Durata del fade dei visual quando si ferma (ms): il loop resta vivo tanto quanto
-// basta perché l'analizzatore veda l'audio spegnersi da solo.
+// Visual fade after stop (ms): the loop stays alive just long enough to follow
+// the audio fading out.
 const VISUAL_FADE_MS = 600;
-// La2 come fondamentale; scala pentatonica minore (semitoni) per i bleep.
+// A2 as fundamental, minor pentatonic (semitones) for the bleeps.
 const ROOT = 110;
 const PENTATONIC = [0, 3, 5, 7, 10];
 const semi = (n: number): number => Math.pow(2, n / 12);
 
+/**
+ * File-less generative dark-ambient engine: drone, pad, air and signals are
+ * synthesized live with the Web Audio API and mixed by an independent slow random
+ * walk per voice, so the texture is never the same twice. Touching a voice pins it
+ * to the chosen level and takes it out of the randomization.
+ *
+ * SSR-safe: the AudioContext is created lazily on the first play, which must happen
+ * inside a user gesture (autoplay policy).
+ */
 @Service()
 export class AmbientAudio {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
@@ -92,13 +69,12 @@ export class AmbientAudio {
   readonly playing = signal(false);
   readonly master = signal(DEFAULTS.master);
   readonly movement = signal(DEFAULTS.movement);
-  /** Livello dal vivo di ogni voce (0..1): ciò che si sente e che i cursori mostrano. */
+  /** Live level of each voice (0..1): what you hear and what the sliders show. */
   readonly levels = signal<readonly number[]>([...DEFAULTS.levels]);
-  /** Voci "bloccate": ferme al valore scelto ed escluse dalla randomizzazione. */
+  /** Pinned voices: held at the chosen level, excluded from the randomization. */
   readonly pinned = signal<readonly boolean[]>(Array<boolean>(VOICE_COUNT).fill(false));
-  /** Vero se almeno una voce è bloccata (per mostrare il tasto "sblocca tutto"). */
   readonly hasPins = computed(() => this.pinned().some((p) => p));
-  /** Vero appena il contesto audio è stato creato almeno una volta. */
+  /** True once the audio context has been created at least once. */
   readonly ready = computed(() => this.ctx !== null);
 
   private ctx: AudioContext | null = null;
@@ -107,33 +83,30 @@ export class AmbientAudio {
   private analyser: AnalyserNode | null = null;
   private analyserData: Uint8Array<ArrayBuffer> | null = null;
   private readonly bandValues = Array<number>(BAND_COUNT).fill(0);
-  /** Estremi (indici di bin) delle bande, spaziati in modo logaritmico. */
+  /** Band boundaries (bin indexes), logarithmically spaced. */
   private bandEdges: number[] = [];
-  /** Quanto è udibile ogni voce (0..1): volume x livello, più il lampo dei bleep.
-   *  È l'array che pilota i visual, una voce = un effetto. */
+  /** How audible each voice is (0..1): master x level, plus the bleep flash. */
   private readonly voiceEnergyValues = Array<number>(VOICE_COUNT).fill(0);
-  /** Lampo dei bleep: va a 1 quando parte un bleep e decade da solo. */
+  /** Bleep flash: jumps to 1 on each bleep, then decays. */
   private signalFlash = 0;
-  /** Callback per frame per il ponte verso le CSS custom properties. */
   private frameHook: ((voices: readonly number[]) => void) | null = null;
-  /** Fino a quando tenere vivo il loop dopo lo stop (fade dei visual). */
+  /** Deadline until which the loop stays alive after stop (visual fade). */
   private fadeUntil = 0;
-  /** Un guadagno per voce: il suo gain è il livello dal vivo. */
   private voiceGains: GainNode[] = [];
   private nodes: AudioNode[] = [];
   private timers: ReturnType<typeof setTimeout>[] = [];
   private rafId = 0;
   private stopped = false;
-  /** Se true, il loop aggiorna anche il segnale dei livelli (pannello aperto). */
+  /** When true the loop also updates the levels signal (mixer panel open). */
   private visualize = false;
 
-  // Stato del random-walk per voce (in millisecondi sul clock di rAF/performance).
+  // Per-voice random-walk state (milliseconds on the rAF/performance clock).
   private walkFrom = Array<number>(VOICE_COUNT).fill(WALK_CENTER);
   private walkTo = Array<number>(VOICE_COUNT).fill(WALK_CENTER);
   private walkStart = Array<number>(VOICE_COUNT).fill(0);
   private walkDur = Array<number>(VOICE_COUNT).fill(1);
 
-  /** Avvia o ferma la riproduzione. Ritorna lo stato risultante. */
+  /** Starts or stops playback; returns the resulting state. */
   async toggle(): Promise<boolean> {
     if (this.playing()) {
       this.stop();
@@ -143,13 +116,13 @@ export class AmbientAudio {
     return this.playing();
   }
 
-  /** Crea (se serve) il grafo audio e avvia. Deve girare da un gesto utente. */
+  /** Builds the audio graph if needed and starts. Must run from a user gesture. */
   async start(): Promise<void> {
     if (!this.isBrowser || this.playing()) {
       return;
     }
-    // Tipizzato come opzionale: su vecchi Safari serve il prefisso webkit, e i
-    // tipi DOM danno AudioContext come sempre presente (qui invece va verificato).
+    // Typed as optional: old Safari needs the webkit prefix, and the DOM types
+    // declare AudioContext as always present.
     const scope = window as unknown as {
       AudioContext?: typeof AudioContext;
       webkitAudioContext?: typeof AudioContext;
@@ -162,12 +135,12 @@ export class AmbientAudio {
       this.ctx = new Ctx();
       this.build(this.ctx);
     }
-    // Su Safari/iOS il contesto nasce "suspended": va ripreso dentro il gesto.
+    // On Safari/iOS the context starts suspended and must be resumed in the gesture.
     if (this.ctx.state === 'suspended') {
       try {
         await this.ctx.resume();
       } catch {
-        /* ripresa negata: lasciamo lo stato com'è */
+        /* resume denied: leave the state as is */
       }
     }
     this.stopped = false;
@@ -179,18 +152,18 @@ export class AmbientAudio {
     this.persist();
   }
 
-  /** Ferma la riproduzione e sospende il contesto (il grafo resta pronto). */
+  /** Stops playback and suspends the context; the graph stays ready. */
   stop(): void {
     this.stopped = true;
     for (const t of this.timers) {
       clearTimeout(t);
     }
     this.timers = [];
-    // Il loop NON viene ucciso qui: resta vivo un attimo così i visual seguono
-    // l'audio che sfuma, poi si spegne da solo (vedi animate).
+    // The loop is not killed here: it stays alive briefly so the visuals follow the
+    // audio fading out, then ends by itself (see animate).
     this.fadeUntil = this.now() + VISUAL_FADE_MS;
     if (this.masterGain && this.ctx) {
-      // Fade-out breve per non "cliccare", poi sospende.
+      // Short fade-out to avoid a click, then suspend.
       const now = this.ctx.currentTime;
       this.masterGain.gain.cancelScheduledValues(now);
       this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, now);
@@ -219,7 +192,7 @@ export class AmbientAudio {
     this.persist();
   }
 
-  /** Imposta il livello di una voce e la blocca (esce dalla randomizzazione). */
+  /** Sets a voice level and pins it, taking it out of the randomization. */
   setLevel(index: number, v: number): void {
     if (index < 0 || index >= VOICE_COUNT) {
       return;
@@ -233,7 +206,7 @@ export class AmbientAudio {
     this.persist();
   }
 
-  /** Blocca una voce sul livello attuale senza cambiarlo. */
+  /** Pins a voice at its current level, without changing it. */
   pin(index: number): void {
     if (index < 0 || index >= VOICE_COUNT || this.pinned()[index]) {
       return;
@@ -242,7 +215,7 @@ export class AmbientAudio {
     this.persist();
   }
 
-  /** Alterna blocco/automatico per una voce. */
+  /** Toggles a voice between pinned and automatic. */
   togglePin(index: number): void {
     if (index < 0 || index >= VOICE_COUNT) {
       return;
@@ -256,7 +229,7 @@ export class AmbientAudio {
     this.persist();
   }
 
-  /** Sblocca tutte le voci: tornano tutte in automatico. */
+  /** Unpins every voice, putting them all back on automatic. */
   resetPins(): void {
     if (!this.hasPins()) {
       return;
@@ -268,34 +241,34 @@ export class AmbientAudio {
     this.persist();
   }
 
-  /** Quanto è udibile ogni voce adesso (0..1), nell'ordine di {@link VOICE}.
-   *  È il driver dei visual: una voce = un effetto, e a voce muta l'effetto sparisce.
-   *  Non è un signal: lo legge un loop rAF esterno, quindi zero change-detection. */
+  /** How audible each voice is right now (0..1), in {@link VOICE} order: one voice
+   *  drives one visual effect. Not a signal — an external rAF loop reads it, so it
+   *  costs no change detection. */
   voiceEnergy(): readonly number[] {
     return this.voiceEnergyValues;
   }
 
-  /** Le {@link BAND_COUNT} bande dello spettro (0..1): texture delle colonne. */
+  /** The {@link BAND_COUNT} spectrum bands (0..1), used as column texture. */
   bands(): readonly number[] {
     return this.bandValues;
   }
 
-  /** Registra un callback chiamato a ogni frame del loop audio (uno solo).
-   *  Lo usa il ponte verso le CSS custom properties: così non serve un altro rAF. */
+  /** Registers the single per-frame callback used by the CSS custom property
+   *  bridge, so it does not need its own rAF loop. */
   onFrame(cb: ((voices: readonly number[]) => void) | null): void {
     this.frameHook = cb;
   }
 
-  /** Attiva/disattiva l'aggiornamento del segnale dei livelli (pannello aperto). */
+  /** Enables updating the levels signal, i.e. while the mixer panel is open. */
   setVisualize(on: boolean): void {
     this.visualize = on;
     if (on) {
-      // Riallinea subito i cursori al livello corrente.
+      // Realign the sliders with the current level right away.
       this.levels.set([...this.levels()]);
     }
   }
 
-  /** Legge le preferenze salvate (solo browser). Chiamare da afterNextRender. */
+  /** Reads the saved preferences (browser only). Call from afterNextRender. */
   restore(): Settings | null {
     if (!this.isBrowser) {
       return null;
@@ -305,7 +278,7 @@ export class AmbientAudio {
       if (!raw) {
         return null;
       }
-      // localStorage è input non fidato: parso in modo difensivo (valori unknown).
+      // localStorage is untrusted input: parse defensively.
       const parsed = JSON.parse(raw) as {
         enabled?: unknown;
         master?: unknown;
@@ -331,8 +304,6 @@ export class AmbientAudio {
     }
   }
 
-  // --- Random-walk (loop rAF) ------------------------------------------------
-
   private startLoop(): void {
     if (this.rafId || typeof requestAnimationFrame !== 'function') {
       return;
@@ -340,7 +311,7 @@ export class AmbientAudio {
     this.rafId = requestAnimationFrame(this.animate);
   }
 
-  /** Punto della camminata casuale scelto in base al "movimento". */
+  /** Next random-walk target, with a span set by the "movement" slider. */
   private pickTarget(): number {
     const half = this.movement() * 0.5;
     return clamp01(WALK_CENTER + (Math.random() * 2 - 1) * half);
@@ -360,17 +331,17 @@ export class AmbientAudio {
     }
   }
 
-  /** Estremi delle bande spaziati in modo logaritmico: più risoluzione sui bassi,
-   *  dove vive questa musica (come le barre di un equalizzatore). */
+  /** Logarithmically spaced band edges: more resolution on the low end, where this
+   *  music lives (like the bars of an equalizer). */
   private computeBandEdges(binCount: number): void {
-    const minBin = 1; // salto il bin 0 (continua)
+    const minBin = 1; // skip bin 0 (DC)
     const maxBin = Math.max(minBin + BAND_COUNT, Math.floor(binCount * 0.5)); // ~11 kHz
     this.bandEdges = Array.from({ length: BAND_COUNT + 1 }, (_, k) =>
       Math.round(minBin * Math.pow(maxBin / minBin, k / BAND_COUNT)),
     );
   }
 
-  /** Campiona lo spettro: serve solo a dare "grana" alle colonne della pioggia. */
+  /** Samples the spectrum; only used to add grain to the rain columns. */
   private sampleBands(): void {
     const analyser = this.analyser;
     const data = this.analyserData;
@@ -392,13 +363,12 @@ export class AmbientAudio {
   }
 
   /**
-   * Quanto è udibile ogni voce adesso. Non lo deduco da una FFT: il suono lo
-   * sintetizzo io, quindi lo so con esattezza (volume x livello della voce). È lo
-   * stesso valore che vedi muoversi sulle barre del mixer, quindi il legame
-   * "questa voce anima quell'effetto" resta leggibile, e a voce muta va a zero.
-   * La voce dei bleep è discontinua: lì conta il lampo, che decade dopo ogni bleep.
+   * Per-voice audibility, derived from master x voice level rather than from the
+   * FFT: the sound is synthesized here, so the exact value is already known and it
+   * matches what the mixer bars show. The signals voice is discontinuous, so there
+   * the flash is what counts.
    *
-   * @param fade 1 mentre suona, poi scende a 0 durante lo spegnimento.
+   * @param fade 1 while playing, ramping to 0 while stopping.
    */
   private sampleVoiceEnergy(fade: number): void {
     const master = this.master();
@@ -418,9 +388,9 @@ export class AmbientAudio {
     this.signalFlash = 0;
   }
 
-  /** Un frame: aggiorna i visual, fa avanzare il walk delle voci non bloccate e
-   *  aggiorna i gain. Dopo lo stop resta vivo per {@link VISUAL_FADE_MS}, così i
-   *  visual si spengono seguendo l'audio che sfuma davvero (niente scatto). */
+  /** One frame: refreshes the visuals, advances the walk of the unpinned voices and
+   *  writes their gains. After stop it keeps running for {@link VISUAL_FADE_MS} so
+   *  the visuals fade out along with the audio. */
   private animate = (nowMs: number): void => {
     if (!this.ctx || (this.stopped && nowMs > this.fadeUntil)) {
       this.rafId = 0;
@@ -428,13 +398,12 @@ export class AmbientAudio {
       this.frameHook?.(this.voiceEnergyValues);
       return;
     }
-    // In spegnimento il fade va da 1 a 0: i visual seguono l'audio che sfuma.
     const fade = this.stopped ? clamp01((this.fadeUntil - nowMs) / VISUAL_FADE_MS) : 1;
     this.sampleBands();
     this.sampleVoiceEnergy(fade);
     this.frameHook?.(this.voiceEnergyValues);
     if (this.stopped) {
-      // In fade: niente walk, solo i visual che si spengono.
+      // While fading: no walk, just the visuals dying down.
       this.rafId = requestAnimationFrame(this.animate);
       return;
     }
@@ -447,7 +416,7 @@ export class AmbientAudio {
       }
       let p = (nowMs - this.walkStart[i]) / this.walkDur[i];
       if (p >= 1) {
-        // Segmento concluso: riparto dal target raggiunto verso uno nuovo.
+        // Segment done: restart from the target just reached towards a new one.
         this.seedWalk(i, this.walkTo[i]);
         this.walkStart[i] = nowMs;
         p = 0;
@@ -463,17 +432,15 @@ export class AmbientAudio {
     this.rafId = requestAnimationFrame(this.animate);
   };
 
-  // --- Costruzione del grafo -------------------------------------------------
-
   private build(ctx: AudioContext): void {
     const master = ctx.createGain();
     master.gain.value = 0;
     master.connect(ctx.destination);
     this.masterGain = master;
 
-    // Analizzatore per i visual audio-reattivi: legge lo spettro del mix in uscita.
-    // Basta riceverlo in ingresso, non serve collegarlo alla destinazione.
-    // 1024 -> 512 bin da ~43 Hz: abbastanza fine da separare drone, pad e bleep.
+    // Analyser for the audio-reactive visuals: it only needs the mix as input, not a
+    // connection to the destination. 1024 -> 512 bins of ~43 Hz, fine enough to tell
+    // drone, pad and bleeps apart.
     const analyser = ctx.createAnalyser();
     analyser.fftSize = 1024;
     analyser.smoothingTimeConstant = 0.6;
@@ -482,7 +449,7 @@ export class AmbientAudio {
     this.analyserData = new Uint8Array(analyser.frequencyBinCount);
     this.computeBandEdges(analyser.frequencyBinCount);
 
-    // Riverbero economico: convolver con impulso sintetico (coda di rumore).
+    // Cheap reverb: convolver fed a synthetic noise-tail impulse.
     const reverb = ctx.createConvolver();
     reverb.buffer = this.impulseResponse(ctx, 2.6, 2.2);
     const reverbWet = ctx.createGain();
@@ -492,7 +459,7 @@ export class AmbientAudio {
     reverbWet.connect(ctx.destination);
     this.nodes.push(reverb, reverbWet);
 
-    // Eco per i bleep (send condiviso): delay con feedback.
+    // Shared echo send for the bleeps: delay with feedback.
     const delay = ctx.createDelay(1);
     delay.delayTime.value = 0.375;
     const feedback = ctx.createGain();
@@ -517,10 +484,10 @@ export class AmbientAudio {
     this.buildDrone(ctx, this.voiceGains[0]);
     this.buildPad(ctx, this.voiceGains[1]);
     this.buildAir(ctx, this.voiceGains[2]);
-    // La voce "signals" (indice 3) è event-based: nessuna sorgente continua.
+    // The signals voice is event-based: no continuous source.
   }
 
-  /** Voce 0 - Drone: sub-bass con quinta, lowpass che respira. */
+  /** Voice 0 - Drone: sub-bass plus fifth, through a breathing lowpass. */
   private buildDrone(ctx: AudioContext, out: GainNode): void {
     const filter = ctx.createBiquadFilter();
     filter.type = 'lowpass';
@@ -545,7 +512,7 @@ export class AmbientAudio {
     this.nodes.push(filter);
   }
 
-  /** Voce 1 - Pad: accordo minore (fondamentale, terza minore, quinta, ottava). */
+  /** Voice 1 - Pad: minor chord (root, minor third, fifth, octave). */
   private buildPad(ctx: AudioContext, out: GainNode): void {
     const filter = ctx.createBiquadFilter();
     filter.type = 'lowpass';
@@ -564,14 +531,14 @@ export class AmbientAudio {
       osc.connect(g);
       g.connect(filter);
       osc.start();
-      // Deriva lenta del detune: l'accordo "vive".
+      // Slow detune drift, so the chord keeps moving.
       this.slowLfo(ctx, 0.03 + i * 0.017, -6, 6, osc.detune);
       this.nodes.push(osc, g);
     });
     this.nodes.push(filter);
   }
 
-  /** Voce 2 - Air: rumore in banda passante il cui centro vaga (vento digitale). */
+  /** Voice 2 - Air: bandpassed noise whose center drifts (digital wind). */
   private buildAir(ctx: AudioContext, out: GainNode): void {
     const noise = ctx.createBufferSource();
     noise.buffer = this.noiseBuffer(ctx, 4);
@@ -590,7 +557,7 @@ export class AmbientAudio {
     this.nodes.push(noise, filter, g);
   }
 
-  /** Voce 3 - Signals: bleep sparsi su scala pentatonica, con eco. */
+  /** Voice 3 - Signals: sparse pentatonic bleeps with echo. */
   private scheduleSignals(): void {
     const tick = (): void => {
       const ctx = this.ctx;
@@ -598,7 +565,7 @@ export class AmbientAudio {
         return;
       }
       this.blip(ctx);
-      // Più "movimento" -> bleep un po' più frequenti.
+      // More "movement" -> slightly more frequent bleeps.
       const gap = 5.5 - this.movement() * 3 + Math.random() * 3;
       this.timers.push(setTimeout(tick, gap * 1000));
     };
@@ -606,14 +573,13 @@ export class AmbientAudio {
   }
 
   private blip(ctx: AudioContext): void {
-    // La voce 3 quasi muta: niente bleep (il suo livello ne regola il volume).
+    // Voice nearly muted: skip the bleep entirely.
     if (this.levels()[VOICE.signals] < 0.02) {
       return;
     }
-    // Accende il lampo visivo: decade da solo, così i bleep si "vedono".
     this.signalFlash = 1;
     const step = PENTATONIC[Math.floor(Math.random() * PENTATONIC.length)];
-    const octave = 1 + Math.floor(Math.random() * 3); // ottave sopra la fondamentale
+    const octave = 1 + Math.floor(Math.random() * 3); // octaves above the root
     const freq = ROOT * Math.pow(2, octave) * semi(step);
     const now = ctx.currentTime;
 
@@ -646,9 +612,7 @@ export class AmbientAudio {
     };
   }
 
-  // --- Automazioni di base ---------------------------------------------------
-
-  /** LFO lento (seno) mappato su [min,max] verso un AudioParam. */
+  /** Slow sine LFO mapped onto [min,max] and routed to an AudioParam. */
   private slowLfo(
     ctx: AudioContext,
     rateHz: number,
@@ -667,8 +631,6 @@ export class AmbientAudio {
     this.nodes.push(lfo, depth);
   }
 
-  // --- Applicazione parametri ------------------------------------------------
-
   private applyMaster(): void {
     if (!this.masterGain || !this.ctx || this.stopped) {
       return;
@@ -679,8 +641,8 @@ export class AmbientAudio {
     this.masterGain.gain.linearRampToValueAtTime(this.master(), now + 0.2);
   }
 
-  /** Scrive il livello nel gain della voce. Dal loop: assegnazione diretta (passi
-   * minuscoli); da un'interazione: breve rampa anti-click. */
+  /** Writes the level into the voice gain: direct assignment from the loop (tiny
+   * steps), short anti-click ramp when it comes from an interaction. */
   private applyVoiceGain(index: number, value: number, fromLoop = false): void {
     const g = this.voiceGains[index];
     if (!this.ctx) {
@@ -702,14 +664,12 @@ export class AmbientAudio {
     this.pinned.set(next);
   }
 
-  /** Clock condiviso col loop rAF (millisecondi). */
+  /** Clock shared with the rAF loop (milliseconds). */
   private now(): number {
     return typeof performance === 'object' ? performance.now() : 0;
   }
 
-  // --- Buffer sintetici ------------------------------------------------------
-
-  /** Rumore rosa-ish (rumore bianco filtrato passa-basso a un polo). */
+  /** Pink-ish noise (white noise through a one-pole lowpass). */
   private noiseBuffer(ctx: AudioContext, seconds: number): AudioBuffer {
     const length = Math.floor(ctx.sampleRate * seconds);
     const buffer = ctx.createBuffer(1, length, ctx.sampleRate);
@@ -723,7 +683,7 @@ export class AmbientAudio {
     return buffer;
   }
 
-  /** Impulso di riverbero: coda di rumore con decadimento esponenziale. */
+  /** Reverb impulse: noise tail with exponential decay. */
   private impulseResponse(ctx: AudioContext, seconds: number, decay: number): AudioBuffer {
     const length = Math.floor(ctx.sampleRate * seconds);
     const buffer = ctx.createBuffer(2, length, ctx.sampleRate);
@@ -735,8 +695,6 @@ export class AmbientAudio {
     }
     return buffer;
   }
-
-  // --- Persistenza -----------------------------------------------------------
 
   private persist(): void {
     if (!this.isBrowser) {
@@ -752,7 +710,7 @@ export class AmbientAudio {
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     } catch {
-      /* storage pieno o non disponibile: ignoriamo */
+      /* storage full or unavailable: ignore */
     }
   }
 }

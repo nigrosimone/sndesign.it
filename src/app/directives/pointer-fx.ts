@@ -2,14 +2,13 @@ import { DestroyRef, Directive, ElementRef, afterNextRender, inject } from '@ang
 import { prefersReducedMotion } from './motion';
 
 /**
- * Spotlight ciano che segue il puntatore + leggera inclinazione 3D sull'elemento
- * (usato sulle card progetti). Attivo solo con puntatore fine (mouse/trackpad) e
- * motion-safe: su touch o con prefers-reduced-motion la card resta statica e le
- * basta il bagliore centrato di :hover in CSS.
+ * Cyan spotlight following the pointer plus a slight 3D tilt on the element (used on project
+ * cards). Enabled only for fine pointers (mouse/trackpad) and motion-safe: on touch or with
+ * prefers-reduced-motion the card stays static and relies on the centred CSS :hover glow.
  *
- * Tutte le API browser (matchMedia, listener, requestAnimationFrame) stanno dentro
- * afterNextRender, così durante il prerender in Node non viene toccato nulla; il
- * cleanup è registrato lì dentro per non chiamare cancelAnimationFrame lato server.
+ * All browser APIs (matchMedia, listeners, requestAnimationFrame) live inside afterNextRender
+ * so Node prerendering touches nothing, and the cleanup is registered there so
+ * cancelAnimationFrame is never called on the server.
  */
 @Directive({ selector: '[appPointerFx]' })
 export class PointerFx {
@@ -22,8 +21,7 @@ export class PointerFx {
 
   constructor() {
     afterNextRender(() => {
-      // Guardia su typeof: in ambiente di test (jsdom) matchMedia non esiste,
-      // come in motion.ts; senza puntatore fine la directive resta inerte.
+      // typeof guard: matchMedia does not exist under jsdom in tests, same as in motion.ts.
       const fine =
         typeof matchMedia === 'function' && matchMedia('(hover: hover) and (pointer: fine)').matches;
       if (prefersReducedMotion() || !fine) {
@@ -53,9 +51,9 @@ export class PointerFx {
   }
 
   private apply(clientX: number, clientY: number): void {
-    // Misuro il rect una sola volta per interazione, mentre il transform è ancora
-    // assente: rileggerlo a ogni frame restituirebbe il box GIÀ inclinato (e sarebbe
-    // una getBoundingClientRect in più per frame). Si azzera in reset().
+    // Measure the rect once per interaction, while the transform is still absent: re-reading
+    // it every frame would return the already tilted box (and cost an extra
+    // getBoundingClientRect per frame). Cleared in reset().
     if (this.rect === undefined) {
       const measured = this.el.getBoundingClientRect();
       if (measured.width === 0 || measured.height === 0) {
@@ -64,9 +62,9 @@ export class PointerFx {
       this.rect = measured;
     }
     const rect = this.rect;
-    const px = (clientX - rect.left) / rect.width; // 0..1 orizzontale
-    const py = (clientY - rect.top) / rect.height; // 0..1 verticale
-    const max = 5; // gradi: effetto volutamente sottile
+    const px = (clientX - rect.left) / rect.width; // 0..1 horizontal
+    const py = (clientY - rect.top) / rect.height; // 0..1 vertical
+    const max = 5; // degrees: deliberately subtle
     const rotateY = (px - 0.5) * 2 * max;
     const rotateX = (0.5 - py) * 2 * max;
     if (!this.tilting) {

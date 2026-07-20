@@ -62,7 +62,7 @@ describe('AudioMixer', () => {
     el.querySelector<HTMLButtonElement>('.audio-fab')?.click();
     fixture.detectChanges();
     expect(el.querySelector('.audio-panel')).not.toBeNull();
-    // master + movement + una per voce = 6 slider
+    // master + movement + one per voice = 6 sliders
     expect(el.querySelectorAll('input[type="range"]').length).toBe(6);
   });
 

@@ -4,13 +4,13 @@ import { prefersReducedMotion } from './motion';
 const GLYPHS = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#%&/<>*+=_';
 
 /**
- * "Decodifica" il testo dell'elemento con caratteri casuali quando entra nel
- * viewport, poi lo fissa progressivamente da sinistra a destra. Effetto one-shot.
+ * One-shot "decoding" effect: scrambles the element's text with random glyphs when it enters
+ * the viewport, then locks it in left to right.
  *
- * Il testo finale è già nel markup prerenderizzato (SEO) e accanto c'è una copia
- * sr-only per gli screen reader: l'elemento animato va marcato aria-hidden. Con
- * prefers-reduced-motion o senza IntersectionObserver il testo resta subito quello
- * finale. Le API browser stanno dentro afterNextRender (prerender Node al sicuro).
+ * The final text is already in the prerendered markup (SEO) with an sr-only copy alongside,
+ * so the animated element must be marked aria-hidden. With prefers-reduced-motion or without
+ * IntersectionObserver the text stays final. Browser APIs live inside afterNextRender so Node
+ * prerendering is untouched.
  */
 @Directive({ selector: '[appScramble]' })
 export class Scramble {
@@ -26,8 +26,8 @@ export class Scramble {
         this.observer?.disconnect();
         cancelAnimationFrame(this.rafId);
       });
-      // textContent su un elemento è sempre una stringa (mai null): è il testo
-      // finale già presente nel markup prerenderizzato.
+      // textContent on an element is always a string (never null): it is the final
+      // text already present in the prerendered markup.
       const target = this.el.textContent;
       if (
         prefersReducedMotion() ||

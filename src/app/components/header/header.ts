@@ -10,7 +10,7 @@ import { ScrollSpy } from '../../directives/scroll-spy';
 export class Header {
   private readonly transloco = inject(TranslocoService);
   protected readonly lang = this.transloco.getActiveLang();
-  // Con <base href="/"> gli href solo-frammento ("#x") risolverebbero sempre
-  // sulla home italiana: vanno prefissati con il percorso della lingua corrente.
+  // With <base href="/"> fragment-only hrefs ("#x") would always resolve to the
+  // Italian home: they must be prefixed with the current language path.
   protected readonly base = this.lang === 'en' ? '/en/' : '/';
 }

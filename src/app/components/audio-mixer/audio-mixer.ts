@@ -10,11 +10,10 @@ import { TranslocoDirective } from '@jsverse/transloco';
 import { AmbientAudio, VOICE_KEYS } from '../../services/ambient-audio';
 
 /**
- * Widget flottante che pilota il motore audio generativo ({@link AmbientAudio}):
- * un pulsante che apre un piccolo mixer con play/pausa, volume, "movimento" della
- * miscela e uno slider per ognuna delle 4 basi. Off di default; la scelta e i
- * livelli sono persistiti. Se all'ultima visita la musica era attiva, la riprende
- * al primo gesto dell'utente (l'autoplay è vietato dai browser).
+ * Floating widget driving the generative audio engine ({@link AmbientAudio}):
+ * play/pause, volume, mix "movement" and one slider per voice. Off by default;
+ * choice and levels are persisted. If the music was on last visit it resumes on
+ * the first user gesture, since browsers forbid autoplay.
  */
 @Component({
   selector: 'app-audio-mixer',
@@ -41,7 +40,7 @@ export class AudioMixer {
   protected togglePanel(): void {
     const open = !this.open();
     this.open.set(open);
-    // Anima i cursori solo a pannello aperto (niente change-detection a vuoto).
+    // Animate the sliders only while the panel is open (no idle change detection).
     this.audio.setVisualize(open);
   }
 
@@ -62,7 +61,7 @@ export class AudioMixer {
     this.audio.setMovement((event.target as HTMLInputElement).valueAsNumber);
   }
 
-  /** Prima interazione col cursore: blocca subito la voce così smette di muoversi. */
+  /** First touch on a slider: pin the voice immediately so it stops drifting. */
   protected onGrab(index: number): void {
     this.audio.pin(index);
   }
@@ -79,7 +78,7 @@ export class AudioMixer {
     this.audio.resetPins();
   }
 
-  /** Riprende la musica al primo gesto se all'uscita era attiva (no autoplay). */
+  /** Resumes the music on the first gesture if it was on when the user left. */
   private armResumeOnGesture(): void {
     const events = ['pointerdown', 'keydown'] as const;
     const cleanup = (): void => {

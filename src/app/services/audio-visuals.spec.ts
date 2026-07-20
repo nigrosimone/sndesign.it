@@ -6,7 +6,7 @@ import { AudioVisuals } from './audio-visuals';
 
 type Hook = (voices: readonly number[]) => void;
 
-/** Stub di AmbientAudio: cattura il callback per frame e lo lascia invocare a mano. */
+/** AmbientAudio stub: captures the per-frame callback so tests can fire it manually. */
 class AudioStub {
   hook: Hook | null = null;
   onFrame(cb: Hook | null): void {
@@ -54,7 +54,7 @@ describe('AudioVisuals', () => {
 
     expect(ctx.root.style.getPropertyValue('--audio-drone')).toBe('0.5');
     expect(ctx.root.style.getPropertyValue('--audio-pad')).toBe('0.25');
-    // Arrotondato a 2 decimali per non scrivere a ogni minima variazione.
+    // Rounded to 2 decimals to avoid writing on every tiny variation.
     expect(ctx.root.style.getPropertyValue('--audio-air')).toBe('0.13');
     expect(ctx.root.style.getPropertyValue('--audio-signals')).toBe('0.4');
     expect(ctx.root.classList.contains('audio-live')).toBe(true);
@@ -68,7 +68,7 @@ describe('AudioVisuals', () => {
     ctx.audio.hook?.([0.8, 0.6, 0.4, 0.7]);
     expect(ctx.root.classList.contains('audio-live')).toBe(true);
 
-    // Il silenzio bypassa il throttle: i visual devono spegnersi davvero.
+    // Silence bypasses the throttle: the visuals must really switch off.
     ctx.audio.hook?.(SILENT);
     expect(ctx.root.style.getPropertyValue('--audio-drone')).toBe('0');
     expect(ctx.root.style.getPropertyValue('--audio-air')).toBe('0');

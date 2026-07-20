@@ -1,4 +1,4 @@
-/** true se l'utente preferisce ridurre le animazioni (o se matchMedia non è disponibile, es. in test). */
+/** True when the user prefers reduced motion, or when matchMedia is unavailable (e.g. in tests). */
 export function prefersReducedMotion(): boolean {
   return typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 }

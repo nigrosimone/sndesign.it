@@ -12,10 +12,9 @@ import { formatNumber, type Lang } from '../data/format';
 import { prefersReducedMotion } from './motion';
 
 /**
- * Anima il contenuto testuale dell'elemento da 0 al valore indicato quando
- * entra nel viewport. Il valore finale è già nel markup prerenderizzato (SEO);
- * con prefers-reduced-motion non c'è animazione. Se il valore cambia dopo
- * l'animazione (stats live), il testo viene aggiornato senza rianimare.
+ * Animates the element's text from 0 to the given value when it enters the viewport.
+ * The final value is already in the prerendered markup (SEO); prefers-reduced-motion skips
+ * the animation. Later value changes (live stats) update the text without re-animating.
  */
 @Directive({ selector: '[appCountUp]' })
 export class CountUp {
@@ -40,8 +39,8 @@ export class CountUp {
       }
     });
 
-    // afterNextRender gira solo nel browser: le API qui dentro (e nel
-    // cleanup) non esistono in Node durante il prerendering.
+    // afterNextRender runs in the browser only: the APIs used here (and in the
+    // cleanup) do not exist in Node during prerendering.
     afterNextRender(() => {
       this.destroyRef.onDestroy(() => {
         this.observer?.disconnect();

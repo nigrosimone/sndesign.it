@@ -8,8 +8,8 @@ import {
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
-// I file "optimized" sono già nel bundle (li precarica provideTranslocoPreload):
-// riusarli evita di impacchettare anche i JSON grezzi solo per i meta.
+// The "optimized" files are already bundled (provideTranslocoPreload loads them):
+// reusing them avoids shipping the raw JSON just for the meta tags.
 import en from '../../../i18n/optimized/en.json';
 import it from '../../../i18n/optimized/it.json';
 import { AudioVisuals } from '../../services/audio-visuals';
@@ -58,8 +58,8 @@ export class Site {
     const lang = (this.route.snapshot.data['lang'] as 'it' | 'en' | undefined) ?? 'it';
     this.transloco.setActiveLang(lang);
 
-    // Lingua, title, meta e canonical per rotta: durante il prerendering
-    // finiscono direttamente nell'HTML statico di / e /en.
+    // Per-route lang, title, meta and canonical: during prerendering these end up
+    // directly in the static HTML of / and /en.
     this.doc.documentElement.lang = lang;
 
     const url = lang === 'en' ? `${SITE_URL}en/` : SITE_URL;
@@ -75,7 +75,6 @@ export class Site {
 
     afterNextRender(() => {
       this.liveStats.start();
-      // Ponte spettro audio -> CSS custom properties (griglia e bagliori reattivi).
       this.audioVisuals.start();
     });
   }

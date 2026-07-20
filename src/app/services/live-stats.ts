@@ -17,10 +17,9 @@ interface NpmDownloads {
 }
 
 /**
- * Statistiche live da npm e GitHub: i valori iniziali sono quelli statici
- * "cotti" nella build (ottimi per SEO e primo paint); dopo il caricamento,
- * in idle, vengono aggiornati con una fetch alle API pubbliche.
- * Se la rete o le API falliscono restano i valori statici.
+ * Live npm/GitHub stats: starts from the build-time static values (good for SEO
+ * and first paint), then refreshes them on idle from the public APIs. On failure
+ * the static values stay.
  */
 @Service()
 export class LiveStats {
@@ -74,14 +73,14 @@ export class LiveStats {
         this.npmDownloads.set(total);
       }
     } catch {
-      // Offline o API non raggiungibile: restano i dati statici.
+      // Offline or API unreachable: keep the static data.
     }
   }
 
   private async refreshGitHub(): Promise<void> {
     try {
-      // Preflight sul rate limit (non consuma quota): senza quota la chiamata
-      // ai repo darebbe un 403 che sporcherebbe la console (e Lighthouse).
+      // Rate-limit preflight (does not consume quota): without quota the repos
+      // call would 403 and pollute the console (and Lighthouse).
       const limit = await fetch(GITHUB_RATE_URL);
       if (!limit.ok) {
         return;
@@ -102,7 +101,7 @@ export class LiveStats {
       this.repoStars.set(new Map(own.map((r) => [r.name, r.stargazers_count])));
       this.githubStars.set(own.reduce((sum, r) => sum + r.stargazers_count, 0));
     } catch {
-      // Offline o API non raggiungibile: restano i dati statici.
+      // Offline or API unreachable: keep the static data.
     }
   }
 }

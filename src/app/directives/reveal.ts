@@ -10,10 +10,9 @@ import {
 import { prefersReducedMotion } from './motion';
 
 /**
- * Rivela l'elemento con una transizione quando entra nel viewport.
- * Il valore (opzionale) è il ritardo in millisecondi, per effetti a cascata.
- * Con prefers-reduced-motion (o senza JavaScript, grazie al gate CSS
- * "@media (scripting: enabled)") il contenuto è subito visibile.
+ * Reveals the element with a transition when it enters the viewport; the optional value is
+ * a delay in milliseconds for staggered effects. With prefers-reduced-motion (or without
+ * JavaScript, thanks to the `@media (scripting: enabled)` CSS gate) content is visible at once.
  */
 @Directive({
   selector: '[appReveal]',
@@ -28,8 +27,8 @@ export class Reveal {
   private observer?: IntersectionObserver;
 
   constructor() {
-    // afterNextRender gira solo nel browser: niente API browser in Node
-    // durante il prerendering (né nel cleanup registrato qui dentro).
+    // afterNextRender runs in the browser only: no browser APIs in Node during
+    // prerendering, nor in the cleanup registered inside it.
     afterNextRender(() => {
       this.destroyRef.onDestroy(() => this.observer?.disconnect());
       if (prefersReducedMotion() || !('IntersectionObserver' in window)) {

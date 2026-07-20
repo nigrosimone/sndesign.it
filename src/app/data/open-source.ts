@@ -1,5 +1,5 @@
-// Dati raccolti dalle API pubbliche di GitHub e npm il 20/07/2026.
-// Per aggiornarli: npm run update-data (rigenera questo file).
+// Data collected from the public GitHub and npm APIs on 2026-07-20.
+// To refresh: npm run update-data (regenerates this file).
 import type { NpmPackage, OpenSourceStats, Project } from './types';
 
 export const PROJECTS: readonly Project[] = [

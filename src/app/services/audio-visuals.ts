@@ -4,19 +4,12 @@ import { prefersReducedMotion } from '../directives/motion';
 import { AmbientAudio, VOICE_KEYS } from './ambient-audio';
 
 /**
- * Ponte fra le voci della musica e il CSS: pubblica una variabile per voce
- * (--audio-drone, --audio-pad, --audio-air, --audio-signals) sull'elemento radice,
- * così ogni effetto di sfondo può legarsi alla *sua* voce in modo dichiarativo.
- * Il legame resta leggibile: se abbassi una base, il suo effetto si spegne.
- *
- * Non ha un proprio requestAnimationFrame: si aggancia al loop che AmbientAudio
- * fa già girare mentre suona ({@link AmbientAudio.onFrame}), quindi a musica
- * spenta il costo è esattamente zero. Le scritture sono limitate a ~30fps e solo
- * quando il valore cambia davvero (arrotondato a 2 decimali), per non innescare
- * ricalcoli di stile inutili.
- *
- * Con prefers-reduced-motion non si attiva: le variabili restano assenti e il CSS
- * usa i fallback a 0, cioè l'aspetto originale del sito.
+ * Bridges the music voices to CSS by publishing one custom property per voice
+ * (--audio-drone, --audio-pad, --audio-air, --audio-signals) on the root element.
+ * It rides {@link AmbientAudio.onFrame} instead of owning a rAF loop, so it costs
+ * nothing while the music is off; writes are throttled to ~30fps and skipped when
+ * the rounded value is unchanged. Inert under prefers-reduced-motion: the
+ * properties stay absent and CSS falls back to 0.
  */
 const THROTTLE_MS = 33;
 const VARS = VOICE_KEYS.map((key) => `--audio-${key}`);
@@ -31,7 +24,7 @@ export class AudioVisuals {
   private last = 0;
   private readonly written = VARS.map(() => -1);
 
-  /** Aggancia il ponte. Chiamare da afterNextRender (solo browser). */
+  /** Attaches the bridge. Call from afterNextRender (browser only). */
   start(): void {
     if (this.started || !this.isBrowser || prefersReducedMotion()) {
       return;
@@ -46,7 +39,7 @@ export class AudioVisuals {
     const root = this.doc.documentElement;
     const now = typeof performance === 'object' ? performance.now() : 0;
     const silent = voices.every((v) => v === 0);
-    // Lo zero finale (fine fade) passa sempre, così i visual si spengono davvero.
+    // The final zero (end of fade) always gets through, so the visuals really stop.
     if (!silent && now - this.last < THROTTLE_MS) {
       return;
     }
@@ -59,8 +52,8 @@ export class AudioVisuals {
       this.written[i] = rounded;
       root.style.setProperty(VARS[i], String(rounded));
     }
-    // Segnala che la musica suona: il CSS abbassa il fondo degli effetti legati
-    // alle voci (a voce muta quasi spariti) e promuove il layer dei bagliori.
+    // Signals that the music is playing: CSS lowers the baseline of the
+    // voice-driven effects and promotes the glow layer.
     root.classList.toggle('audio-live', !silent);
   }
 }

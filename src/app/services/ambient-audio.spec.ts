@@ -4,7 +4,7 @@ import { AmbientAudio, BAND_COUNT, VOICE_COUNT } from './ambient-audio';
 
 const STORAGE_KEY = 'sn-ambient-v1';
 
-// --- Mock minimale della Web Audio API (jsdom non la implementa) -------------
+// Minimal Web Audio API mock (jsdom does not implement it).
 class FakeParam {
   value = 0;
   cancelScheduledValues = vi.fn();
@@ -65,8 +65,8 @@ class FakeAudioContext {
   });
 }
 
-// L'ambiente di test del builder Angular non espone localStorage: lo mockiamo
-// in memoria (il servizio lo protegge comunque con try/catch).
+// The Angular builder test environment does not expose localStorage: mock it in
+// memory (the service guards it with try/catch anyway).
 function fakeStorage(): Storage {
   const map = new Map<string, string>();
   return {

@@ -1,13 +1,13 @@
 import { DestroyRef, Directive, ElementRef, afterNextRender, inject } from '@angular/core';
 
 /**
- * Evidenzia la voce di menu della sezione correntemente in vista. Va applicato al
- * contenitore dei link (<ul>): legge il fragment di ogni <a>, individua le sezioni
- * corrispondenti e aggiunge/toglie la classe `is-current` sul link attivo.
+ * Highlights the menu entry of the section currently in view. Apply it to the link container
+ * (<ul>): it reads each <a> fragment, resolves the matching sections and toggles `is-current`
+ * on the active link.
  *
- * È solo stato visivo (nessuna animazione), quindi non dipende da
- * prefers-reduced-motion. Le API browser stanno dentro afterNextRender: durante il
- * prerender in Node non viene osservato nulla e il cleanup è registrato lì dentro.
+ * Visual state only (no animation), so it does not depend on prefers-reduced-motion. Browser
+ * APIs live inside afterNextRender: nothing is observed during Node prerendering and the
+ * cleanup is registered there too.
  */
 @Directive({ selector: '[appScrollSpy]' })
 export class ScrollSpy {
@@ -35,8 +35,8 @@ export class ScrollSpy {
       if (sections.length === 0) {
         return;
       }
-      // Banda sottile centrata verticalmente: la sezione che la attraversa è quella
-      // "corrente"; a inizio pagina (hero) nessuna la interseca ed è corretto così.
+      // Thin vertically centred band: the section crossing it is the "current" one; at the
+      // top of the page (hero) none intersects, which is intended.
       const active = new Set<string>();
       this.observer = new IntersectionObserver(
         (entries) => {
@@ -51,7 +51,7 @@ export class ScrollSpy {
           for (const [id, link] of links) {
             const isCurrent = id === current;
             link.classList.toggle('is-current', isCurrent);
-            // aria-current per screen reader/voice control (il colore da solo non basta)
+            // aria-current for screen readers / voice control: colour alone is not enough
             if (isCurrent) {
               link.setAttribute('aria-current', 'true');
             } else {
