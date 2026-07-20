@@ -1,4 +1,5 @@
 <canvas class="matrix-rain" aria-hidden="true" appMatrixRain></canvas>
+<div class="audio-glow" aria-hidden="true"></div>
 <app-header />
 <main id="main">
   <app-hero />
@@ -7,6 +8,7 @@
   <app-articles />
   <app-contact />
 </main>
+<app-audio-mixer />
 <footer class="site-footer font-mono" *transloco="let t">
   <div class="container footer-inner">
     <p>&copy; {{ year }} {{ t('footer.rights') }}</p>

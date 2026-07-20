@@ -15,7 +15,7 @@
 - Formazione: Laurea in Scienze della Comunicazione, Università degli Studi di Salerno
 - Email: nigro.simone@gmail.com
 
-## Progetti open source (dati npm/GitHub del 19/07/2026)
+## Progetti open source (dati npm/GitHub del 20/07/2026)
 
 - [ng-http-caching](https://www.npmjs.com/package/ng-http-caching): Cache for HTTP requests in Angular application. — 15.091 download/mese, 53 stelle
 - [ng-let](https://www.npmjs.com/package/ng-let): Angular structural directive for sharing data as local variable into html component template. — 51.259 download/mese, 47 stelle

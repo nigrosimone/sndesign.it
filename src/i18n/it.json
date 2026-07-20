@@ -72,6 +72,28 @@
     "text1": "Vuoi parlare di Angular, open source o web performance?",
     "text2": "La mia inbox è sempre aperta."
   },
+  "audio": {
+    "toggle": "Musica ambientale",
+    "title": "Mix ambientale",
+    "hint": "4 basi generative che si miscelano da sole.",
+    "on": "audio on",
+    "off": "audio",
+    "play": "Riproduci",
+    "pause": "Pausa",
+    "close": "Chiudi",
+    "master": "Volume",
+    "movement": "Movimento",
+    "mix": "Miscela",
+    "reset": "Sblocca tutto",
+    "pin": "Blocca {{name}} sul valore attuale",
+    "unpin": "Rimetti {{name}} in automatico",
+    "voice": {
+      "drone": "Drone",
+      "pad": "Pad",
+      "air": "Aria",
+      "signals": "Segnali"
+    }
+  },
   "footer": {
     "rights": "Simone Nigro - SN.DESIGN · dal 2000",
     "made": "Fatto con Angular",

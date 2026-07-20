@@ -1,4 +1,4 @@
-// Dati raccolti dalle API pubbliche di GitHub e npm il 19/07/2026.
+// Dati raccolti dalle API pubbliche di GitHub e npm il 20/07/2026.
 // Per aggiornarli: npm run update-data (rigenera questo file).
 import type { NpmPackage, OpenSourceStats, Project } from './types';
 
@@ -182,5 +182,5 @@ export const OS_STATS: OpenSourceStats = {
   npmPackages: 9,
   githubStars: 263,
   githubRepos: 47,
-  updatedAt: '2026-07-19',
+  updatedAt: '2026-07-20',
 };

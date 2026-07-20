@@ -12,10 +12,12 @@ import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 // riusarli evita di impacchettare anche i JSON grezzi solo per i meta.
 import en from '../../../i18n/optimized/en.json';
 import it from '../../../i18n/optimized/it.json';
+import { AudioVisuals } from '../../services/audio-visuals';
 import { LiveStats } from '../../services/live-stats';
 import { MatrixRain } from '../../directives/matrix-rain';
 import { About } from '../about/about';
 import { Articles } from '../articles/articles';
+import { AudioMixer } from '../audio-mixer/audio-mixer';
 import { Contact } from '../contact/contact';
 import { Header } from '../header/header';
 import { Hero } from '../hero/hero';
@@ -38,7 +40,7 @@ const META = {
 @Component({
   selector: 'app-site',
   templateUrl: './site.html',
-  imports: [MatrixRain, Header, Hero, About, Projects, Articles, Contact, TranslocoDirective]
+  imports: [MatrixRain, Header, Hero, About, Projects, Articles, Contact, AudioMixer, TranslocoDirective]
 })
 export class Site {
   private readonly route = inject(ActivatedRoute);
@@ -47,6 +49,7 @@ export class Site {
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly liveStats = inject(LiveStats);
+  private readonly audioVisuals = inject(AudioVisuals);
 
   protected readonly year = new Date().getFullYear();
   protected readonly ngVersion = VERSION.major;
@@ -72,6 +75,8 @@ export class Site {
 
     afterNextRender(() => {
       this.liveStats.start();
+      // Ponte spettro audio -> CSS custom properties (griglia e bagliori reattivi).
+      this.audioVisuals.start();
     });
   }
 }

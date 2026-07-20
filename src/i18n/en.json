@@ -72,6 +72,28 @@
     "text1": "Want to talk about Angular, open source or web performance?",
     "text2": "My inbox is always open."
   },
+  "audio": {
+    "toggle": "Ambient music",
+    "title": "Ambient mix",
+    "hint": "4 generative layers that blend on their own.",
+    "on": "audio on",
+    "off": "audio",
+    "play": "Play",
+    "pause": "Pause",
+    "close": "Close",
+    "master": "Volume",
+    "movement": "Movement",
+    "mix": "Mix",
+    "reset": "Unlock all",
+    "pin": "Lock {{name}} at its current value",
+    "unpin": "Return {{name}} to auto",
+    "voice": {
+      "drone": "Drone",
+      "pad": "Pad",
+      "air": "Air",
+      "signals": "Signals"
+    }
+  },
   "footer": {
     "rights": "Simone Nigro - SN.DESIGN · since 2000",
     "made": "Made with Angular",

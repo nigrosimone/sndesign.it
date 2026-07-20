@@ -1,0 +1,113 @@
+<div class="audio-widget" [class.audio-open]="open()" *transloco="let t">
+  <button
+    type="button"
+    class="audio-fab font-mono"
+    [class.is-playing]="audio.playing()"
+    [attr.aria-label]="t('audio.toggle')"
+    [attr.aria-expanded]="open()"
+    aria-controls="audio-panel"
+    (click)="togglePanel()"
+  >
+    <span class="audio-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="audio-fab-label">{{ audio.playing() ? t('audio.on') : t('audio.off') }}</span>
+  </button>
+
+  @if (open()) {
+    <div id="audio-panel" class="audio-panel" role="group" [attr.aria-label]="t('audio.title')">
+      <div class="audio-panel-head">
+        <div>
+          <p class="audio-panel-title font-mono">{{ t('audio.title') }}</p>
+          <p class="audio-panel-hint">{{ t('audio.hint') }}</p>
+        </div>
+        <button
+          type="button"
+          class="audio-close"
+          [attr.aria-label]="t('audio.close')"
+          (click)="close()"
+        >
+          ✕
+        </button>
+      </div>
+
+      <button
+        type="button"
+        class="audio-play btn font-mono"
+        [class.is-playing]="audio.playing()"
+        [attr.aria-pressed]="audio.playing()"
+        (click)="togglePlay()"
+      >
+        {{ audio.playing() ? t('audio.pause') : t('audio.play') }}
+      </button>
+
+      <label class="audio-row">
+        <span class="audio-label font-mono">{{ t('audio.master') }}</span>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          [value]="audio.master()"
+          [attr.aria-label]="t('audio.master')"
+          (input)="onMaster($event)"
+        />
+      </label>
+
+      <label class="audio-row">
+        <span class="audio-label font-mono">{{ t('audio.movement') }}</span>
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          [value]="audio.movement()"
+          [attr.aria-label]="t('audio.movement')"
+          (input)="onMovement($event)"
+        />
+      </label>
+
+      <div class="audio-mix-head">
+        <p class="audio-sub font-mono">{{ t('audio.mix') }}</p>
+        @if (audio.hasPins()) {
+          <button
+            type="button"
+            class="audio-reset font-mono"
+            [attr.aria-label]="t('audio.reset')"
+            (click)="reset()"
+          >
+            ↺ {{ t('audio.reset') }}
+          </button>
+        }
+      </div>
+
+      @for (v of voices; track v.key) {
+        <div class="audio-row audio-voice" [class.is-pinned]="audio.pinned()[v.index]">
+          <span class="audio-label font-mono">{{ t('audio.voice.' + v.key) }}</span>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            [value]="audio.levels()[v.index]"
+            [attr.aria-label]="t('audio.voice.' + v.key)"
+            (pointerdown)="onGrab(v.index)"
+            (input)="onLevel(v.index, $event)"
+          />
+          <button
+            type="button"
+            class="audio-lock"
+            [class.is-pinned]="audio.pinned()[v.index]"
+            [attr.aria-pressed]="audio.pinned()[v.index]"
+            [attr.aria-label]="
+              t(audio.pinned()[v.index] ? 'audio.unpin' : 'audio.pin', {
+                name: t('audio.voice.' + v.key)
+              })
+            "
+            (click)="togglePin(v.index)"
+          >
+            <span aria-hidden="true">{{ audio.pinned()[v.index] ? '▮' : '↝' }}</span>
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>
