@@ -22,6 +22,21 @@ const GLYPH_ALPHAS = Array.from(
   (_, k) => `rgba(0, 229, 255, ${(MIN_ALPHA + (k / STEPS) * (MAX_ALPHA - MIN_ALPHA)).toFixed(3)})`,
 );
 
+// Pointer "lens": radius of influence and maximum displacement, both in CSS pixels.
+const LENS_RADIUS = 170;
+const LENS_PUSH = 30;
+
+/**
+ * Falloff of the pointer lens: 1 right under the cursor, 0 at (and beyond) {@link LENS_RADIUS}.
+ * Raised cosine, so it reaches zero with zero slope and the deformation has no visible edge.
+ */
+export function lensFalloff(distance: number): number {
+  if (distance >= LENS_RADIUS) {
+    return 0;
+  }
+  return (1 + Math.cos((distance / LENS_RADIUS) * Math.PI)) / 2;
+}
+
 /**
  * Discreet "Matrix" code rain on a background <canvas>. Cyan (the site accent) and transparent
  * between glyphs, so grid and glows stay visible behind. Runs at ~30fps with a capped
@@ -32,6 +47,10 @@ const GLYPH_ALPHAS = Array.from(
  * starts nearly invisible and brightens with that voice, the spectrum adds per-column grain and
  * bleeps add flashes; the peak stays around the original alpha to keep text readable. With music
  * off the look is the original one.
+ *
+ * Pointer-reactive too: with a fine pointer the glyphs near the cursor are pushed away from it
+ * ({@link lensFalloff}), so the rain bulges around the mouse and the trails curve behind it. The
+ * listeners only store coordinates, which the existing loop reads: no extra frames are scheduled.
  *
  * Everything lives inside afterNextRender (no canvas/animation during Node prerendering) with the
  * cleanup registered there; prefers-reduced-motion disables it entirely.
@@ -50,6 +69,12 @@ export class MatrixRain {
   // Smoothed speed factor and accumulator driving the continuous cadence.
   private speed = 1;
   private stepAcc = 0;
+  // Pointer lens: last pointer position (CSS px) and its smoothed strength, 1 while the pointer
+  // is over the page and 0 once it leaves, so entering/leaving never snaps.
+  private pointerX = 0;
+  private pointerY = 0;
+  private lens = 0;
+  private lensTarget = 0;
 
   constructor() {
     afterNextRender(() => {
@@ -65,8 +90,28 @@ export class MatrixRain {
       };
       this.resize();
       window.addEventListener('resize', onResize);
+      // The lens is for mouse/trackpad only: on touch there is no hover and the "pointer" would
+      // stay stuck where the last tap happened.
+      const fine =
+        typeof matchMedia === 'function' && matchMedia('(hover: hover) and (pointer: fine)').matches;
+      const onPointerMove = (ev: PointerEvent): void => {
+        this.pointerX = ev.clientX;
+        this.pointerY = ev.clientY;
+        this.lensTarget = 1;
+      };
+      const onPointerLeave = (): void => {
+        this.lensTarget = 0;
+      };
+      if (fine) {
+        // Passive listeners that only store coordinates: the existing rAF loop reads them, so
+        // moving the pointer schedules no extra work.
+        window.addEventListener('pointermove', onPointerMove, { passive: true });
+        document.documentElement.addEventListener('pointerleave', onPointerLeave);
+      }
       this.destroyRef.onDestroy(() => {
         window.removeEventListener('resize', onResize);
+        window.removeEventListener('pointermove', onPointerMove);
+        document.documentElement.removeEventListener('pointerleave', onPointerLeave);
         cancelAnimationFrame(this.rafId);
       });
       this.rafId = requestAnimationFrame(() => {
@@ -106,6 +151,8 @@ export class MatrixRain {
     const signals = playing ? energy[VOICE.signals] : 0;
     const target = playing ? 0.45 + air * 1.1 : 1;
     this.speed += (target - this.speed) * 0.06;
+    // Smoothed every frame (not only on a fall step) so the bulge follows the pointer fluidly.
+    this.lens += (this.lensTarget - this.lens) * 0.12;
 
     // Accumulator: a higher factor crosses the threshold sooner, so drawing happens more often.
     this.stepAcc += this.speed;
@@ -158,7 +205,21 @@ export class MatrixRain {
         }
       }
       const ch = GLYPHS.charAt(Math.floor(Math.random() * GLYPHS.length));
-      ctx.fillText(ch, i * this.fontSize, this.drops[i] * this.fontSize);
+      const x = i * this.fontSize;
+      const y = this.drops[i] * this.fontSize;
+      // Pointer lens: glyphs are pushed radially away from the cursor, so the rain bulges around
+      // it. Only the head is displaced, so the already painted trail keeps curving behind.
+      let dx = 0;
+      let dy = 0;
+      if (this.lens > 0.01) {
+        const ox = x - this.pointerX;
+        const oy = y - this.pointerY;
+        const distance = Math.hypot(ox, oy);
+        const push = (lensFalloff(distance) * this.lens * LENS_PUSH) / (distance || 1);
+        dx = ox * push;
+        dy = oy * push;
+      }
+      ctx.fillText(ch, x + dx, y + dy);
       if (this.drops[i] * this.fontSize > height && Math.random() > 0.975) {
         this.drops[i] = 0;
       } else {

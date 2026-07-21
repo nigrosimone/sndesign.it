@@ -1,5 +1,5 @@
-// Articles published on https://dev.to/nigrosimone (public dev.to API, 2026-07-20).
-// To refresh: npm run update-data (regenerates this file).
+// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 21/07/2026).
+// Per aggiornarli: npm run update-data (rigenera questo file).
 import type { Article } from './types';
 
 export const ARTICLES: readonly Article[] = [
