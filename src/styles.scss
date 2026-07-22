@@ -90,6 +90,23 @@ html.audio-live::before {
   opacity: calc(0.12 + var(--audio-pad, 0) * 0.88);
 }
 
+/* Warped grid: the GridWarp directive redraws the same 44px lattice on a canvas so the
+   pointer can bend it into a black hole. It adds .grid-warped to <html> only once it is
+   really running, so no-JS, prerendering, touch and reduced motion keep the CSS grid above
+   (opacity included) and pay nothing. Same z-index: it replaces it in place. */
+html.grid-warped::before {
+  display: none;
+}
+
+.grid-warp {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
 /* "Matrix" code rain canvas: above grid and glows, behind content. The MatrixRain
    directive paints it; this is layout only. */
 .matrix-rain {

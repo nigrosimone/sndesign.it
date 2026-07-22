@@ -14,6 +14,7 @@ import en from '../../../i18n/optimized/en.json';
 import it from '../../../i18n/optimized/it.json';
 import { AudioVisuals } from '../../services/audio-visuals';
 import { LiveStats } from '../../services/live-stats';
+import { GridWarp } from '../../directives/grid-warp';
 import { MatrixRain } from '../../directives/matrix-rain';
 import { About } from '../about/about';
 import { Articles } from '../articles/articles';
@@ -40,7 +41,7 @@ const META = {
 @Component({
   selector: 'app-site',
   templateUrl: './site.html',
-  imports: [MatrixRain, Header, Hero, About, Projects, Articles, Contact, AudioMixer, TranslocoDirective]
+  imports: [GridWarp, MatrixRain, Header, Hero, About, Projects, Articles, Contact, AudioMixer, TranslocoDirective]
 })
 export class Site {
   private readonly route = inject(ActivatedRoute);

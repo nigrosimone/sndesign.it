@@ -1,6 +1,7 @@
 import { DestroyRef, Directive, ElementRef, afterNextRender, inject } from '@angular/core';
 import { AmbientAudio, VOICE } from '../services/ambient-audio';
 import { prefersReducedMotion } from './motion';
+import { type PointerTracker, trackPointer } from './pointer-tracker';
 
 // Half-width katakana plus digits: the classic Matrix rain glyph set.
 const GLYPHS =
@@ -50,7 +51,9 @@ export function lensFalloff(distance: number): number {
  *
  * Pointer-reactive too: with a fine pointer the glyphs near the cursor are pushed away from it
  * ({@link lensFalloff}), so the rain bulges around the mouse and the trails curve behind it. The
- * listeners only store coordinates, which the existing loop reads: no extra frames are scheduled.
+ * shared {@link trackPointer} listeners only store coordinates, which the existing loop reads:
+ * no extra frames are scheduled. The background grid reacts to the same pointer the opposite
+ * way (see GridWarp): the bulge sits over a black hole that swallows the lattice.
  *
  * Everything lives inside afterNextRender (no canvas/animation during Node prerendering) with the
  * cleanup registered there; prefers-reduced-motion disables it entirely.
@@ -69,12 +72,10 @@ export class MatrixRain {
   // Smoothed speed factor and accumulator driving the continuous cadence.
   private speed = 1;
   private stepAcc = 0;
-  // Pointer lens: last pointer position (CSS px) and its smoothed strength, 1 while the pointer
-  // is over the page and 0 once it leaves, so entering/leaving never snaps.
-  private pointerX = 0;
-  private pointerY = 0;
+  // Pointer lens: shared pointer position (CSS px) and its smoothed strength, 1 while the
+  // pointer is over the page and 0 once it leaves, so entering/leaving never snaps.
+  private pointer: PointerTracker | null = null;
   private lens = 0;
-  private lensTarget = 0;
 
   constructor() {
     afterNextRender(() => {
@@ -90,28 +91,10 @@ export class MatrixRain {
       };
       this.resize();
       window.addEventListener('resize', onResize);
-      // The lens is for mouse/trackpad only: on touch there is no hover and the "pointer" would
-      // stay stuck where the last tap happened.
-      const fine =
-        typeof matchMedia === 'function' && matchMedia('(hover: hover) and (pointer: fine)').matches;
-      const onPointerMove = (ev: PointerEvent): void => {
-        this.pointerX = ev.clientX;
-        this.pointerY = ev.clientY;
-        this.lensTarget = 1;
-      };
-      const onPointerLeave = (): void => {
-        this.lensTarget = 0;
-      };
-      if (fine) {
-        // Passive listeners that only store coordinates: the existing rAF loop reads them, so
-        // moving the pointer schedules no extra work.
-        window.addEventListener('pointermove', onPointerMove, { passive: true });
-        document.documentElement.addEventListener('pointerleave', onPointerLeave);
-      }
+      // Null on touch: the rain then simply never bulges.
+      this.pointer = trackPointer(this.destroyRef);
       this.destroyRef.onDestroy(() => {
         window.removeEventListener('resize', onResize);
-        window.removeEventListener('pointermove', onPointerMove);
-        document.documentElement.removeEventListener('pointerleave', onPointerLeave);
         cancelAnimationFrame(this.rafId);
       });
       this.rafId = requestAnimationFrame(() => {
@@ -152,7 +135,7 @@ export class MatrixRain {
     const target = playing ? 0.45 + air * 1.1 : 1;
     this.speed += (target - this.speed) * 0.06;
     // Smoothed every frame (not only on a fall step) so the bulge follows the pointer fluidly.
-    this.lens += (this.lensTarget - this.lens) * 0.12;
+    this.lens += ((this.pointer?.target ?? 0) - this.lens) * 0.12;
 
     // Accumulator: a higher factor crosses the threshold sooner, so drawing happens more often.
     this.stepAcc += this.speed;
@@ -211,9 +194,9 @@ export class MatrixRain {
       // it. Only the head is displaced, so the already painted trail keeps curving behind.
       let dx = 0;
       let dy = 0;
-      if (this.lens > 0.01) {
-        const ox = x - this.pointerX;
-        const oy = y - this.pointerY;
+      if (this.pointer && this.lens > 0.01) {
+        const ox = x - this.pointer.x;
+        const oy = y - this.pointer.y;
         const distance = Math.hypot(ox, oy);
         const push = (lensFalloff(distance) * this.lens * LENS_PUSH) / (distance || 1);
         dx = ox * push;
