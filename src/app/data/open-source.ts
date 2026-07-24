@@ -82,7 +82,7 @@ export const PROJECTS: readonly Project[] = [
     description:
       'A benchmark focusing on the performance of Postgres client libraries for Node.js, brianc/node-postgres VS porsager/postgres',
     language: 'TypeScript',
-    stars: 4,
+    stars: 5,
     repoUrl: 'https://github.com/nigrosimone/postgres-benchmarks',
   },
   {
@@ -180,7 +180,7 @@ export const PACKAGES: readonly NpmPackage[] = [
 export const OS_STATS: OpenSourceStats = {
   npmMonthlyDownloads: 87731,
   npmPackages: 9,
-  githubStars: 263,
+  githubStars: 264,
   githubRepos: 47,
   updatedAt: '2026-07-24',
 };

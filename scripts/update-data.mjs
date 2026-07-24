@@ -4,7 +4,7 @@
  *
  * Uso: npm run update-data
  */
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import prettier from 'prettier';
@@ -206,8 +206,18 @@ ${projects.map(projectLine).join('\n')}
 
 await writeFile(join(PUBLIC_DIR, 'llms.txt'), llmsTxt);
 
+// public/sitemap.xml: aggiorna la data di ultimo aggiornamento (<lastmod>) di
+// ogni URL con quella odierna, così i motori di ricerca sanno che il contenuto
+// è cambiato dopo la rigenerazione dei dati.
+const sitemapPath = join(PUBLIC_DIR, 'sitemap.xml');
+const sitemap = await readFile(sitemapPath, 'utf8');
+await writeFile(
+  sitemapPath,
+  sitemap.replace(/<lastmod>[^<]*<\/lastmod>/g, `<lastmod>${stats.updatedAt}</lastmod>`),
+);
+
 console.log(`✔ Dati aggiornati al ${formatDate(stats.updatedAt)}:`);
 console.log(`  ${stats.npmPackages} pacchetti npm, ${stats.npmMonthlyDownloads} download/mese`);
 console.log(`  ${stats.githubStars} stelle GitHub, ${articles.length} articoli dev.to`);
-console.log('  Rigenerati: src/app/data/*.ts e public/llms.txt.');
+console.log('  Rigenerati: src/app/data/*.ts, public/llms.txt e public/sitemap.xml.');
 console.log('Ricontrolla il diff prima del commit.');
