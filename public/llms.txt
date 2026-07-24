@@ -2,7 +2,7 @@
 
 > Portfolio personale di Simone Nigro, full-stack developer italiano (Avellino, Campania) in
 > ACCA software S.p.A. Autore di librerie open source Angular e Node.js pubblicate su npm con
-> oltre 79.000 download al mese. Sviluppa per il web dal 2000. Contributor
+> oltre 87.000 download al mese. Sviluppa per il web dal 2000. Contributor
 > del core di WordPress (5.5). Sito bilingue: italiano su /, inglese su /en/. Il sito espone i
 > propri contenuti anche via WebMCP (navigator.modelContext): get_profile,
 > list_open_source_projects, list_articles, get_contacts.
@@ -15,20 +15,20 @@
 - Formazione: Laurea in Scienze della Comunicazione, Università degli Studi di Salerno
 - Email: nigro.simone@gmail.com
 
-## Progetti open source (dati npm/GitHub del 22/07/2026)
+## Progetti open source (dati npm/GitHub del 24/07/2026)
 
-- [ng-http-caching](https://www.npmjs.com/package/ng-http-caching): Cache for HTTP requests in Angular application. — 14.945 download/mese, 53 stelle
-- [ng-let](https://www.npmjs.com/package/ng-let): Angular structural directive for sharing data as local variable into html component template. — 53.473 download/mese, 47 stelle
-- [ng-simple-state](https://www.npmjs.com/package/ng-simple-state): Simple state management in Angular with only Services and Signal. — 769 download/mese, 45 stelle
-- [ng-for-track-by-property](https://www.npmjs.com/package/ng-for-track-by-property): Angular global trackBy property directive with strict type checking. — 1270 download/mese, 28 stelle
-- [ng-generic-pipe](https://www.npmjs.com/package/ng-generic-pipe): Generic pipe for Angular application for use a component method into component template — 5123 download/mese, 20 stelle
+- [ng-http-caching](https://www.npmjs.com/package/ng-http-caching): Cache for HTTP requests in Angular application. — 15.664 download/mese, 53 stelle
+- [ng-let](https://www.npmjs.com/package/ng-let): Angular structural directive for sharing data as local variable into html component template. — 60.031 download/mese, 47 stelle
+- [ng-simple-state](https://www.npmjs.com/package/ng-simple-state): Simple state management in Angular with only Services and Signal. — 970 download/mese, 45 stelle
+- [ng-for-track-by-property](https://www.npmjs.com/package/ng-for-track-by-property): Angular global trackBy property directive with strict type checking. — 1348 download/mese, 28 stelle
+- [ng-generic-pipe](https://www.npmjs.com/package/ng-generic-pipe): Generic pipe for Angular application for use a component method into component template — 5298 download/mese, 21 stelle
 - [codice-fiscale](https://packagist.org/packages/nigrosimone/codicefiscale): Libreria PHP per la validazione dei Codici Fiscali italiani a 16 caratteri con supporto per l'omocodia — 15 stelle
-- [ng-lock](https://www.npmjs.com/package/ng-lock): Angular decorator for lock a function and user interface while a task running. — 488 download/mese, 9 stelle
-- [ng-as](https://www.npmjs.com/package/ng-as): Angular pipe and directive for type casting template variables. — 3799 download/mese, 8 stelle
+- [ng-lock](https://www.npmjs.com/package/ng-lock): Angular decorator for lock a function and user interface while a task running. — 604 download/mese, 9 stelle
+- [ng-as](https://www.npmjs.com/package/ng-as): Angular pipe and directive for type casting template variables. — 3731 download/mese, 8 stelle
 - [postgres-benchmarks](https://github.com/nigrosimone/postgres-benchmarks): A benchmark focusing on the performance of Postgres client libraries for Node.js, brianc/node-postgres VS porsager/postgres — 4 stelle
-- [turbo-array](https://www.npmjs.com/package/turbo-array): Turbo Array is a lightweight, high-performance library that allows you to build lazy evaluation pipelines for arrays. It supports operations like filter, map, reduce, forEach, and join, executing them efficiently.  A method build with Turbo Array is 4x faster than vanilla version. — 29 download/mese, 2 stelle
+- [turbo-array](https://www.npmjs.com/package/turbo-array): Turbo Array is a lightweight, high-performance library that allows you to build lazy evaluation pipelines for arrays. It supports operations like filter, map, reduce, forEach, and join, executing them efficiently.  A method build with Turbo Array is 4x faster than vanilla version. — 30 download/mese, 2 stelle
 - [express-fast-json-stringify](https://www.npmjs.com/package/express-fast-json-stringify): With express-fast-json-stringify, you can leverage fast-json-stringify in your Express application to improve JSON serialization performance — 55 download/mese, 1 stella
-- Totale: 9 pacchetti npm, 79.951 download/mese, 262 stelle GitHub
+- Totale: 9 pacchetti npm, 87.731 download/mese, 263 stelle GitHub
 
 ## Collegamenti
 
