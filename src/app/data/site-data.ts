@@ -13,6 +13,8 @@ export const SOCIALS = [
   { label: 'github', name: 'GitHub', url: 'https://github.com/nigrosimone' },
   { label: 'npm', name: 'npm', url: 'https://www.npmjs.com/~nigro.simone' },
   { label: 'dev.to', name: 'DEV Community', url: 'https://dev.to/nigrosimone' },
+  { label: 'stackoverflow', name: 'Stack Overflow', url: 'https://stackoverflow.com/users/3043248/simone-nigro' },
+  { label: 'openjs', name: 'OpenJS Foundation', url: 'https://insights.linuxfoundation.org/collection/details/ojsf/contributors' },
   { label: 'linkedin', name: 'LinkedIn', url: 'https://www.linkedin.com/in/simonenigro/' },
   { label: 'wordpress', name: 'WordPress.org', url: 'https://profiles.wordpress.org/nigrosimone/' },
 ] as const;

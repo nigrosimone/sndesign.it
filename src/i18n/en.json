@@ -32,7 +32,7 @@
     "title": "About me",
     "photoAlt": "Portrait of Simone Nigro",
     "bio1": "I have been building for the web since 2000: first as a freelance graphic and web designer under the SN.DESIGN brand, today as a full-stack developer at ACCA software S.p.A. I hold a degree in Communication Sciences from the University of Salerno.",
-    "bio2": "Open source is my passion: I maintain about ten Angular and Node.js libraries published on npm - 75,000+ downloads per month - I have been a WordPress core contributor (5.5) and the author of the «Speed Up» plugin series. I write about Angular, Node.js and performance on DEV Community.",
+    "bio2": "Open source is my passion: I maintain about ten Angular and Node.js libraries published on npm - 75,000+ downloads per month - I have been a Node.js core contributor (OpenJS Foundation) and a WordPress core contributor (5.5), plus the author of the «Speed Up» plugin series. I write about Angular, Node.js and performance on DEV Community.",
     "bio3": "My style has always been the same: clean, almost minimalist, without neglecting the user experience. With one extra obsession: performance.",
     "groups": {
       "frontend": "Frontend",

@@ -32,7 +32,7 @@
     "title": "Chi sono",
     "photoAlt": "Ritratto di Simone Nigro",
     "bio1": "Mi occupo di sviluppo web dal 2000: prima grafica e web design da freelance con il marchio SN.DESIGN, oggi sviluppo full-stack in ACCA software S.p.A. Laureato in Scienze della Comunicazione all'Università di Salerno.",
-    "bio2": "La mia passione è l'open source: mantengo una decina di librerie Angular e Node.js pubblicate su npm - oltre 75.000 download al mese - sono stato contributor del core di WordPress (5.5) e autore della serie di plugin «Speed Up». Scrivo di Angular, Node.js e performance su DEV Community.",
+    "bio2": "La mia passione è l'open source: mantengo una decina di librerie Angular e Node.js pubblicate su npm - oltre 75.000 download al mese - sono stato contributor del core di Node.js (OpenJS Foundation) e di WordPress (5.5), oltre che autore della serie di plugin «Speed Up». Scrivo di Angular, Node.js e performance su DEV Community.",
     "bio3": "Il mio stile è sempre lo stesso: pulito, quasi minimalista, senza tralasciare la user experience. Con un'ossessione in più: le performance.",
     "groups": {
       "frontend": "Frontend",
