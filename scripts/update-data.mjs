@@ -16,7 +16,7 @@ const ROOT_DIR = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_DIR = join(ROOT_DIR, 'src', 'app', 'data');
 const PUBLIC_DIR = join(ROOT_DIR, 'public');
 
-const HIDDEN_PROJECTS = new Set([]);
+const HIDDEN_PROJECTS = new Set(['sndesign.it']);
 
 const HIDDEN_ARTICLES = new Set([]);
 

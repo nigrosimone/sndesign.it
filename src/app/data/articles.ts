@@ -1,8 +1,40 @@
-// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 24/07/2026).
+// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 04/09/2026).
 // Per aggiornarli: npm run update-data (rigenera questo file).
 import type { Article } from './types';
 
 export const ARTICLES: readonly Article[] = [
+  {
+    title: 'Fulmine.js: a faster drop-in Express 5 replacement on uWebSockets.js',
+    url: 'https://dev.to/nigrosimone/fulminejs-a-faster-drop-in-express-5-replacement-on-uwebsocketsjs-3bnn',
+    date: '2026-08-17',
+    readingMinutes: 5,
+    tags: ['node', 'express', 'javascript', 'performance'],
+    reactions: 0,
+  },
+  {
+    title: 'Which is the fastest HTTP server in 2026?',
+    url: 'https://dev.to/nigrosimone/which-is-the-fastest-http-server-in-2026-eg5',
+    date: '2026-08-11',
+    readingMinutes: 4,
+    tags: ['performance', 'webperf', 'backend'],
+    reactions: 5,
+  },
+  {
+    title: 'Angular SSR renders your page for every visitor. Here is what that costs.',
+    url: 'https://dev.to/nigrosimone/angular-ssr-renders-your-page-for-every-visitor-here-is-what-that-costs-jfb',
+    date: '2026-08-08',
+    readingMinutes: 5,
+    tags: ['angular', 'webperf', 'ssr', 'javascript'],
+    reactions: 0,
+  },
+  {
+    title: 'Fulmine.js: Express.js on µWebSockets with 2x to 7x performance improvements',
+    url: 'https://dev.to/nigrosimone/express-5-on-uwebsockets-same-middleware-2x-to-7x-h8j',
+    date: '2026-08-06',
+    readingMinutes: 4,
+    tags: ['node', 'javascript', 'express', 'performance'],
+    reactions: 0,
+  },
   {
     title: 'Smart HTTP Caching in Angular with NgHttpCaching',
     url: 'https://dev.to/nigrosimone/stop-hitting-your-backend-twice-smart-http-caching-in-angular-with-nghttpcaching-3fjd',
