@@ -242,7 +242,7 @@ export class AmbientAudio {
   }
 
   /** How audible each voice is right now (0..1), in {@link VOICE} order: one voice
-   *  drives one visual effect. Not a signal — an external rAF loop reads it, so it
+   *  drives one visual effect. Not a signal - an external rAF loop reads it, so it
    *  costs no change detection. */
   voiceEnergy(): readonly number[] {
     return this.voiceEnergyValues;

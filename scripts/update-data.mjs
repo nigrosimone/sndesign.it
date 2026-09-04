@@ -170,7 +170,7 @@ const projectLine = (p) => {
   const desc = p.description ? `: ${p.description}` : '';
   const dl = p.monthlyDownloads ? `${fmt(p.monthlyDownloads)} download/mese, ` : '';
   const stars = `${p.stars} ${p.stars === 1 ? 'stella' : 'stelle'}`;
-  return `- [${p.name}](${link})${desc} — ${dl}${stars}`;
+  return `- [${p.name}](${link})${desc} - ${dl}${stars}`;
 };
 
 const llmsTxt = `# Simone Nigro - Full-Stack Developer
