@@ -1,8 +1,16 @@
-// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 04/09/2026).
+// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 12/09/2026).
 // Per aggiornarli: npm run update-data (rigenera questo file).
 import type { Article } from './types';
 
 export const ARTICLES: readonly Article[] = [
+  {
+    title: 'I built a small arena where AI models write robot brains and then fight each other',
+    url: 'https://dev.to/nigrosimone/i-built-a-small-arena-where-ai-models-write-robot-brains-and-then-fight-each-other-3do7',
+    date: '2026-09-05',
+    readingMinutes: 1,
+    tags: ['ai', 'claude', 'openai'],
+    reactions: 1,
+  },
   {
     title: 'Fulmine.js: a faster drop-in Express 5 replacement on uWebSockets.js',
     url: 'https://dev.to/nigrosimone/fulminejs-a-faster-drop-in-express-5-replacement-on-uwebsocketsjs-3bnn',
