@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { EVENT_HORIZON, GridWarp, HOLE_RADIUS, holePull } from './grid-warp';
+import { EVENT_HORIZON, GridWarp, HOLE_RADIUS, followHoleCoordinate, holePull } from './grid-warp';
 
 @Component({
   imports: [GridWarp],
@@ -24,6 +24,47 @@ describe('GridWarp', () => {
     const fixture = TestBed.createComponent(Host);
     await fixture.whenStable();
     expect(document.documentElement.classList.contains('grid-warped')).toBe(false);
+  });
+
+  describe('followHoleCoordinate', () => {
+    it('follows movement in either direction without jumping or overshooting', () => {
+      const forward = followHoleCoordinate(100, 700, 33);
+      const backward = followHoleCoordinate(700, 100, 33);
+      expect(forward).toBeGreaterThan(100);
+      expect(forward).toBeLessThan(700);
+      expect(backward).toBeGreaterThan(100);
+      expect(backward).toBeLessThan(700);
+      expect(forward - 100).toBeCloseTo(700 - backward, 8);
+    });
+
+    it('has the same response over equal elapsed time at different frame rates', () => {
+      let regular = 100;
+      let slower = 100;
+      for (let frame = 0; frame < 6; frame++) {
+        regular = followHoleCoordinate(regular, 700, 33);
+      }
+      for (let frame = 0; frame < 3; frame++) {
+        slower = followHoleCoordinate(slower, 700, 66);
+      }
+      expect(regular).toBeCloseTo(slower, 8);
+    });
+
+    it('settles exactly and then remains unchanged, allowing idle repaint checks to succeed', () => {
+      let position = 100;
+      for (let frame = 0; frame < 40; frame++) {
+        position = followHoleCoordinate(position, 700, 33);
+      }
+      expect(position).toBe(700);
+      expect(followHoleCoordinate(position, 700, 33)).toBe(position);
+    });
+
+    it('resumes at the current pointer after a suspended frame instead of replaying movement', () => {
+      expect(followHoleCoordinate(100, 700, 5000)).toBe(700);
+    });
+
+    it('does not advance without elapsed time', () => {
+      expect(followHoleCoordinate(100, 700, 0)).toBe(100);
+    });
   });
 
   describe('holePull', () => {

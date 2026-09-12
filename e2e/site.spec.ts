@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { PROJECTS } from '../src/app/data/open-source';
 
 test('homepage renders the hero with Italian content', async ({ page }) => {
   await page.goto('/');
@@ -31,7 +32,7 @@ test('navigation anchor scrolls to the projects section with n cards', async ({ 
   await page.goto('/');
   await page.locator('.nav-links a[href$="#progetti"]').click();
   await expect(page.locator('#progetti')).toBeInViewport();
-  await expect(page.locator('#progetti article.card')).toHaveCount(11);
+  await expect(page.locator('#progetti article.card')).toHaveCount(PROJECTS.length);
 });
 
 test('anchors on the English page stay on the English page', async ({ page }) => {

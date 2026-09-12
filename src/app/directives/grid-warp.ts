@@ -33,6 +33,21 @@ const SAMPLE_SPREAD = 0.12;
 const FADE_REACH = 130;
 /** Minimum gap between repaints (ms): ~30fps, same budget as the rain. */
 const FRAME_MS = 33;
+/** Time constant for the hole following the pointer; independent of the repaint cadence. */
+const FOLLOW_MS = 110;
+/** Subpixel settling threshold: reaching the exact target lets idle frames be skipped again. */
+const FOLLOW_SNAP = 0.1;
+/** A suspended tab should resume at the current pointer, without replaying its old movement. */
+const RESUME_MS = 250;
+
+/** Exponential following without overshoot, with exact settling and a fresh start after pauses. */
+export function followHoleCoordinate(current: number, target: number, elapsedMs: number): number {
+  if (elapsedMs > RESUME_MS) {
+    return target;
+  }
+  const next = target + (current - target) * Math.exp(-Math.max(0, elapsedMs) / FOLLOW_MS);
+  return Math.abs(target - next) < FOLLOW_SNAP ? target : next;
+}
 
 /**
  * Gravitational pull of the black hole at `distance` from its centre, in CSS pixels, positive
@@ -64,8 +79,8 @@ export function holePull(distance: number): number {
  * prefers-reduced-motion all keep the original static grid, at zero cost.
  *
  * Audio-reactive like the CSS it replaces: the "pad" voice drives the grid brightness. The loop
- * repaints at most ~30fps and skips the frame entirely when pointer, lens and brightness are all
- * unchanged, so a still cursor costs nothing.
+ * repaints at most ~30fps. The hole follows the pointer with a short, time-based inertia, then
+ * settles exactly so unchanged centre, lens and brightness can skip painting altogether.
  */
 @Directive({ selector: '[appGridWarp]' })
 export class GridWarp {
@@ -79,6 +94,10 @@ export class GridWarp {
   private last = 0;
   /** Smoothed strength, 1 with the pointer over the page and 0 once it leaves. */
   private lens = 0;
+  /** One smoothed centre shared by the warped lines and the transparent abyss. */
+  private centerX = 0;
+  private centerY = 0;
+  private centerReady = false;
   // Last painted state: while it matches the current one the frame is skipped.
   private paintedLens = -1;
   private paintedOpacity = -1;
@@ -100,15 +119,25 @@ export class GridWarp {
       if (!this.ctx) {
         return;
       }
+      const resetCenter = (): void => {
+        this.centerReady = false;
+      };
       const onResize = (): void => {
+        resetCenter();
         this.resize();
       };
       this.resize();
       window.addEventListener('resize', onResize);
+      // An exit and re-entry can both happen between two frames: observing target alone would
+      // miss that transition and drag the old hole across the page on the next pointer move.
+      document.documentElement.addEventListener('pointerleave', resetCenter);
+      document.addEventListener('visibilitychange', resetCenter);
       // Hides html::before: from here on the canvas owns the grid.
       document.documentElement.classList.add('grid-warped');
       this.destroyRef.onDestroy(() => {
         window.removeEventListener('resize', onResize);
+        document.documentElement.removeEventListener('pointerleave', resetCenter);
+        document.removeEventListener('visibilitychange', resetCenter);
         document.documentElement.classList.remove('grid-warped');
         cancelAnimationFrame(this.rafId);
       });
@@ -141,10 +170,26 @@ export class GridWarp {
       return;
     }
     const now = performance.now();
-    if (now - this.last < FRAME_MS) {
+    const elapsedMs = now - this.last;
+    if (elapsedMs < FRAME_MS) {
       return;
     }
     this.last = now;
+
+    if (pointer.target > 0) {
+      if (this.centerReady) {
+        this.centerX = followHoleCoordinate(this.centerX, pointer.x, elapsedMs);
+        this.centerY = followHoleCoordinate(this.centerY, pointer.y, elapsedMs);
+      } else {
+        // Start where the pointer actually entered, never at the origin or its previous exit.
+        this.centerX = pointer.x;
+        this.centerY = pointer.y;
+        this.centerReady = true;
+      }
+    } else {
+      // Keep the last visible centre while the hole fades out, then initialize afresh on entry.
+      this.centerReady = false;
+    }
 
     this.lens += (pointer.target - this.lens) * 0.12;
     // Snap once the exponential smoothing is visually done, otherwise `lens` keeps changing by
@@ -159,15 +204,15 @@ export class GridWarp {
     const still =
       this.lens === this.paintedLens &&
       opacity === this.paintedOpacity &&
-      // With the lens off the pointer position does not affect a single pixel.
-      (this.lens === 0 || (pointer.x === this.paintedX && pointer.y === this.paintedY));
+      // With the lens off the centre does not affect a single pixel.
+      (this.lens === 0 || (this.centerX === this.paintedX && this.centerY === this.paintedY));
     if (still) {
       return;
     }
     this.paintedLens = this.lens;
     this.paintedOpacity = opacity;
-    this.paintedX = pointer.x;
-    this.paintedY = pointer.y;
+    this.paintedX = this.centerX;
+    this.paintedY = this.centerY;
     this.paint(ctx, opacity);
   }
 
@@ -196,14 +241,7 @@ export class GridWarp {
    * stays a single straight segment, so a line far from the cursor costs exactly what it did
    * before.
    */
-  private line(
-    path: Path2D,
-    x: number,
-    y: number,
-    ux: number,
-    uy: number,
-    length: number,
-  ): void {
+  private line(path: Path2D, x: number, y: number, ux: number, uy: number, length: number): void {
     const pointer = this.pointer;
     const strength = this.lens;
     const endX = x + ux * length;
@@ -214,9 +252,9 @@ export class GridWarp {
       return;
     }
     // Where the centre projects on the line, and how far it is from it.
-    const at = (pointer.x - x) * ux + (pointer.y - y) * uy;
-    const perpX = pointer.x - (x + ux * at);
-    const perpY = pointer.y - (y + uy * at);
+    const at = (this.centerX - x) * ux + (this.centerY - y) * uy;
+    const perpX = this.centerX - (x + ux * at);
+    const perpY = this.centerY - (y + uy * at);
     const perp = Math.hypot(perpX, perpY);
     const span = perp < HOLE_RADIUS ? Math.sqrt(HOLE_RADIUS * HOLE_RADIUS - perp * perp) : 0;
     const from = Math.max(0, at - span);
@@ -232,8 +270,8 @@ export class GridWarp {
     for (;;) {
       const sx = x + ux * along;
       const sy = y + uy * along;
-      const towardX = pointer.x - sx;
-      const towardY = pointer.y - sy;
+      const towardX = this.centerX - sx;
+      const towardY = this.centerY - sy;
       const distance = Math.hypot(towardX, towardY) || 0.001;
       const pull = (holePull(distance) * strength) / distance;
       path.lineTo(sx + towardX * pull, sy + towardY * pull);
@@ -261,7 +299,14 @@ export class GridWarp {
     }
     // Scales with the fade-in, so the hole opens up instead of popping in.
     const reach = FADE_REACH * lens;
-    const fade = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, reach);
+    const fade = ctx.createRadialGradient(
+      this.centerX,
+      this.centerY,
+      0,
+      this.centerX,
+      this.centerY,
+      reach,
+    );
     fade.addColorStop(0, 'rgba(0, 0, 0, 1)');
     // Nothing survives inside the horizon; from there outwards the erase eases off, so the void
     // has no edge to it.
@@ -272,7 +317,7 @@ export class GridWarp {
     ctx.globalCompositeOperation = 'destination-out';
     ctx.fillStyle = fade;
     ctx.beginPath();
-    ctx.arc(pointer.x, pointer.y, reach, 0, Math.PI * 2);
+    ctx.arc(this.centerX, this.centerY, reach, 0, Math.PI * 2);
     ctx.fill();
     ctx.globalCompositeOperation = 'source-over';
   }

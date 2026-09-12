@@ -24,8 +24,9 @@
   font-weight: 300 700;
   font-display: swap;
   src: url('/fonts/space-grotesk-latin.woff2') format('woff2-variations');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074,
+    U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 /* Metric-matched fallback to reduce layout shift while the webfont loads. */
@@ -882,13 +883,37 @@ ol[role='list'] {
   display: flex;
   flex-direction: column;
   background-color: var(--bg-elev);
-  /* Cyan spotlight following the pointer: PointerFx updates --mx/--my, alpha is
-     driven by --spot. */
-  background-image: radial-gradient(
-    220px circle at var(--mx) var(--my),
-    rgba(0, 229, 255, calc(0.13 * var(--spot))),
-    transparent 72%
-  );
+  /* A broad, directional reflection sits behind the text. All layers share --spot,
+     so keyboard focus has a centred sheen and idle cards retain the solid background.
+     PointerFx supplies position and angle only while interacting. */
+  background-image:
+    linear-gradient(
+      var(--sheen-angle, 125deg),
+      transparent 30%,
+      rgba(0, 229, 255, calc(0.09 * var(--spot))) 42%,
+      rgba(220, 249, 255, calc(0.085 * var(--spot))) 48%,
+      rgba(255, 61, 129, calc(0.1 * var(--spot))) 54%,
+      transparent 66%
+    ),
+    radial-gradient(
+      220px circle at var(--mx) var(--my),
+      rgba(0, 229, 255, calc(0.13 * var(--spot))),
+      transparent 72%
+    ),
+    radial-gradient(
+      260px circle at calc(100% - var(--mx)) calc(100% - var(--my)),
+      rgba(255, 61, 129, calc(0.075 * var(--spot))),
+      transparent 72%
+    );
+  background-size:
+    200% 200%,
+    100% 100%,
+    100% 100%;
+  background-position:
+    var(--mx) var(--my),
+    0 0,
+    0 0;
+  background-repeat: no-repeat;
   border: 1px solid var(--line);
   padding: 1.25rem 1.4rem;
   transition:
@@ -923,13 +948,16 @@ ol[role='list'] {
   right: -1px;
   border-left: 0;
   border-top: 0;
+  border-color: var(--accent2);
 }
 
 .card:hover,
 .card:focus-within {
   --spot: 1; /* lights the spotlight without JS too (coarse pointer, keyboard) */
   border-color: var(--line-bright);
-  box-shadow: 0 0 24px rgba(0, 229, 255, 0.07);
+  box-shadow:
+    -6px -4px 24px rgba(0, 229, 255, 0.06),
+    6px 4px 24px rgba(255, 61, 129, 0.05);
 }
 
 .card:hover::before,
@@ -939,9 +967,33 @@ ol[role='list'] {
   opacity: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .card {
+    transform-style: preserve-3d;
+  }
+
   .card:hover {
     transform: translateY(-3px);
+  }
+
+  /* Shallow planes give tilt depth without changing layout or hit targets. Keep
+     the card free of flattening effects such as opacity, filter or overflow. */
+  .card-head,
+  .card-desc,
+  .card-meta {
+    transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .card.is-tilting .card-head {
+    transform: translateZ(18px);
+  }
+
+  .card.is-tilting .card-desc {
+    transform: translateZ(8px);
+  }
+
+  .card.is-tilting .card-meta {
+    transform: translateZ(12px);
   }
 }
 
