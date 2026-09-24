@@ -28,6 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Upload only: mirror without --delete never removes files already on Aruba (e.g. /v3/).
+      # The FTP root holds only the www.sndesign.it folder, which is the site root.
       # ftplnx02.aruba.it is the server behind ftp.sndesign.it and the name on its TLS certificate.
       - name: Upload to Aruba
         env:
@@ -37,4 +38,4 @@ jobs:
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           lftp -c "set ftp:ssl-force true; set ftp:ssl-protect-data true; \
             open --user \"$FTP_USERNAME\" --env-password ftp://ftplnx02.aruba.it; \
-            mirror --reverse --no-perms --parallel=4 --verbose dist/portfolio/browser/ /"
+            mirror --reverse --no-perms --parallel=4 --verbose dist/portfolio/browser/ /www.sndesign.it/"
