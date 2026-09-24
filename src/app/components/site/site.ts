@@ -20,6 +20,7 @@ import { About } from '../about/about';
 import { Articles } from '../articles/articles';
 import { AudioMixer } from '../audio-mixer/audio-mixer';
 import { Contact } from '../contact/contact';
+import { Contributions } from '../contributions/contributions';
 import { Header } from '../header/header';
 import { Hero } from '../hero/hero';
 import { Projects } from '../projects/projects';
@@ -41,7 +42,7 @@ const META = {
 @Component({
   selector: 'app-site',
   templateUrl: './site.html',
-  imports: [GridWarp, MatrixRain, Header, Hero, About, Projects, Articles, Contact, AudioMixer, TranslocoDirective]
+  imports: [GridWarp, MatrixRain, Header, Hero, About, Projects, Contributions, Articles, Contact, AudioMixer, TranslocoDirective]
 })
 export class Site {
   private readonly route = inject(ActivatedRoute);

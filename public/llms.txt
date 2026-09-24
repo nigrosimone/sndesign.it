@@ -2,40 +2,59 @@
 
 > Portfolio personale di Simone Nigro, full-stack developer italiano (Avellino, Campania) in
 > ACCA software S.p.A. Autore di librerie open source Angular e Node.js pubblicate su npm con
-> oltre 80.000 download al mese. Sviluppa per il web dal 2000. Contributor
+> oltre 77.000 download al mese. Programma dal 1999, sviluppatore dal 2004. Contributor
 > del core di WordPress (5.5). Sito bilingue: italiano su /, inglese su /en/. Il sito espone i
 > propri contenuti anche via WebMCP (navigator.modelContext): get_profile,
-> list_open_source_projects, list_articles, get_contacts.
+> list_open_source_projects, list_contributions, list_articles, get_contacts.
 
 ## Profilo
 
 - Ruolo: Full-Stack Developer (Angular, TypeScript, Node.js, PHP, PostgreSQL)
-- Azienda: ACCA software S.p.A.
+- Azienda: ACCA software S.p.A. (dal 2011, guida il team web)
+- Esperienze precedenti: programmatore web in Estrogeni srl (2010-2011), insegnante di informatica all'ITI Sarrocchi di Siena (2009-2010), web developer freelance con il marchio SN.DESIGN (2004-2011)
 - Località: Avellino, Campania, Italia
 - Formazione: Laurea in Scienze della Comunicazione, Università degli Studi di Salerno
 - Email: nigro.simone@gmail.com
 
-## Progetti open source (dati npm/GitHub del 12/09/2026)
+## Progetti open source (dati npm/GitHub del 24/09/2026)
 
-- [ng-http-caching](https://www.npmjs.com/package/ng-http-caching): Cache for HTTP requests in Angular application. - 12.440 download/mese, 54 stelle
-- [ng-let](https://www.npmjs.com/package/ng-let): Angular structural directive for sharing data as local variable into html component template. - 53.503 download/mese, 47 stelle
-- [ng-simple-state](https://www.npmjs.com/package/ng-simple-state): Simple state management in Angular with only Services and Signal. - 788 download/mese, 46 stelle
-- [ng-for-track-by-property](https://www.npmjs.com/package/ng-for-track-by-property): Angular global trackBy property directive with strict type checking. - 494 download/mese, 28 stelle
-- [ng-generic-pipe](https://www.npmjs.com/package/ng-generic-pipe): Generic pipe for Angular application for use a component method into component template - 4235 download/mese, 21 stelle
-- [fulmine.js](https://www.npmjs.com/package/fulmine.js): Fulmine.js ⚡ A blazing-fast Express.js compatible HTTP server on uWebSockets.js. - 4892 download/mese, 17 stelle
-- [codice-fiscale](https://packagist.org/packages/nigrosimone/codicefiscale): Libreria PHP per la validazione dei Codici Fiscali italiani a 16 caratteri con supporto per l'omocodia - 16 stelle
-- [llms-robot-arena](https://github.com/nigrosimone/llms-robot-arena): An arena where LLMs write robot controllers and their code competes. - 11 stelle
-- [ng-lock](https://www.npmjs.com/package/ng-lock): Angular decorator for lock a function and user interface while a task running. - 178 download/mese, 10 stelle
-- [ng-as](https://www.npmjs.com/package/ng-as): Angular pipe and directive for type casting template variables. - 3033 download/mese, 9 stelle
-- [postgres-benchmarks](https://github.com/nigrosimone/postgres-benchmarks): A benchmark focusing on the performance of Postgres client libraries for Node.js, brianc/node-postgres VS porsager/postgres - 6 stelle
-- [turbo-array](https://www.npmjs.com/package/turbo-array): Turbo Array is a lightweight, high-performance library that allows you to build lazy evaluation pipelines for arrays. It supports operations like filter, map, reduce, forEach, and join, executing them efficiently.  A method build with Turbo Array is 4x faster than vanilla version. - 23 download/mese, 2 stelle
-- [express-fast-json-stringify](https://www.npmjs.com/package/express-fast-json-stringify): With express-fast-json-stringify, you can leverage fast-json-stringify in your Express application to improve JSON serialization performance - 161 download/mese, 1 stella
-- [ng-ssr-caching](https://www.npmjs.com/package/ng-ssr-caching): Cache for server-side rendered pages in Angular SSR. - 60 download/mese, 1 stella
-- Totale: 12 pacchetti npm, 80.490 download/mese, 300 stelle GitHub
+- [ng-http-caching](https://www.npmjs.com/package/ng-http-caching): Cache for HTTP requests in Angular application. - 11.902 download/mese, 54 stelle
+- [ng-let](https://www.npmjs.com/package/ng-let): Angular structural directive for sharing data as local variable into html component template. - 53.264 download/mese, 47 stelle
+- [ng-simple-state](https://www.npmjs.com/package/ng-simple-state): Simple state management in Angular with only Services and Signal. - 837 download/mese, 46 stelle
+- [ng-for-track-by-property](https://www.npmjs.com/package/ng-for-track-by-property): Angular global trackBy property directive with strict type checking. - 612 download/mese, 28 stelle
+- [ng-generic-pipe](https://www.npmjs.com/package/ng-generic-pipe): Generic pipe for Angular application for use a component method into component template - 3926 download/mese, 21 stelle
+- [fulmine.js](https://www.npmjs.com/package/fulmine.js): Fulmine.js ⚡ A blazing-fast Express.js compatible HTTP server on uWebSockets.js. - 3118 download/mese, 17 stelle
+- [codice-fiscale](https://packagist.org/packages/nigrosimone/codicefiscale): Libreria PHP per la validazione dei Codici Fiscali italiani a 16 caratteri con supporto per l'omocodia - 17 stelle
+- [llms-robot-arena](https://github.com/nigrosimone/llms-robot-arena): An arena where LLMs write robot controllers and their code competes. - 13 stelle
+- [ng-lock](https://www.npmjs.com/package/ng-lock): Angular decorator for lock a function and user interface while a task running. - 250 download/mese, 10 stelle
+- [ng-as](https://www.npmjs.com/package/ng-as): Angular pipe and directive for type casting template variables. - 2583 download/mese, 9 stelle
+- [postgres-benchmarks](https://github.com/nigrosimone/postgres-benchmarks): A benchmark focusing on the performance of Postgres client libraries for Node.js, brianc/node-postgres VS porsager/postgres - 7 stelle
+- [turbo-array](https://www.npmjs.com/package/turbo-array): Turbo Array is a lightweight, high-performance library that allows you to build lazy evaluation pipelines for arrays. It supports operations like filter, map, reduce, forEach, and join, executing them efficiently.  A method build with Turbo Array is 4x faster than vanilla version. - 26 download/mese, 2 stelle
+- [express-fast-json-stringify](https://www.npmjs.com/package/express-fast-json-stringify): With express-fast-json-stringify, you can leverage fast-json-stringify in your Express application to improve JSON serialization performance - 296 download/mese, 1 stella
+- [ng-ssr-caching](https://www.npmjs.com/package/ng-ssr-caching): Cache for server-side rendered pages in Angular SSR. - 38 download/mese, 1 stella
+- Totale: 12 pacchetti npm, 77.002 download/mese, 304 stelle GitHub
+
+## Contributi ad altri progetti open source
+
+- [fix(pg): run a named statement with an empty text more than once](https://github.com/brianc/node-postgres/pull/3781) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.212 stelle)
+- [fix(pg): expose detail and hint on errors from the native client](https://github.com/brianc/node-postgres/pull/3780) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.212 stelle)
+- [fix: reject portal based queries in pipeline mode instead of TypeError](https://github.com/brianc/node-postgres/pull/3737) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.212 stelle)
+- [fix: fail pipelined queries when the connection dies instead of hanging](https://github.com/brianc/node-postgres/pull/3736) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.212 stelle)
+- [perf: cache parsers per column](https://github.com/brianc/node-postgres/pull/3568) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.212 stelle)
+- [perf: short array and object](https://github.com/fastify/fast-json-stringify/pull/817) su [fastify/fast-json-stringify](https://github.com/fastify/fast-json-stringify) (3705 stelle)
+- [perf: cache json strings into const](https://github.com/fastify/fast-json-stringify/pull/713) su [fastify/fast-json-stringify](https://github.com/fastify/fast-json-stringify) (3705 stelle)
+- [fix: make asString monomorphic and trigger V8 optimization](https://github.com/fastify/fast-json-stringify/pull/689) su [fastify/fast-json-stringify](https://github.com/fastify/fast-json-stringify) (3705 stelle)
+- [feat: unsafe string format](https://github.com/fastify/fast-json-stringify/pull/686) su [fastify/fast-json-stringify](https://github.com/fastify/fast-json-stringify) (3705 stelle)
+- [fix: stop body parsers from responding twice to an oversized body](https://github.com/dimdenGD/ultimate-express/pull/356) su [dimdenGD/ultimate-express](https://github.com/dimdenGD/ultimate-express) (1109 stelle)
+- [perf: skip full headers build in req.fresh when no conditional headers](https://github.com/dimdenGD/ultimate-express/pull/355) su [dimdenGD/ultimate-express](https://github.com/dimdenGD/ultimate-express) (1109 stelle)
+- [perf: remove per-request async overhead in router dispatch](https://github.com/dimdenGD/ultimate-express/pull/354) su [dimdenGD/ultimate-express](https://github.com/dimdenGD/ultimate-express) (1109 stelle)
+- [fix: tsconfig for latest vscode](https://github.com/dimdenGD/ultimate-express/pull/325) su [dimdenGD/ultimate-express](https://github.com/dimdenGD/ultimate-express) (1109 stelle)
+- [fix(types): return type of listen](https://github.com/dimdenGD/ultimate-express/pull/316) su [dimdenGD/ultimate-express](https://github.com/dimdenGD/ultimate-express) (1109 stelle)
+- Totale: [389 pull request mergiate](https://github.com/search?type=pullrequests&q=is%3Apr%20is%3Amerged%20author%3Anigrosimone%20-user%3Anigrosimone) in 31 repository di altri
 
 ## Collegamenti
 
-- [GitHub](https://github.com/nigrosimone): 72 repository pubblici
+- [GitHub](https://github.com/nigrosimone): 77 repository pubblici
 - [npm](https://www.npmjs.com/~nigro.simone): tutti i pacchetti
 - [DEV Community](https://dev.to/nigrosimone): 16 articoli su Angular, Node.js e performance
 - [LinkedIn](https://www.linkedin.com/in/simonenigro/): profilo professionale

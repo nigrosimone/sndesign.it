@@ -21,6 +21,9 @@ export class Projects {
   protected readonly downloadsFmt = computed(() =>
     formatNumber(this.live.npmDownloads(), this.lang),
   );
+  // A new repo has no translated description yet: fall back to the GitHub one.
+  private readonly translation = this.transloco.getTranslation(this.lang);
+
   protected readonly projects = computed(() => {
     const liveStars = this.live.repoStars();
     const liveDownloads = this.live.packageDownloads();
@@ -28,6 +31,7 @@ export class Projects {
       const monthlyDownloads = liveDownloads.get(p.name) ?? p.monthlyDownloads;
       return {
         ...p,
+        hasDescKey: `projects.desc.${p.name}` in this.translation,
         stars: liveStars.get(p.name) ?? p.stars,
         downloadsFmt: monthlyDownloads ? formatNumber(monthlyDownloads, this.lang) : null,
         registry: p.language === 'PHP' ? 'packagist' : 'npm',

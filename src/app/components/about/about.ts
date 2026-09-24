@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { SKILL_GROUPS } from '../../data/site-data';
+import { EXPERIENCE, SKILL_GROUPS } from '../../data/site-data';
 import { PointerFx } from '../../directives/pointer-fx';
 import { Reveal } from '../../directives/reveal';
 import { Scramble } from '../../directives/scramble';
@@ -13,4 +13,5 @@ import { Scramble } from '../../directives/scramble';
 export class About {
   protected readonly bioKeys = ['about.bio1', 'about.bio2', 'about.bio3'];
   protected readonly skillGroups = SKILL_GROUPS;
+  protected readonly experience = EXPERIENCE;
 }

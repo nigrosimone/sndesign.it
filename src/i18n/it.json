@@ -10,6 +10,7 @@
     "logoAria": "SN - torna all'inizio",
     "about": "chi sono",
     "projects": "progetti",
+    "contributions": "contributi",
     "articles": "articoli",
     "contacts": "contatti",
     "langLabel": "Lingua",
@@ -31,13 +32,40 @@
   "about": {
     "title": "Chi sono",
     "photoAlt": "Ritratto di Simone Nigro",
-    "bio1": "Mi occupo di sviluppo web dal 2000: prima grafica e web design da freelance con il marchio SN.DESIGN, oggi sviluppo full-stack in ACCA software S.p.A. Laureato in Scienze della Comunicazione all'Università di Salerno.",
-    "bio2": "La mia passione è l'open source: mantengo una decina di librerie Angular e Node.js pubblicate su npm - oltre 75.000 download al mese - sono stato contributor del core di Node.js (OpenJS Foundation) e di WordPress (5.5), oltre che autore della serie di plugin «Speed Up». Scrivo di Angular, Node.js e performance su DEV Community.",
-    "bio3": "Il mio stile è sempre lo stesso: pulito, quasi minimalista, senza tralasciare la user experience. Con un'ossessione in più: le performance.",
+    "bio1": "Programmo dal 1999 e lavoro come sviluppatore dal 2004: prima siti web da freelance con il marchio SN.DESIGN, dal 2011 sviluppo full-stack in ACCA software S.p.A., dove guido anche il team web.",
+    "bio2": "La mia passione è l'open source: mantengo una decina di librerie Angular e Node.js pubblicate su npm - oltre 75.000 download al mese - tra cui Fulmine.js, terzo framework più veloce su HttpArena e primo fra quelli JavaScript. Sono stato contributor del core di Node.js (OpenJS Foundation) e di WordPress (5.5), oltre che autore della serie di plugin «Speed Up». Scrivo di Angular, Node.js e performance su DEV Community.",
+    "bio3": "Il mio stile è sempre lo stesso: pulito, quasi minimalista, senza tralasciare la user experience. Con un'ossessione in più: le performance. Benchmark, profiling, capire quanto costa un millisecondo in produzione. E so aprire le birre con qualsiasi cosa: accendini, chiavi, eccetera.",
     "groups": {
       "frontend": "Frontend",
       "backend": "Backend",
+      "database": "Database",
+      "infra": "Server e DevOps",
+      "testing": "Test",
       "other": "Altro"
+    },
+    "experience": "Esperienza",
+    "present": "oggi",
+    "jobs": {
+      "acca": {
+        "role": "Full-Stack Developer",
+        "desc": "Applicazioni web Angular e TypeScript: architettura, librerie condivise, performance di caricamento e rendering. Back-end Node.js e Delphi su PostgreSQL. Guido il team web con code review, standard di codice e affiancamento ai colleghi. Uso ogni giorno coding agent AI."
+      },
+      "estrogeni": {
+        "role": "Programmatore web",
+        "desc": "Front-end e back-end per i clienti di un'agenzia di comunicazione e marketing a Roma."
+      },
+      "teacher": {
+        "role": "Insegnante tecnico-pratico di informatica",
+        "desc": "Lezioni ed esercitazioni nei laboratori della scuola, a Siena."
+      },
+      "freelance": {
+        "role": "Web developer freelance",
+        "desc": "Siti web realizzati in autonomia, dal concept iniziale allo sviluppo finale."
+      },
+      "degree": {
+        "role": "Laurea in Scienze della Comunicazione",
+        "desc": "Comunicazione audiovisiva ed elaborazioni multimediali."
+      }
     }
   },
   "projects": {
@@ -58,8 +86,17 @@
       "ng-as": "Pipe e direttiva per il type casting delle variabili nei template.",
       "ng-lock": "Decorator Angular per bloccare funzioni e interfaccia durante i task asincroni.",
       "turbo-array": "Pipeline lazy ad alte prestazioni per gli array JavaScript, fino a 4× più veloci.",
-      "express-fast-json-stringify": "fast-json-stringify in Express: serializzazione JSON più veloce con JSON Schema."
+      "express-fast-json-stringify": "fast-json-stringify in Express: serializzazione JSON più veloce con JSON Schema.",
+      "fulmine.js": "Server HTTP compatibile con Express 5, costruito su uWebSockets.js: fino a 20× più veloce.",
+      "llms-robot-arena": "Modelli AI diversi scrivono il controller di un robot, poi il codice generato combatte.",
+      "postgres-benchmarks": "Benchmark dei client Postgres per Node.js: node-postgres contro postgres.",
+      "ng-ssr-caching": "Cache delle pagine per Angular SSR, con una riga nel server.ts."
     }
+  },
+  "contributions": {
+    "title": "Contributi",
+    "sub": "{{count}} pull request mergiate in {{repos}} progetti.",
+    "all": "tutte le pull request su github"
   },
   "articles": {
     "title": "Articoli",

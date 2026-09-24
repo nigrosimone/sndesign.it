@@ -10,6 +10,7 @@
     "logoAria": "SN - back to top",
     "about": "about",
     "projects": "projects",
+    "contributions": "contributions",
     "articles": "articles",
     "contacts": "contacts",
     "langLabel": "Language",
@@ -31,13 +32,40 @@
   "about": {
     "title": "About me",
     "photoAlt": "Portrait of Simone Nigro",
-    "bio1": "I have been building for the web since 2000: first as a freelance graphic and web designer under the SN.DESIGN brand, today as a full-stack developer at ACCA software S.p.A. I hold a degree in Communication Sciences from the University of Salerno.",
-    "bio2": "Open source is my passion: I maintain about ten Angular and Node.js libraries published on npm - 75,000+ downloads per month - I have been a Node.js core contributor (OpenJS Foundation) and a WordPress core contributor (5.5), plus the author of the «Speed Up» plugin series. I write about Angular, Node.js and performance on DEV Community.",
-    "bio3": "My style has always been the same: clean, almost minimalist, without neglecting the user experience. With one extra obsession: performance.",
+    "bio1": "I have been programming since 1999 and working as a developer since 2004: first websites as a freelancer under the SN.DESIGN brand, since 2011 full-stack development at ACCA software S.p.A., where I also lead the web team.",
+    "bio2": "Open source is my passion: I maintain about ten Angular and Node.js libraries published on npm - 75,000+ downloads per month - including Fulmine.js, the third fastest framework on HttpArena and the first among the JavaScript ones. I have been a Node.js core contributor (OpenJS Foundation) and a WordPress core contributor (5.5), plus the author of the «Speed Up» plugin series. I write about Angular, Node.js and performance on DEV Community.",
+    "bio3": "My style has always been the same: clean, almost minimalist, without neglecting the user experience. With one extra obsession: performance. Benchmarks, profiling, understanding what a millisecond costs in production. And I can open a beer with anything: lighters, keys, and so on.",
     "groups": {
       "frontend": "Frontend",
       "backend": "Backend",
+      "database": "Database",
+      "infra": "Servers & DevOps",
+      "testing": "Testing",
       "other": "Other"
+    },
+    "experience": "Experience",
+    "present": "present",
+    "jobs": {
+      "acca": {
+        "role": "Full-Stack Developer",
+        "desc": "Angular and TypeScript web applications: architecture, shared libraries, loading and rendering performance. Node.js and Delphi back-end on PostgreSQL. I lead the web team with code review, code standards and mentoring. I use AI coding agents every day."
+      },
+      "estrogeni": {
+        "role": "Web developer",
+        "desc": "Front-end and back-end for the clients of a communication and marketing agency in Rome."
+      },
+      "teacher": {
+        "role": "IT lab teacher",
+        "desc": "Lessons and exercises in the school labs, in Siena."
+      },
+      "freelance": {
+        "role": "Freelance web developer",
+        "desc": "Websites built on my own, from the first concept to the final development."
+      },
+      "degree": {
+        "role": "Degree in Communication Sciences",
+        "desc": "Audiovisual communication and multimedia processing."
+      }
     }
   },
   "projects": {
@@ -58,8 +86,17 @@
       "ng-as": "Pipe and directive for type casting template variables.",
       "ng-lock": "Angular decorator to lock functions and UI while an async task is running.",
       "turbo-array": "High-performance lazy pipelines for JavaScript arrays, up to 4× faster.",
-      "express-fast-json-stringify": "fast-json-stringify for Express: faster JSON serialization with JSON Schema."
+      "express-fast-json-stringify": "fast-json-stringify for Express: faster JSON serialization with JSON Schema.",
+      "fulmine.js": "Express 5 compatible HTTP server built on uWebSockets.js: up to 20× faster.",
+      "llms-robot-arena": "Different AI models write a robot controller, then the generated code fights.",
+      "postgres-benchmarks": "Benchmark of the Postgres clients for Node.js: node-postgres vs postgres.",
+      "ng-ssr-caching": "Page cache for Angular SSR, with one line in server.ts."
     }
+  },
+  "contributions": {
+    "title": "Contributions",
+    "sub": "{{count}} merged pull requests in {{repos}} projects.",
+    "all": "all pull requests on github"
   },
   "articles": {
     "title": "Articles",

@@ -39,4 +39,26 @@
       </div>
     }
   </div>
+
+  <div class="experience">
+    <h3 class="skill-title font-mono" appReveal>
+      <span aria-hidden="true">&gt; </span>
+      <span class="sr-only">{{ t('about.experience') }}</span>
+      <span aria-hidden="true" appScramble>{{ t('about.experience') }}</span>
+    </h3>
+    <ol class="timeline" role="list">
+      @for (job of experience; track job.id; let i = $index) {
+        <li class="timeline-item" [appReveal]="i * 90">
+          <p class="timeline-period font-mono">{{ job.from }} - {{ job.to ?? t('about.present') }}</p>
+          <div>
+            <h4 class="timeline-role">
+              {{ t('about.jobs.' + job.id + '.role') }}
+              <span class="timeline-company">· {{ job.company }}</span>
+            </h4>
+            <p class="timeline-desc">{{ t('about.jobs.' + job.id + '.desc') }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
 </section>

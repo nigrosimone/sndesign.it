@@ -16,6 +16,7 @@ await page.goto(`${base}/`, { waitUntil: 'networkidle' });
 const sections = [
   ['about', 'chi-sono'],
   ['projects', 'progetti'],
+  ['contributions', 'contributi'],
   ['articles', 'articoli'],
   ['contact', 'contatti'],
 ];

@@ -10,9 +10,9 @@ site with a cyber-minimal aesthetic. Successor to [sndesign.it/v3](https://www.s
 
 - **Static site generation** (`outputMode: static`) - both `/` (Italian) and `/en/` (English)
   are fully prerendered HTML that render even with JavaScript disabled.
-- **Self-updating content** - open-source projects, npm packages and articles are pulled live
-  from the GitHub, npm and DEV Community public APIs by `scripts/update-data.mjs` and baked into
-  the build. No CMS, no manual data entry: the project list, descriptions and stats all come
+- **Self-updating content** - open-source projects, npm packages, merged pull requests on other
+  projects and articles are pulled live from the GitHub, npm and DEV Community public APIs by
+  `scripts/update-data.mjs` and baked into the build. No CMS, no manual data entry: the project list, descriptions and stats all come
   straight from the sources.
 - **Live stats** - npm downloads and GitHub stars refresh client-side on idle, gracefully
   falling back to the values baked at build time when offline.
@@ -46,8 +46,8 @@ npm run update-data  # refresh projects, articles and llms.txt from GitHub, npm 
 
 ```text
 src/app/
-  components/       UI sections: hero, about, projects, articles, contact, header, site
-  data/             generated data (open-source.ts, articles.ts) + curated site-data.ts + types
+  components/       UI sections: hero, about, projects, contributions, articles, contact, header, site
+  data/             generated data (open-source.ts, articles.ts, contributions.ts) + site-data.ts + types
   directives/       count-up, scroll-reveal and reduced-motion helpers
   services/         live-stats - client-side npm/GitHub refresh
   webmcp-tools.ts   tools exposed to AI agents via WebMCP
@@ -64,7 +64,9 @@ public/             static assets, sitemap, robots, llms.txt, humans.txt
 1. Fetches the owner's repositories (GitHub), published packages (npm) and articles (DEV.to).
 2. Selects the open-source projects to feature - original repos with stars, excluding archived
    and hidden ones - and orders them by star count.
-3. Writes `src/app/data/open-source.ts`, `src/app/data/articles.ts` and `public/llms.txt`,
+3. Selects the contributions: fix, perf and feat pull requests merged on other people's repos with
+   at least 500 stars, max 5 per repo, without benchmark repos, awesome lists and hidden PRs.
+4. Writes `src/app/data/open-source.ts`, `articles.ts`, `contributions.ts` and `public/llms.txt`,
    formatted with the project's Prettier config so regenerations only diff on real data changes.
 
 Because the data is regenerated from public sources, the numbers in the repo reflect the last
@@ -73,5 +75,8 @@ build rather than being hand-maintained.
 ## Deployment
 
 The build output is fully static - deploy the contents of `dist/portfolio/browser/` to any host.
+`.github/workflows/deploy.yml` builds on every push to `master` and uploads it to the Aruba
+hosting over FTPS (secrets `FTP_USERNAME` and `FTP_PASSWORD`). It only uploads: files already on
+the server, such as `/v3/`, are never deleted.
 An `.htaccess` is included for Apache (Brotli/gzip compression, immutable caching for hashed
 assets, no-cache for HTML, and an `/en → /en/` redirect).

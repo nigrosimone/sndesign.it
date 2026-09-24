@@ -2,6 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, provideRouter } from '@angular/router';
 import { provideLiveStatsStub, provideTranslocoTesting } from '../../testing';
+import { CONTRIBUTIONS } from '../../data/contributions';
+import { Contributions } from '../contributions/contributions';
 import { Projects } from '../projects/projects';
 import { Site } from './site';
 
@@ -51,5 +53,23 @@ describe('Projects', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelectorAll('article.card').length).toBeGreaterThan(0);
+    expect(compiled.textContent).not.toContain('projects.desc.');
+  });
+});
+
+describe('Contributions', () => {
+  it('renders a row for each pull request', async () => {
+    await TestBed.configureTestingModule({
+      imports: [Contributions],
+      providers: [provideTranslocoTesting()],
+    }).compileComponents();
+    const fixture = TestBed.createComponent(Contributions);
+    await fixture.whenStable();
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelectorAll('article.article-row').length).toBe(CONTRIBUTIONS.length);
+    expect(compiled.querySelector('.article-title a')?.getAttribute('href')).toBe(
+      CONTRIBUTIONS[0]?.url,
+    );
   });
 });

@@ -1,4 +1,4 @@
-// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 12/09/2026).
+// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 24/09/2026).
 // Per aggiornarli: npm run update-data (rigenera questo file).
 import type { Article } from './types';
 
@@ -12,11 +12,11 @@ export const ARTICLES: readonly Article[] = [
     reactions: 1,
   },
   {
-    title: 'Fulmine.js: a faster drop-in Express 5 replacement on uWebSockets.js',
+    title: 'Fulmine.js: the drop-in Express 5 replacement, up to 20x faster by changing one line',
     url: 'https://dev.to/nigrosimone/fulminejs-a-faster-drop-in-express-5-replacement-on-uwebsocketsjs-3bnn',
     date: '2026-08-17',
-    readingMinutes: 5,
-    tags: ['node', 'express', 'javascript', 'performance'],
+    readingMinutes: 4,
+    tags: ['webdev', 'node', 'express', 'performance'],
     reactions: 0,
   },
   {
@@ -36,11 +36,11 @@ export const ARTICLES: readonly Article[] = [
     reactions: 0,
   },
   {
-    title: 'Fulmine.js: Express.js on µWebSockets with 2x to 7x performance improvements',
+    title: 'Fulmine.js vs Express vs Fastify on HttpArena: 3x to 35x, measured by somebody else',
     url: 'https://dev.to/nigrosimone/express-5-on-uwebsockets-same-middleware-2x-to-7x-h8j',
     date: '2026-08-06',
-    readingMinutes: 4,
-    tags: ['node', 'javascript', 'express', 'performance'],
+    readingMinutes: 5,
+    tags: ['javascript', 'node', 'express', 'performance'],
     reactions: 0,
   },
   {

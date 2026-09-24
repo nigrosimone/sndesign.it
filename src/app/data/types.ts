@@ -32,3 +32,26 @@ export interface OpenSourceStats {
   githubRepos: number;
   updatedAt: string;
 }
+
+export interface Contribution {
+  repo: string;
+  repoUrl: string;
+  stars: number;
+  number: number;
+  title: string;
+  url: string;
+  date: string;
+}
+
+export interface ContributionStats {
+  mergedPullRequests: number;
+  repos: number;
+  searchUrl: string;
+}
+
+export interface Experience {
+  id: string;
+  company: string;
+  from: number;
+  to?: number;
+}

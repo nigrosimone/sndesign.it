@@ -1,0 +1,36 @@
+<section id="contributi" class="section container" aria-labelledby="contributions-title" *transloco="let t">
+  <h2 id="contributions-title" class="section-title" appReveal>
+    <span class="section-idx font-mono" aria-hidden="true">03.</span>
+    <span class="sr-only">{{ t('contributions.title') }}</span>
+    <span appScramble aria-hidden="true">{{ t('contributions.title') }}</span>
+  </h2>
+  <p class="section-sub" appReveal>
+    {{ t('contributions.sub', { count: stats.mergedPullRequests, repos: stats.repos }) }}
+  </p>
+
+  <ol class="articles" role="list">
+    @for (c of contributions; track c.url; let i = $index) {
+      <li [appReveal]="(i % 6) * 60">
+        <article class="article-row">
+          <h3 class="article-title">
+            <a [href]="c.url" target="_blank" rel="noopener">{{ c.title }}</a>
+          </h3>
+          <p class="article-meta font-mono">
+            <a class="contrib-repo" [href]="c.repoUrl" target="_blank" rel="noopener">{{ c.repo }}</a>
+            <span>
+              <span aria-hidden="true">★</span> {{ c.starsFmt
+              }}<span class="sr-only"> {{ t('projects.starsSr') }}</span>
+            </span>
+            <span aria-hidden="true">·</span> #{{ c.number }}
+          </p>
+        </article>
+      </li>
+    }
+  </ol>
+
+  <p class="section-cta font-mono" appReveal>
+    <a class="bracket-link" [href]="stats.searchUrl" target="_blank" rel="noopener">
+      [{{ t('contributions.all') }}]
+    </a>
+  </p>
+</section>

@@ -859,6 +859,66 @@ ol[role='list'] {
   color: var(--text);
 }
 
+/* --- Experience ---------------------------------------------------------- */
+.experience {
+  margin-top: 3rem;
+}
+
+.timeline {
+  border-left: 1px solid var(--line-bright);
+}
+
+.timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 1rem;
+  padding: 0 0 1.4rem 1.4rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0.5em;
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.timeline-period {
+  color: var(--accent);
+  font-size: 0.78rem;
+  margin: 0.2rem 0 0;
+}
+
+.timeline-role {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0 0 0.3rem;
+}
+
+.timeline-company {
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+.timeline-desc {
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  max-width: 65ch;
+  margin: 0;
+}
+
+@media (max-width: 560px) {
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
+
 /* --- Projects ------------------------------------------------------------ */
 .cards {
   display: grid;
@@ -1072,6 +1132,18 @@ ol[role='list'] {
   margin-left: auto;
   display: flex;
   gap: 0.6rem;
+}
+
+/* --- Contributions (rows reuse the article styles) ----------------------- */
+.contrib-repo {
+  color: var(--accent);
+  text-decoration: none;
+  transition: text-shadow 0.2s;
+}
+
+.contrib-repo:hover,
+.contrib-repo:focus-visible {
+  text-shadow: 0 0 12px var(--accent-glow);
 }
 
 /* --- Articles ------------------------------------------------------------ */

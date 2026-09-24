@@ -18,7 +18,7 @@
             </h3>
             <span class="card-lang font-mono" [class.lang-php]="p.language === 'PHP'">{{ p.language }}</span>
           </header>
-          <p class="card-desc">{{ t('projects.desc.' + p.name) }}</p>
+          <p class="card-desc">{{ p.hasDescKey ? t('projects.desc.' + p.name) : p.description }}</p>
           <footer class="card-meta font-mono">
             <span class="card-stat">
               <span aria-hidden="true">★</span> {{ p.stars
