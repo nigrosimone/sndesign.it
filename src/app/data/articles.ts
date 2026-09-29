@@ -1,4 +1,4 @@
-// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 24/09/2026).
+// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 29/09/2026).
 // Per aggiornarli: npm run update-data (rigenera questo file).
 import type { Article } from './types';
 

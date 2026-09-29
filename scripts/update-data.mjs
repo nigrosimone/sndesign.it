@@ -36,6 +36,9 @@ const HIDDEN_CONTRIBUTION_REPOS = new Set([]);
 // Formato "owner/repo#numero".
 const HIDDEN_PULL_REQUESTS = new Set([]);
 
+// PR chiuse ma integrate dai maintainer (es. commit-queue di Node.js): per GitHub non sono mergiate.
+const LANDED_PULL_REQUESTS = ['nodejs/node#66316'];
+
 async function fetchJson(url) {
   const headers = { accept: 'application/json' };
   // In CI il GITHUB_TOKEN alza i limiti, e va mandato solo alle API GitHub.
@@ -101,6 +104,10 @@ for (let page = 1; mergedPrs.length < Math.min(mergedPrsTotal, 1000); page++) {
   mergedPrsTotal = res.total_count;
   mergedPrs.push(...res.items);
   if (res.items.length === 0) break;
+}
+for (const ref of LANDED_PULL_REQUESTS) {
+  const [repo, number] = ref.split('#');
+  mergedPrs.push(await fetchJson(`https://api.github.com/repos/${repo}/issues/${number}`));
 }
 const prsByRepo = Map.groupBy(mergedPrs, (pr) => pr.repository_url.split('/repos/')[1]);
 
@@ -179,14 +186,14 @@ const articles = devtoArticles
   }))
   .sort((a, b) => b.date.localeCompare(a.date));
 
-// Rango dal titolo: 0 fix e perf, 1 feat, null il resto (manutenzione, titoli troppo corti).
+// Rango dal titolo: 0 fix e perf, 1 feat, 2 il resto, null manutenzione e titoli troppo corti.
 const LOW_VALUE_PR =
   /\b(chore|docs?|tests?|ci|benchmarks?|typos?|readme|bump|deps|dependencies|update|upgrade|rename|devcontainer)\b/i;
 const prRank = (title) => {
   if (title.split(' ').length < 4 || LOW_VALUE_PR.test(title)) return null;
   if (/\b(fix|perf|optimi[sz]|faster|crash|hang|leak)/i.test(title)) return 0;
   if (/\b(feat|add|support)/i.test(title)) return 1;
-  return null;
+  return 2;
 };
 
 // Lista piatta: repo per stelle, poi al massimo PRS_PER_REPO PR per repo.
@@ -208,7 +215,7 @@ const contributions = [...prsByRepo]
         number: pr.number,
         title: pr.title.replace(/\s+/g, ' ').trim(),
         url: pr.html_url,
-        date: pr.pull_request.merged_at.slice(0, 10),
+        date: (pr.pull_request.merged_at ?? pr.closed_at).slice(0, 10),
       }))
       .filter((pr) => prRank(pr.title) !== null && !HIDDEN_PULL_REQUESTS.has(`${repo}#${pr.number}`))
       .sort((a, b) => prRank(a.title) - prRank(b.title) || b.date.localeCompare(a.date))
@@ -216,7 +223,7 @@ const contributions = [...prsByRepo]
   );
 
 const contributionStats = {
-  mergedPullRequests: mergedPrsTotal,
+  mergedPullRequests: mergedPrsTotal + LANDED_PULL_REQUESTS.length,
   repos: prsByRepo.size,
   searchUrl: `https://github.com/search?type=pullrequests&q=${encodeURIComponent(prQuery)}`,
 };

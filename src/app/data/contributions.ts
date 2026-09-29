@@ -1,12 +1,30 @@
-// Pull request mergiate su progetti di altri (API pubblica GitHub, 24/09/2026).
+// Pull request mergiate su progetti di altri (API pubblica GitHub, 29/09/2026).
 // Per aggiornarle: npm run update-data (rigenera questo file).
 import type { Contribution, ContributionStats } from './types';
 
 export const CONTRIBUTIONS: readonly Contribution[] = [
   {
+    repo: 'nodejs/node',
+    repoUrl: 'https://github.com/nodejs/node',
+    stars: 122187,
+    number: 66316,
+    title: 'src: avoid env lookups and a global handle in InternalCallbackScope',
+    url: 'https://github.com/nodejs/node/pull/66316',
+    date: '2026-09-29',
+  },
+  {
+    repo: 'angular/angular',
+    repoUrl: 'https://github.com/angular/angular',
+    stars: 101026,
+    number: 70991,
+    title: 'refactor(core): make the animate.enter and animate.leave runtime tree-shakable',
+    url: 'https://github.com/angular/angular/pull/70991',
+    date: '2026-09-28',
+  },
+  {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13212,
+    stars: 13214,
     number: 3781,
     title: 'fix(pg): run a named statement with an empty text more than once',
     url: 'https://github.com/brianc/node-postgres/pull/3781',
@@ -15,7 +33,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13212,
+    stars: 13214,
     number: 3780,
     title: 'fix(pg): expose detail and hint on errors from the native client',
     url: 'https://github.com/brianc/node-postgres/pull/3780',
@@ -24,7 +42,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13212,
+    stars: 13214,
     number: 3737,
     title: 'fix: reject portal based queries in pipeline mode instead of TypeError',
     url: 'https://github.com/brianc/node-postgres/pull/3737',
@@ -33,7 +51,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13212,
+    stars: 13214,
     number: 3736,
     title: 'fix: fail pipelined queries when the connection dies instead of hanging',
     url: 'https://github.com/brianc/node-postgres/pull/3736',
@@ -42,16 +60,70 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13212,
+    stars: 13214,
     number: 3568,
     title: 'perf: cache parsers per column',
     url: 'https://github.com/brianc/node-postgres/pull/3568',
     date: '2026-02-02',
   },
   {
+    repo: 'uNetworking/uWebSockets.js',
+    repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
+    stars: 9163,
+    number: 1335,
+    title: 'Write strings to utf-8 in one pass, straight into the pool',
+    url: 'https://github.com/uNetworking/uWebSockets.js/pull/1335',
+    date: '2026-09-29',
+  },
+  {
+    repo: 'uNetworking/uWebSockets.js',
+    repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
+    stars: 9163,
+    number: 1331,
+    title: 'Keep the onAborted capture in MoveOnlyFunction inline storage',
+    url: 'https://github.com/uNetworking/uWebSockets.js/pull/1331',
+    date: '2026-09-28',
+  },
+  {
+    repo: 'uNetworking/uWebSockets.js',
+    repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
+    stars: 9163,
+    number: 1330,
+    title: 'Keep the onAborted callback in an internal field of res',
+    url: 'https://github.com/uNetworking/uWebSockets.js/pull/1330',
+    date: '2026-09-28',
+  },
+  {
+    repo: 'uNetworking/uWebSockets.js',
+    repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
+    stars: 9163,
+    number: 1329,
+    title: 'Build the tryEnd return array in one call',
+    url: 'https://github.com/uNetworking/uWebSockets.js/pull/1329',
+    date: '2026-09-28',
+  },
+  {
+    repo: 'uNetworking/uWebSockets.js',
+    repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
+    stars: 9163,
+    number: 1325,
+    title: 'Keep onData, onDataV2 and onWritable callbacks in MoveOnlyFunction inline storage',
+    url: 'https://github.com/uNetworking/uWebSockets.js/pull/1325',
+    date: '2026-09-28',
+  },
+  {
     repo: 'fastify/fast-json-stringify',
     repoUrl: 'https://github.com/fastify/fast-json-stringify',
-    stars: 3705,
+    stars: 3706,
+    number: 882,
+    title: 'fix: escape property names in the schema refs the generated code validates against',
+    url: 'https://github.com/fastify/fast-json-stringify/pull/882',
+    date: '2026-09-25',
+  },
+  {
+    repo: 'fastify/fast-json-stringify',
+    repoUrl: 'https://github.com/fastify/fast-json-stringify',
+    stars: 3706,
     number: 817,
     title: 'perf: short array and object',
     url: 'https://github.com/fastify/fast-json-stringify/pull/817',
@@ -60,7 +132,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'fastify/fast-json-stringify',
     repoUrl: 'https://github.com/fastify/fast-json-stringify',
-    stars: 3705,
+    stars: 3706,
     number: 713,
     title: 'perf: cache json strings into const',
     url: 'https://github.com/fastify/fast-json-stringify/pull/713',
@@ -69,7 +141,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'fastify/fast-json-stringify',
     repoUrl: 'https://github.com/fastify/fast-json-stringify',
-    stars: 3705,
+    stars: 3706,
     number: 689,
     title: 'fix: make asString monomorphic and trigger V8 optimization',
     url: 'https://github.com/fastify/fast-json-stringify/pull/689',
@@ -78,7 +150,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'fastify/fast-json-stringify',
     repoUrl: 'https://github.com/fastify/fast-json-stringify',
-    stars: 3705,
+    stars: 3706,
     number: 686,
     title: 'feat: unsafe string format',
     url: 'https://github.com/fastify/fast-json-stringify/pull/686',
@@ -87,7 +159,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'dimdenGD/ultimate-express',
     repoUrl: 'https://github.com/dimdenGD/ultimate-express',
-    stars: 1109,
+    stars: 1108,
     number: 356,
     title: 'fix: stop body parsers from responding twice to an oversized body',
     url: 'https://github.com/dimdenGD/ultimate-express/pull/356',
@@ -96,7 +168,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'dimdenGD/ultimate-express',
     repoUrl: 'https://github.com/dimdenGD/ultimate-express',
-    stars: 1109,
+    stars: 1108,
     number: 355,
     title: 'perf: skip full headers build in req.fresh when no conditional headers',
     url: 'https://github.com/dimdenGD/ultimate-express/pull/355',
@@ -105,7 +177,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'dimdenGD/ultimate-express',
     repoUrl: 'https://github.com/dimdenGD/ultimate-express',
-    stars: 1109,
+    stars: 1108,
     number: 354,
     title: 'perf: remove per-request async overhead in router dispatch',
     url: 'https://github.com/dimdenGD/ultimate-express/pull/354',
@@ -114,7 +186,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'dimdenGD/ultimate-express',
     repoUrl: 'https://github.com/dimdenGD/ultimate-express',
-    stars: 1109,
+    stars: 1108,
     number: 325,
     title: 'fix: tsconfig for latest vscode',
     url: 'https://github.com/dimdenGD/ultimate-express/pull/325',
@@ -123,7 +195,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'dimdenGD/ultimate-express',
     repoUrl: 'https://github.com/dimdenGD/ultimate-express',
-    stars: 1109,
+    stars: 1108,
     number: 316,
     title: 'fix(types): return type of listen',
     url: 'https://github.com/dimdenGD/ultimate-express/pull/316',
@@ -132,8 +204,8 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
 ];
 
 export const CONTRIBUTION_STATS: ContributionStats = {
-  mergedPullRequests: 389,
-  repos: 31,
+  mergedPullRequests: 400,
+  repos: 35,
   searchUrl:
     'https://github.com/search?type=pullrequests&q=is%3Apr%20is%3Amerged%20author%3Anigrosimone%20-user%3Anigrosimone',
 };
