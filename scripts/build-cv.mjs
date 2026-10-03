@@ -32,8 +32,8 @@ const LABELS = {
     openSource: 'Open source',
     contributions: 'Contributi open source',
     perMonth: 'download/mese',
-    openSourceSum: (s, n) =>
-      `${s.npmPackages} pacchetti npm, ${n(s.npmMonthlyDownloads)} download al mese, ${n(s.githubStars)} stelle su GitHub.`,
+    openSourceSum: (s, n, stars) =>
+      `${s.npmPackages} pacchetti npm, ${n(s.npmMonthlyDownloads)} download al mese${stars ? `, ${n(s.githubStars)} stelle su GitHub` : ''}.`,
     contributionsSum: (s) =>
       `${s.mergedPullRequests} pull request mergiate in ${s.repos} progetti di altri, tra cui:`,
     updated: 'Aggiornato al',
@@ -50,8 +50,8 @@ const LABELS = {
     openSource: 'Open source',
     contributions: 'Open source contributions',
     perMonth: 'downloads/month',
-    openSourceSum: (s, n) =>
-      `${s.npmPackages} npm packages, ${n(s.npmMonthlyDownloads)} downloads per month, ${n(s.githubStars)} GitHub stars.`,
+    openSourceSum: (s, n, stars) =>
+      `${s.npmPackages} npm packages, ${n(s.npmMonthlyDownloads)} downloads per month${stars ? `, ${n(s.githubStars)} GitHub stars` : ''}.`,
     contributionsSum: (s) =>
       `${s.mergedPullRequests} merged pull requests in ${s.repos} projects of other people, including:`,
     updated: 'Updated on',
@@ -71,7 +71,6 @@ const bare = (url) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')
 const font = (await readFile(join(PUBLIC_DIR, 'fonts', 'space-grotesk-latin.woff2'))).toString(
   'base64',
 );
-const avatar = (await readFile(join(PUBLIC_DIR, 'avatar.jpg'))).toString('base64');
 
 function render(lang, i18n) {
   const l = LABELS[lang];
@@ -140,7 +139,8 @@ function render(lang, i18n) {
     ],
     [
       l.openSource,
-      `<p>${esc(l.openSourceSum(OS_STATS, num))}</p>
+      // Come nell'hero: le stelle solo se superano le PR mergiate, che hanno già la loro sezione.
+      `<p>${esc(l.openSourceSum(OS_STATS, num, OS_STATS.githubStars >= CONTRIBUTION_STATS.mergedPullRequests))}</p>
       <div class="projects">${PROJECTS.slice(0, PROJECTS_IN_CV).map(project).join('')}</div>`,
     ],
     [
@@ -175,7 +175,6 @@ function render(lang, i18n) {
   p { margin: 0 0 0.5em; }
   .mono, .when, .meta, h2, header ul { font-family: 'Cascadia Code', Consolas, 'DejaVu Sans Mono', monospace; }
   header { display: flex; align-items: center; gap: 6mm; padding-bottom: 5mm; border-bottom: 1px solid var(--line); }
-  header img { width: 26mm; height: 26mm; object-fit: cover; filter: grayscale(1); border: 1px solid var(--line); }
   h1 { margin: 0; font-size: 24pt; line-height: 1.1; font-weight: 600; letter-spacing: -0.01em; }
   .role { margin: 1mm 0 2.5mm; font-size: 11.5pt; color: var(--soft); }
   .role strong { color: var(--accent); font-weight: 600; }
@@ -208,7 +207,6 @@ function render(lang, i18n) {
 </head>
 <body>
 <header>
-  <img src="data:image/jpeg;base64,${avatar}" alt="">
   <div>
     <h1>${esc(PROFILE.name)}</h1>
     <p class="role"><strong>${t('hero.role')}</strong> · ${t('hero.focus')}</p>

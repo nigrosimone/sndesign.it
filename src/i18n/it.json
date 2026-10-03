@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Simone Nigro - Full-Stack Developer · Angular & Node.js",
-    "description": "Simone Nigro, full-stack developer di Avellino. Autore di librerie open source Angular e Node.js con oltre 75.000 download al mese su npm: ng-let, ng-http-caching, ng-simple-state e altre.",
-    "ogDescription": "Librerie open source Angular e Node.js con oltre 75.000 download al mese su npm. Full-stack developer @ ACCA software."
+    "title": "Simone Nigro - Full-Stack Developer & Tech Lead · Angular & Node.js",
+    "description": "Simone Nigro, full-stack developer e tech lead di Avellino. Autore di librerie open source Angular e Node.js con oltre 75.000 download al mese su npm: ng-let, ng-http-caching, ng-simple-state e altre.",
+    "ogDescription": "Librerie open source Angular e Node.js con oltre 75.000 download al mese su npm. Full-stack developer e tech lead @ ACCA software."
   },
   "nav": {
     "label": "Navigazione principale",
@@ -17,14 +17,15 @@
     "newTab": "nuova scheda"
   },
   "hero": {
-    "role": "Full-Stack Developer",
+    "role": "Full-Stack Developer & Tech Lead",
     "focus": "Angular · Node.js · TypeScript",
-    "claim": "Costruisco librerie open source «che nessuno ha chiesto ma che, a quanto pare, qualcuno usa».",
-    "meta": "Avellino, Italia - full-stack developer @ ACCA software S.p.A.",
+    "claim": "Costruisco librerie open source «che nessuno ha chiesto ma che, a quanto pare, qualcuno usa» :)",
+    "meta": "Avellino, Italia - full-stack developer e tech lead @ ACCA software S.p.A.",
     "cta": "Esplora i progetti",
     "stats": {
       "downloads": "download npm / mese",
       "stars": "stelle su GitHub",
+      "prs": "PR mergiate",
       "packages": "pacchetti npm",
       "years": "anni di codice"
     }
@@ -33,7 +34,7 @@
     "title": "Chi sono",
     "photoAlt": "Ritratto di Simone Nigro",
     "bio1": "Programmo dal 1999 e lavoro come sviluppatore dal 2004: prima siti web da freelance con il marchio SN.DESIGN, dal 2011 sviluppo full-stack in ACCA software S.p.A., dove guido anche il team web.",
-    "bio2": "La mia passione è l'open source: mantengo una decina di librerie Angular e Node.js pubblicate su npm - oltre 75.000 download al mese - tra cui Fulmine.js, terzo framework più veloce su HttpArena e primo fra quelli JavaScript. Sono stato contributor del core di Node.js (OpenJS Foundation) e di WordPress (5.5), oltre che autore della serie di plugin «Speed Up». Scrivo di Angular, Node.js e performance su DEV Community.",
+    "bio2": "La mia passione è l'open source: mantengo una decina di librerie Angular e Node.js pubblicate su npm - oltre 75.000 download al mese - tra cui Fulmine.js, terzo framework più veloce su HttpArena e primo fra quelli JavaScript. Sono contributor del core di Node.js (OpenJS Foundation), sono stato contributor del core di WordPress (5.5) e sono autore della serie di plugin «Speed Up». Scrivo di Angular, Node.js e performance su DEV Community.",
     "bio3": "Il mio stile è sempre lo stesso: pulito, quasi minimalista, senza tralasciare la user experience. Con un'ossessione in più: le performance. Benchmark, profiling, capire quanto costa un millisecondo in produzione. E so aprire le birre con qualsiasi cosa: accendini, chiavi, eccetera.",
     "groups": {
       "frontend": "Frontend",
@@ -48,7 +49,7 @@
     "cv": "scarica il curriculum (pdf)",
     "jobs": {
       "acca": {
-        "role": "Full-Stack Developer",
+        "role": "Full-Stack Developer e Tech Lead",
         "desc": "Applicazioni web Angular e TypeScript: architettura, librerie condivise, performance di caricamento e rendering. Back-end Node.js e Delphi su PostgreSQL. Guido il team web con code review, standard di codice e affiancamento ai colleghi. Uso ogni giorno coding agent AI."
       },
       "estrogeni": {

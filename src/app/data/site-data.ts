@@ -2,7 +2,7 @@ import type { Experience } from './types';
 
 export const PROFILE = {
   name: 'Simone Nigro',
-  role: 'Full-Stack Developer',
+  role: 'Full-Stack Developer & Tech Lead',
   company: 'ACCA software S.p.A.',
   location: 'Avellino, Campania, Italia',
   email: 'nigro.simone@gmail.com',

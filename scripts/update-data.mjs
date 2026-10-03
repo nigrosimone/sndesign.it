@@ -34,7 +34,14 @@ const HIDDEN_CONTRIBUTION_REPOS_RE = /bench|awesome/i;
 const HIDDEN_CONTRIBUTION_REPOS = new Set([]);
 
 // Formato "owner/repo#numero".
-const HIDDEN_PULL_REQUESTS = new Set([]);
+const HIDDEN_PULL_REQUESTS = new Set([
+  // Esempi, CI, packaging e tipi: non dicono niente del lavoro sul codice.
+  'uNetworking/uWebSockets.js#1347',
+  'uNetworking/uWebSockets.js#1345',
+  'uNetworking/uWebSockets.js#1343',
+  'dimdenGD/ultimate-express#325',
+  'dimdenGD/ultimate-express#316',
+]);
 
 // PR chiuse ma integrate dai maintainer (es. commit-queue di Node.js): per GitHub non sono mergiate.
 const LANDED_PULL_REQUESTS = ['nodejs/node#66316'];
@@ -319,18 +326,18 @@ const projectLine = (p) => {
 const contributionLine = (c) =>
   `- [${c.title}](${c.url}) su [${c.repo}](${c.repoUrl}) (${fmt(c.stars)} stelle)`;
 
-const llmsTxt = `# Simone Nigro - Full-Stack Developer
+const llmsTxt = `# Simone Nigro - Full-Stack Developer & Tech Lead
 
-> Portfolio personale di Simone Nigro, full-stack developer italiano (Avellino, Campania) in
+> Portfolio personale di Simone Nigro, full-stack developer e tech lead italiano (Avellino, Campania) in
 > ACCA software S.p.A. Autore di librerie open source Angular e Node.js pubblicate su npm con
 > oltre ${fmt(Math.floor(stats.npmMonthlyDownloads / 1000) * 1000)} download al mese. Programma dal 1999, sviluppatore dal 2004. Contributor
-> del core di WordPress (5.5). Sito bilingue: italiano su /, inglese su /en/. Il sito espone i
+> del core di Node.js e, in passato, di WordPress (5.5). Sito bilingue: italiano su /, inglese su /en/. Il sito espone i
 > propri contenuti anche via WebMCP (navigator.modelContext): get_profile,
 > list_open_source_projects, list_contributions, list_articles, get_contacts.
 
 ## Profilo
 
-- Ruolo: Full-Stack Developer (Angular, TypeScript, Node.js, PHP, PostgreSQL)
+- Ruolo: Full-Stack Developer e Tech Lead (Angular, TypeScript, Node.js, PHP, PostgreSQL)
 - Azienda: ACCA software S.p.A. (dal 2011, guida il team web)
 - Esperienze precedenti: programmatore web in Estrogeni srl (2010-2011), insegnante di informatica all'ITI Sarrocchi di Siena (2009-2010), web developer freelance con il marchio SN.DESIGN (2004-2011)
 - Località: Avellino, Campania, Italia
