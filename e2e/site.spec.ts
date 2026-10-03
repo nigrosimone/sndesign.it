@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { CONTRIBUTION_CALENDAR } from '../src/app/data/contributions';
 import { PROJECTS } from '../src/app/data/open-source';
 
 test('homepage renders the hero with Italian content', async ({ page }) => {
@@ -52,7 +53,15 @@ test('language switch goes to the English version', async ({ page }) => {
 });
 
 test('agentic and SEO files are served', async ({ request }) => {
-  for (const file of ['robots.txt', 'sitemap.xml', 'llms.txt', 'humans.txt', 'og.png']) {
+  for (const file of [
+    'robots.txt',
+    'sitemap.xml',
+    'llms.txt',
+    'humans.txt',
+    'og.png',
+    'simone-nigro-cv-it.pdf',
+    'simone-nigro-cv-en.pdf',
+  ]) {
     const res = await request.get(`/${file}`);
     expect(res.status(), file).toBe(200);
   }
@@ -63,4 +72,13 @@ test('hero stats show formatted numbers', async ({ page }) => {
   const firstStat = page.locator('.hero-stats .stat-value').first();
   await expect(firstStat).not.toHaveText('0');
   await expect(firstStat).toHaveText(/\d{1,3}(\.\d{3})*/);
+});
+
+test('contribution calendar has one square per day and a tooltip', async ({ page }) => {
+  await page.goto('/en/');
+  const squares = page.locator('.calendar rect');
+  await expect(squares).toHaveCount(CONTRIBUTION_CALENDAR.counts.length);
+  await squares.last().scrollIntoViewIfNeeded();
+  await squares.last().hover();
+  await expect(page.locator('.calendar-tip')).toHaveText(/contributions? on /);
 });

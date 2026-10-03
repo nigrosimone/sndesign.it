@@ -1,6 +1,6 @@
 export type Lang = 'it' | 'en';
 
-const LOCALES: Record<Lang, string> = { it: 'it-IT', en: 'en-US' };
+export const LOCALES: Record<Lang, string> = { it: 'it-IT', en: 'en-US' };
 
 export function formatNumber(value: number, lang: Lang = 'it'): string {
   return new Intl.NumberFormat(LOCALES[lang]).format(value);

@@ -790,6 +790,7 @@ ol[role='list'] {
 .about-photo {
   margin: 0;
   position: relative;
+  background: var(--bg); /* hides the ::after frame behind the dimmed photo */
   transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
@@ -798,7 +799,28 @@ ol[role='list'] {
   width: 100%;
   border: 1px solid var(--line-bright);
   filter: grayscale(25%) contrast(1.05);
-  transition: filter 0.3s;
+  transition:
+    filter 0.3s,
+    opacity 0.6s;
+}
+
+/* ASCII portrait (AsciiPortrait): a layer over the photo, which stays visible but dimmed. */
+.about-ascii {
+  position: absolute;
+  z-index: 1; /* above the img, whose filter makes it a stacking context */
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+
+.about-ascii.is-on {
+  opacity: 1;
+}
+
+.about-ascii.is-on ~ img {
+  opacity: 0.45;
 }
 
 .about-photo:hover img {
@@ -1067,9 +1089,8 @@ ol[role='list'] {
     --spot 0.3s;
 }
 
-/* Photo and stats panel: same appPointerFx directive, tilt only (no spotlight),
+/* Stats panel: same appPointerFx directive, tilt only (no spotlight),
    with the same instant-transform-while-tilting trick. */
-.about-photo.is-tilting,
 .hero-stats.is-tilting {
   transition: none;
   will-change: transform;
@@ -1144,6 +1165,109 @@ ol[role='list'] {
 .contrib-repo:hover,
 .contrib-repo:focus-visible {
   text-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* --- Contribution calendar ---------------------------------------------- */
+.calendar {
+  position: relative;
+  margin: 0 0 2.4rem;
+}
+
+/* On narrow screens it scrolls, and row-reverse makes it start from the latest weeks. */
+.calendar-scroll {
+  display: flex;
+  flex-direction: row-reverse;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.calendar-svg {
+  display: block;
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 600px;
+  height: auto;
+}
+
+.calendar-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--text-dim);
+}
+
+.calendar .lv0 {
+  fill: var(--line);
+  background: var(--line);
+}
+
+.calendar .lv1 {
+  fill: rgba(0, 229, 255, 0.25);
+  background: rgba(0, 229, 255, 0.25);
+}
+
+.calendar .lv2 {
+  fill: rgba(0, 229, 255, 0.45);
+  background: rgba(0, 229, 255, 0.45);
+}
+
+.calendar .lv3 {
+  fill: rgba(0, 229, 255, 0.7);
+  background: rgba(0, 229, 255, 0.7);
+}
+
+.calendar .lv4 {
+  fill: var(--accent);
+  background: var(--accent);
+}
+
+.calendar rect:hover {
+  stroke: var(--text);
+  stroke-width: 1;
+}
+
+.calendar-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.6rem 1.5rem;
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.calendar-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.calendar-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.calendar-legend i:first-child {
+  margin-left: 0.3rem;
+}
+
+.calendar-legend i:last-child {
+  margin-right: 0.3rem;
+}
+
+.calendar-tip {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  padding: 0.3em 0.6em;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  color: var(--text);
+  background: var(--bg-elev);
+  border: 1px solid var(--line-bright);
+  border-radius: 2px;
+  transform: translate(-50%, calc(-100% - 6px));
+  pointer-events: none;
 }
 
 /* --- Articles ------------------------------------------------------------ */

@@ -49,6 +49,15 @@ export interface ContributionStats {
   searchUrl: string;
 }
 
+/** GitHub contribution calendar of the last year, one entry per day starting from `from`. */
+export interface ContributionCalendar {
+  from: string;
+  total: number;
+  /** GitHub level (0-4) per day, one digit each. */
+  levels: string;
+  counts: number[];
+}
+
 export interface Experience {
   id: string;
   company: string;

@@ -40,6 +40,7 @@ npm test             # unit tests (Vitest)
 npm run e2e          # build + end-to-end tests (Playwright)
 npm run lint         # ESLint (strict, type-checked) on TS and templates
 npm run update-data  # refresh projects, articles and llms.txt from GitHub, npm and DEV.to
+npm run cv           # print the CV to public/simone-nigro-cv-{it,en}.pdf (needs Chrome)
 ```
 
 ## Project structure
@@ -48,11 +49,12 @@ npm run update-data  # refresh projects, articles and llms.txt from GitHub, npm 
 src/app/
   components/       UI sections: hero, about, projects, contributions, articles, contact, header, site
   data/             generated data (open-source.ts, articles.ts, contributions.ts) + site-data.ts + types
-  directives/       count-up, scroll-reveal and reduced-motion helpers
+  directives/       count-up, scroll-reveal, ascii-portrait and reduced-motion helpers
   services/         live-stats - client-side npm/GitHub refresh
   webmcp-tools.ts   tools exposed to AI agents via WebMCP
 scripts/
   update-data.mjs   regenerates the data files and public/llms.txt from public APIs
+  build-cv.mjs      prints the CV to PDF from the same data, with Chrome via Playwright
   optimize-i18n.mjs builds the optimized translations (runs in the pre* npm hooks)
 public/             static assets, sitemap, robots, llms.txt, humans.txt
 ```
@@ -61,13 +63,17 @@ public/             static assets, sitemap, robots, llms.txt, humans.txt
 
 `scripts/update-data.mjs` runs automatically before `npm start` and `npm run build`. It:
 
-1. Fetches the owner's repositories (GitHub), published packages (npm) and articles (DEV.to).
+1. Fetches the owner's repositories (GitHub), published packages (npm), articles (DEV.to) and
+   the contribution calendar of the last year (public GitHub profile page, no token needed).
 2. Selects the open-source projects to feature - original repos with stars, excluding archived
    and hidden ones - and orders them by star count.
 3. Selects the contributions: fix, perf and feat pull requests merged on other people's repos with
    at least 500 stars, max 5 per repo, without benchmark repos, awesome lists and hidden PRs.
 4. Writes `src/app/data/open-source.ts`, `articles.ts`, `contributions.ts` and `public/llms.txt`,
    formatted with the project's Prettier config so regenerations only diff on real data changes.
+
+Then `scripts/build-cv.mjs` prints the CV in Italian and English from the same data (i18n texts,
+`site-data.ts` and the generated files), so it never goes out of date. The PDFs are not committed.
 
 Because the data is regenerated from public sources, the numbers in the repo reflect the last
 build rather than being hand-maintained.

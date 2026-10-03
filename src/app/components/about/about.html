@@ -11,7 +11,8 @@
         <p [appReveal]="i * 90">{{ t(key) }}</p>
       }
     </div>
-    <figure class="about-photo" appReveal appPointerFx>
+    <figure class="about-photo" appReveal>
+      <canvas class="about-ascii" aria-hidden="true" appAsciiPortrait="avatar.jpg"></canvas>
       <img
         src="avatar.jpg"
         [alt]="t('about.photoAlt')"
@@ -60,5 +61,8 @@
         </li>
       }
     </ol>
+    <p class="section-cta font-mono" appReveal>
+      <a class="bracket-link" [href]="cvUrl" target="_blank" rel="noopener">[{{ t('about.cv') }}]</a>
+    </p>
   </div>
 </section>

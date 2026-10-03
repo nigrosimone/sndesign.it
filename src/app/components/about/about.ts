@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
-import { TranslocoDirective } from '@jsverse/transloco';
+import { Component, inject } from '@angular/core';
+import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { EXPERIENCE, SKILL_GROUPS } from '../../data/site-data';
-import { PointerFx } from '../../directives/pointer-fx';
+import { AsciiPortrait } from '../../directives/ascii-portrait';
 import { Reveal } from '../../directives/reveal';
 import { Scramble } from '../../directives/scramble';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.html',
-  imports: [PointerFx, Reveal, Scramble, TranslocoDirective]
+  imports: [AsciiPortrait, Reveal, Scramble, TranslocoDirective]
 })
 export class About {
   protected readonly bioKeys = ['about.bio1', 'about.bio2', 'about.bio3'];
   protected readonly skillGroups = SKILL_GROUPS;
   protected readonly experience = EXPERIENCE;
+  // Generated at build time by scripts/build-cv.mjs.
+  protected readonly cvUrl = `/simone-nigro-cv-${inject(TranslocoService).getActiveLang()}.pdf`;
 }

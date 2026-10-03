@@ -93,6 +93,30 @@ const devtoArticles = await fetchJson(
   `https://dev.to/api/articles?username=${DEVTO_USER}&per_page=100`,
 );
 
+// Calendario dei contributi dell'ultimo anno: è nell'HTML pubblico del profilo, non serve token.
+const calendarUrl = `https://github.com/users/${GITHUB_USER}/contributions`;
+const calendarRes = await fetch(calendarUrl);
+if (!calendarRes.ok) {
+  throw new Error(`${calendarRes.status} ${calendarRes.statusText} - ${calendarUrl}`);
+}
+const calendarHtml = await calendarRes.text();
+// Il numero di contributi del giorno è solo nel tooltip ("3 contributions on ..."), legato alla cella dall'id.
+const countById = new Map(
+  [...calendarHtml.matchAll(/<tool-tip[^>]*\bfor="([^"]+)"[^>]*>([^<]*)</g)].map(([, id, text]) => [
+    id,
+    Number(text.match(/^[\d,]+/)?.[0].replaceAll(',', '') ?? 0),
+  ]),
+);
+const calendarDays = [...calendarHtml.matchAll(/<td[^>]*\bdata-date="[^>]*>/g)]
+  .map(([td]) => {
+    const attr = (name) => td.match(new RegExp(`\\b${name}="([^"]*)"`))?.[1] ?? '';
+    return { date: attr('data-date'), level: attr('data-level'), count: countById.get(attr('id')) ?? 0 };
+  })
+  .sort((a, b) => a.date.localeCompare(b.date));
+if (calendarDays.length < 365) {
+  throw new Error(`Calendario dei contributi non riconosciuto (${calendarDays.length} giorni) - ${calendarUrl}`);
+}
+
 // La search API restituisce al massimo 1000 risultati, 100 per pagina.
 const prQuery = `is:pr is:merged author:${GITHUB_USER} -user:${GITHUB_USER}`;
 const mergedPrs = [];
@@ -228,6 +252,14 @@ const contributionStats = {
   searchUrl: `https://github.com/search?type=pullrequests&q=${encodeURIComponent(prQuery)}`,
 };
 
+// Livelli come stringa (una cifra al giorno) e conteggi come array di numeri: restano compatti.
+const contributionCalendar = {
+  from: calendarDays[0].date,
+  total: calendarDays.reduce((sum, d) => sum + d.count, 0),
+  levels: calendarDays.map((d) => d.level).join(''),
+  counts: calendarDays.map((d) => d.count),
+};
+
 // JSON.stringify serializza i valori senza toccare gli apici interni (evita di
 // corrompere i testi con apostrofi); poi Prettier riscrive il file nello stile
 // del repo (.prettierrc: apici singoli, chiavi senza virgolette, array corti in
@@ -255,11 +287,13 @@ export const ARTICLES: readonly Article[] = ${ts(articles)};
 
 const contributionsFile = `// Pull request mergiate su progetti di altri (API pubblica GitHub, ${formatDate(stats.updatedAt)}).
 // Per aggiornarle: npm run update-data (rigenera questo file).
-import type { Contribution, ContributionStats } from './types';
+import type { Contribution, ContributionCalendar, ContributionStats } from './types';
 
 export const CONTRIBUTIONS: readonly Contribution[] = ${ts(contributions)};
 
 export const CONTRIBUTION_STATS: ContributionStats = ${ts(contributionStats)};
+
+export const CONTRIBUTION_CALENDAR: ContributionCalendar = ${ts(contributionCalendar)};
 `;
 
 async function writeFormatted(fileName, source) {
@@ -320,6 +354,7 @@ ${contributions.map(contributionLine).join('\n')}
 - [DEV Community](https://dev.to/${DEVTO_USER}): ${articles.length} articoli su Angular, Node.js e performance
 - [LinkedIn](https://www.linkedin.com/in/simonenigro/): profilo professionale
 - [WordPress.org](https://profiles.wordpress.org/${GITHUB_USER}/): contributi WordPress
+- [Curriculum (PDF)](https://www.sndesign.it/simone-nigro-cv-it.pdf): generato a ogni build, anche [in inglese](https://www.sndesign.it/simone-nigro-cv-en.pdf)
 `;
 
 await writeFile(join(PUBLIC_DIR, 'llms.txt'), llmsTxt);
@@ -338,5 +373,6 @@ console.log(`✔ Dati aggiornati al ${formatDate(stats.updatedAt)}:`);
 console.log(`  ${stats.npmPackages} pacchetti npm, ${stats.npmMonthlyDownloads} download/mese`);
 console.log(`  ${stats.githubStars} stelle GitHub, ${articles.length} articoli dev.to`);
 console.log(`  ${contributionStats.mergedPullRequests} PR mergiate su progetti di altri`);
+console.log(`  ${contributionCalendar.total} contributi GitHub nell'ultimo anno`);
 console.log('  Rigenerati: src/app/data/*.ts, public/llms.txt e public/sitemap.xml.');
 console.log('Ricontrolla il diff prima del commit.');

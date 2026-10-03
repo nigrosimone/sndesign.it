@@ -8,6 +8,38 @@
     {{ t('contributions.sub', { count: stats.mergedPullRequests, repos: stats.repos }) }}
   </p>
 
+  <figure class="calendar" appReveal>
+    <div class="calendar-scroll">
+      <svg
+        class="calendar-svg"
+        [attr.viewBox]="'0 0 ' + calendar.width + ' ' + calendar.height"
+        aria-hidden="true"
+        (pointerover)="showTip($event)"
+        (pointerleave)="tip.set(null)"
+      >
+        @for (l of calendar.labels; track l.text + l.x) {
+          <text class="calendar-label" [attr.x]="l.x" [attr.y]="l.y">{{ l.text }}</text>
+        }
+        @for (c of calendar.cells; track c.date) {
+          <rect [attr.x]="c.x" [attr.y]="c.y" [attr.width]="cell" [attr.height]="cell" rx="2" [attr.class]="'lv' + c.level" />
+        }
+      </svg>
+    </div>
+    <figcaption class="calendar-foot font-mono">
+      <span>{{ t('contributions.calendar', { count: calendarTotal }) }}</span>
+      <span class="calendar-legend" aria-hidden="true">
+        {{ t('contributions.less') }}
+        <i class="lv0"></i><i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i>
+        {{ t('contributions.more') }}
+      </span>
+    </figcaption>
+    @if (tip(); as tip) {
+      <p class="calendar-tip font-mono" aria-hidden="true" [style.left.px]="tip.left" [style.top.px]="tip.top">
+        {{ tip.text }}
+      </p>
+    }
+  </figure>
+
   <ol class="articles" role="list">
     @for (c of contributions; track c.url; let i = $index) {
       <li [appReveal]="(i % 6) * 60">

@@ -45,6 +45,7 @@
     },
     "experience": "Esperienza",
     "present": "oggi",
+    "cv": "scarica il curriculum (pdf)",
     "jobs": {
       "acca": {
         "role": "Full-Stack Developer",
@@ -96,7 +97,12 @@
   "contributions": {
     "title": "Contributi",
     "sub": "{{count}} pull request mergiate in {{repos}} progetti.",
-    "all": "tutte le pull request su github"
+    "all": "tutte le pull request su github",
+    "calendar": "{{count}} contributi su GitHub nell'ultimo anno.",
+    "day": "{{count}} contributi il {{date}}",
+    "dayOne": "1 contributo il {{date}}",
+    "less": "meno",
+    "more": "più"
   },
   "articles": {
     "title": "Articoli",
