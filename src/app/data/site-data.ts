@@ -41,7 +41,7 @@ export const SKILL_GROUPS = [
   },
   {
     labelKey: 'about.groups.testing',
-    skills: ['Jest', 'Cypress'],
+    skills: ['Vitest', 'Jest', 'Playwright', 'Cypress'],
   },
   {
     labelKey: 'about.groups.other',
