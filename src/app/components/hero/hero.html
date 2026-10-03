@@ -34,6 +34,16 @@
   <div class="hero-cta">
     <a class="btn" [href]="base + '#progetti'">{{ t('hero.cta') }}</a>
     <ul class="link-row font-mono" role="list">
+      <li>
+        <a
+          class="bracket-link"
+          [href]="cvUrl"
+          target="_blank"
+          rel="noopener"
+          [attr.aria-label]="t('about.cv') + ' (' + t('nav.newTab') + ')'"
+          >[cv]</a
+        >
+      </li>
       @for (s of socials; track s.label) {
         <li>
           <a

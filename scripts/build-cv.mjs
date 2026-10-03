@@ -17,6 +17,7 @@ const PUBLIC_DIR = join(ROOT_DIR, 'public');
 const { EXPERIENCE, PROFILE, SKILL_GROUPS, SOCIALS } = await import('../src/app/data/site-data.ts');
 const { OS_STATS, PROJECTS } = await import('../src/app/data/open-source.ts');
 const { CONTRIBUTION_STATS, CONTRIBUTIONS } = await import('../src/app/data/contributions.ts');
+const { formatThousands } = await import('../src/app/data/format.ts');
 
 const LOCALES = { it: 'it-IT', en: 'en-US' };
 const PROJECTS_IN_CV = 6;
@@ -74,7 +75,10 @@ const font = (await readFile(join(PUBLIC_DIR, 'fonts', 'space-grotesk-latin.woff
 
 function render(lang, i18n) {
   const l = LABELS[lang];
-  const t = (key) => esc(get(i18n, key) ?? key);
+  // Come nel sito: "oltre {{downloads}} download" prende il numero dai dati.
+  const params = { downloads: formatThousands(OS_STATS.npmMonthlyDownloads, lang) };
+  const t = (key) =>
+    esc((get(i18n, key) ?? key).replace(/\{\{(\w+)\}\}/g, (m, name) => params[name] ?? m));
   const num = (n) => new Intl.NumberFormat(LOCALES[lang]).format(n);
   const compact = (n) => new Intl.NumberFormat(LOCALES[lang], { notation: 'compact' }).format(n);
   const date = new Intl.DateTimeFormat(LOCALES[lang], { dateStyle: 'long', timeZone: 'UTC' });

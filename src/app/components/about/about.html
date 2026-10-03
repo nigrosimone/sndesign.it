@@ -8,7 +8,7 @@
   <div class="about-grid">
     <div class="about-text">
       @for (key of bioKeys; track key; let i = $index) {
-        <p [appReveal]="i * 90">{{ t(key) }}</p>
+        <p [appReveal]="i * 90">{{ t(key, bioParams) }}</p>
       }
     </div>
     <figure class="about-photo" appReveal>

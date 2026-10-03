@@ -40,25 +40,25 @@
     }
   </figure>
 
-  <ol class="articles" role="list">
-    @for (c of contributions; track c.url; let i = $index) {
-      <li [appReveal]="(i % 6) * 60">
-        <article class="article-row">
-          <h3 class="article-title">
+  @for (g of groups; track g.repo) {
+    <div class="contrib-group" appReveal>
+      <h3 class="contrib-head font-mono">
+        <a class="contrib-repo" [href]="g.repoUrl" target="_blank" rel="noopener">{{ g.repo }}</a>
+        <span class="contrib-stars">
+          <span aria-hidden="true">★</span> {{ g.starsFmt
+          }}<span class="sr-only"> {{ t('projects.starsSr') }}</span>
+        </span>
+      </h3>
+      <ul class="contrib-prs" role="list">
+        @for (c of g.prs; track c.url) {
+          <li class="contrib-pr">
             <a [href]="c.url" target="_blank" rel="noopener">{{ c.title }}</a>
-          </h3>
-          <p class="article-meta font-mono">
-            <a class="contrib-repo" [href]="c.repoUrl" target="_blank" rel="noopener">{{ c.repo }}</a>
-            <span>
-              <span aria-hidden="true">★</span> {{ c.starsFmt
-              }}<span class="sr-only"> {{ t('projects.starsSr') }}</span>
-            </span>
-            <span aria-hidden="true">·</span> #{{ c.number }}
-          </p>
-        </article>
-      </li>
-    }
-  </ol>
+            <span class="font-mono">#{{ c.number }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  }
 
   <p class="section-cta font-mono" appReveal>
     <a class="bracket-link" [href]="stats.searchUrl" target="_blank" rel="noopener">

@@ -1167,6 +1167,60 @@ ol[role='list'] {
   text-shadow: 0 0 12px var(--accent-glow);
 }
 
+.contrib-group {
+  margin-bottom: 2rem;
+}
+
+.contrib-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.contrib-stars {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.contrib-prs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.contrib-pr {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.contrib-pr a {
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contrib-pr a:hover,
+.contrib-pr a:focus-visible {
+  color: var(--accent);
+  text-shadow: 0 0 14px var(--accent-glow);
+}
+
+.contrib-pr span {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
 /* --- Contribution calendar ---------------------------------------------- */
 .calendar {
   position: relative;

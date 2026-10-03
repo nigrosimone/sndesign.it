@@ -8,6 +8,7 @@ export const PROFILE = {
   email: 'nigro.simone@gmail.com',
   bornYear: 1984,
   codingSinceYear: 1999,
+  developerSinceYear: 2004,
   siteUrl: 'https://www.sndesign.it/',
 } as const;
 
@@ -28,7 +29,7 @@ export const SKILL_GROUPS = [
   },
   {
     labelKey: 'about.groups.backend',
-    skills: ['Node.js', 'Express', 'PHP', 'Delphi'],
+    skills: ['Node.js', 'Express', 'PHP'],
   },
   {
     labelKey: 'about.groups.database',
@@ -36,11 +37,11 @@ export const SKILL_GROUPS = [
   },
   {
     labelKey: 'about.groups.infra',
-    skills: ['nginx', 'Apache', 'IIS', 'Redis', 'Varnish', 'CDN', 'Docker', 'Git', 'GitLab CI/CD'],
+    skills: ['nginx', 'Apache', 'Redis', 'CDN', 'Docker', 'Git', 'GitLab CI/CD'],
   },
   {
     labelKey: 'about.groups.testing',
-    skills: ['Jest', 'Cypress', 'Karma'],
+    skills: ['Jest', 'Cypress'],
   },
   {
     labelKey: 'about.groups.other',

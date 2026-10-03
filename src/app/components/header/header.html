@@ -36,6 +36,7 @@
       <div class="lang-switch font-mono" role="group" [attr.aria-label]="t('nav.langLabel')">
         <a
           href="/"
+          (click)="remember('it')"
           hreflang="it"
           lang="it"
           aria-label="Italiano"
@@ -46,6 +47,7 @@
         <span aria-hidden="true">/</span>
         <a
           href="/en/"
+          (click)="remember('en')"
           hreflang="en"
           lang="en"
           aria-label="English"

@@ -30,13 +30,15 @@ export class Hero {
   // With <base href="/"> fragment-only hrefs would resolve to the Italian home.
   protected readonly base = this.lang === 'en' ? '/en/' : '/';
   protected readonly socials = SOCIALS;
+  // Generated at build time by scripts/build-cv.mjs.
+  protected readonly cvUrl = `/simone-nigro-cv-${this.lang}.pdf`;
   protected readonly stats = computed(() => {
     const github = githubStat(this.live.githubStars(), CONTRIBUTION_STATS.mergedPullRequests);
     return [
       this.stat(this.live.npmDownloads(), '', 'hero.stats.downloads'),
       this.stat(github.value, '+', github.labelKey),
       this.stat(OS_STATS.npmPackages, '', 'hero.stats.packages'),
-      this.stat(new Date().getFullYear() - PROFILE.codingSinceYear, '', 'hero.stats.years'),
+      this.stat(new Date().getFullYear() - PROFILE.developerSinceYear, '', 'hero.stats.years'),
     ];
   });
 

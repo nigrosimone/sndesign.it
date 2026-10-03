@@ -3,8 +3,18 @@ import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { CELL, layoutCalendar } from '../../data/calendar';
 import { CONTRIBUTION_CALENDAR, CONTRIBUTION_STATS, CONTRIBUTIONS } from '../../data/contributions';
 import { LOCALES, formatNumber, type Lang } from '../../data/format';
+import type { Contribution } from '../../data/types';
 import { Reveal } from '../../directives/reveal';
 import { Scramble } from '../../directives/scramble';
+
+/** Pull requests grouped by repo, keeping the order of the data (repos sorted by stars). */
+function byRepo(prs: readonly Contribution[]): Contribution[][] {
+  const groups = new Map<string, Contribution[]>();
+  for (const pr of prs) {
+    groups.set(pr.repo, [...(groups.get(pr.repo) ?? []), pr]);
+  }
+  return [...groups.values()];
+}
 
 @Component({
   selector: 'app-contributions',
@@ -16,9 +26,12 @@ export class Contributions {
   private readonly lang = this.transloco.getActiveLang() as Lang;
 
   protected readonly stats = CONTRIBUTION_STATS;
-  protected readonly contributions = CONTRIBUTIONS.map((c) => ({
-    ...c,
-    starsFmt: formatNumber(c.stars, this.lang),
+  // One block per repo (already sorted by stars), so the stars are shown once.
+  protected readonly groups = byRepo(CONTRIBUTIONS).map((prs) => ({
+    repo: prs[0].repo,
+    repoUrl: prs[0].repoUrl,
+    starsFmt: formatNumber(prs[0].stars, this.lang),
+    prs,
   }));
 
   protected readonly cell = CELL;

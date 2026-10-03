@@ -4,15 +4,6 @@ import type { NpmPackage, OpenSourceStats, Project } from './types';
 
 export const PROJECTS: readonly Project[] = [
   {
-    name: 'ng-http-caching',
-    description: 'Cache for HTTP requests in Angular application.',
-    language: 'TypeScript',
-    stars: 54,
-    monthlyDownloads: 13873,
-    repoUrl: 'https://github.com/nigrosimone/ng-http-caching',
-    packageUrl: 'https://www.npmjs.com/package/ng-http-caching',
-  },
-  {
     name: 'ng-let',
     description:
       'Angular structural directive for sharing data as local variable into html component template.',
@@ -23,22 +14,13 @@ export const PROJECTS: readonly Project[] = [
     packageUrl: 'https://www.npmjs.com/package/ng-let',
   },
   {
-    name: 'ng-simple-state',
-    description: 'Simple state management in Angular with only Services and Signal.',
+    name: 'ng-http-caching',
+    description: 'Cache for HTTP requests in Angular application.',
     language: 'TypeScript',
-    stars: 46,
-    monthlyDownloads: 855,
-    repoUrl: 'https://github.com/nigrosimone/ng-simple-state',
-    packageUrl: 'https://www.npmjs.com/package/ng-simple-state',
-  },
-  {
-    name: 'ng-for-track-by-property',
-    description: 'Angular global trackBy property directive with strict type checking.',
-    language: 'TypeScript',
-    stars: 28,
-    monthlyDownloads: 605,
-    repoUrl: 'https://github.com/nigrosimone/ng-for-track-by-property',
-    packageUrl: 'https://www.npmjs.com/package/ng-for-track-by-property',
+    stars: 54,
+    monthlyDownloads: 13873,
+    repoUrl: 'https://github.com/nigrosimone/ng-http-caching',
+    packageUrl: 'https://www.npmjs.com/package/ng-http-caching',
   },
   {
     name: 'ng-generic-pipe',
@@ -61,6 +43,42 @@ export const PROJECTS: readonly Project[] = [
     packageUrl: 'https://www.npmjs.com/package/fulmine.js',
   },
   {
+    name: 'ng-as',
+    description: 'Angular pipe and directive for type casting template variables.',
+    language: 'TypeScript',
+    stars: 9,
+    monthlyDownloads: 2986,
+    repoUrl: 'https://github.com/nigrosimone/ng-as',
+    packageUrl: 'https://www.npmjs.com/package/ng-as',
+  },
+  {
+    name: 'ng-simple-state',
+    description: 'Simple state management in Angular with only Services and Signal.',
+    language: 'TypeScript',
+    stars: 46,
+    monthlyDownloads: 855,
+    repoUrl: 'https://github.com/nigrosimone/ng-simple-state',
+    packageUrl: 'https://www.npmjs.com/package/ng-simple-state',
+  },
+  {
+    name: 'ng-for-track-by-property',
+    description: 'Angular global trackBy property directive with strict type checking.',
+    language: 'TypeScript',
+    stars: 28,
+    monthlyDownloads: 605,
+    repoUrl: 'https://github.com/nigrosimone/ng-for-track-by-property',
+    packageUrl: 'https://www.npmjs.com/package/ng-for-track-by-property',
+  },
+  {
+    name: 'ng-lock',
+    description: 'Angular decorator for lock a function and user interface while a task running.',
+    language: 'TypeScript',
+    stars: 10,
+    monthlyDownloads: 162,
+    repoUrl: 'https://github.com/nigrosimone/ng-lock',
+    packageUrl: 'https://www.npmjs.com/package/ng-lock',
+  },
+  {
     name: 'codice-fiscale',
     description:
       "Libreria PHP per la validazione dei Codici Fiscali italiani a 16 caratteri con supporto per l'omocodia",
@@ -77,59 +95,12 @@ export const PROJECTS: readonly Project[] = [
     repoUrl: 'https://github.com/nigrosimone/llms-robot-arena',
   },
   {
-    name: 'ng-lock',
-    description: 'Angular decorator for lock a function and user interface while a task running.',
-    language: 'TypeScript',
-    stars: 10,
-    monthlyDownloads: 162,
-    repoUrl: 'https://github.com/nigrosimone/ng-lock',
-    packageUrl: 'https://www.npmjs.com/package/ng-lock',
-  },
-  {
-    name: 'ng-as',
-    description: 'Angular pipe and directive for type casting template variables.',
-    language: 'TypeScript',
-    stars: 9,
-    monthlyDownloads: 2986,
-    repoUrl: 'https://github.com/nigrosimone/ng-as',
-    packageUrl: 'https://www.npmjs.com/package/ng-as',
-  },
-  {
     name: 'postgres-benchmarks',
     description:
       'A benchmark focusing on the performance of Postgres client libraries for Node.js, brianc/node-postgres VS porsager/postgres',
     language: 'TypeScript',
     stars: 7,
     repoUrl: 'https://github.com/nigrosimone/postgres-benchmarks',
-  },
-  {
-    name: 'turbo-array',
-    description:
-      'Turbo Array is a lightweight, high-performance library that allows you to build lazy evaluation pipelines for arrays. It supports operations like filter, map, reduce, forEach, and join, executing them efficiently.  A method build with Turbo Array is 4x faster than vanilla version.',
-    language: 'TypeScript',
-    stars: 2,
-    monthlyDownloads: 47,
-    repoUrl: 'https://github.com/nigrosimone/turbo-array',
-    packageUrl: 'https://www.npmjs.com/package/turbo-array',
-  },
-  {
-    name: 'express-fast-json-stringify',
-    description:
-      'With express-fast-json-stringify, you can leverage fast-json-stringify in your Express application to improve JSON serialization performance',
-    language: 'TypeScript',
-    stars: 1,
-    monthlyDownloads: 373,
-    repoUrl: 'https://github.com/nigrosimone/express-fast-json-stringify',
-    packageUrl: 'https://www.npmjs.com/package/express-fast-json-stringify',
-  },
-  {
-    name: 'ng-ssr-caching',
-    description: 'Cache for server-side rendered pages in Angular SSR.',
-    language: 'JavaScript',
-    stars: 1,
-    monthlyDownloads: 33,
-    repoUrl: 'https://github.com/nigrosimone/ng-ssr-caching',
-    packageUrl: 'https://www.npmjs.com/package/ng-ssr-caching',
   },
 ];
 

@@ -18,6 +18,10 @@ const PUBLIC_DIR = join(ROOT_DIR, 'public');
 
 const HIDDEN_PROJECTS = new Set(['sndesign.it']);
 
+// Sotto entrambe le soglie un progetto abbassa la media più di quanto aggiunga.
+const MIN_PROJECT_STARS = 5;
+const MIN_PROJECT_DOWNLOADS = 1000;
+
 const HIDDEN_ARTICLES = new Set([]);
 
 const HIDDEN_PACKAGES = new Set([
@@ -158,10 +162,10 @@ for (let i = 0; i < contributedRepos.length; i += 50) {
 const originalRepos = repos.filter((r) => !r.fork && r.name !== GITHUB_USER);
 const npmPackageNames = new Set(packageNames);
 
-// Progetti = repo originali con stelle, non archiviati e non nascosti. Selezione,
+// Progetti = repo originali non archiviati e non nascosti, sopra almeno una soglia. Selezione,
 // descrizione (da GitHub) e link al pacchetto sono automatici: nessuna curatela.
 const projects = originalRepos
-  .filter((repo) => !repo.archived && repo.stargazers_count > 0 && !HIDDEN_PROJECTS.has(repo.name))
+  .filter((repo) => !repo.archived && !HIDDEN_PROJECTS.has(repo.name))
   .map((repo) => {
     const isPhp = repo.language === 'PHP';
     return {
@@ -178,11 +182,12 @@ const projects = originalRepos
           : undefined,
     };
   })
-  // Ordine per stelle (decrescente); a parità, per download e poi per nome.
+  .filter((p) => p.stars >= MIN_PROJECT_STARS || (p.monthlyDownloads ?? 0) >= MIN_PROJECT_DOWNLOADS)
+  // Ordine per download (il dato più forte), poi per stelle e per nome.
   .sort(
     (a, b) =>
-      b.stars - a.stars ||
       (b.monthlyDownloads ?? 0) - (a.monthlyDownloads ?? 0) ||
+      b.stars - a.stars ||
       a.name.localeCompare(b.name),
   );
 
@@ -330,8 +335,8 @@ const llmsTxt = `# Simone Nigro - Full-Stack Developer & Tech Lead
 
 > Portfolio personale di Simone Nigro, full-stack developer e tech lead italiano (Avellino, Campania) in
 > ACCA software S.p.A. Autore di librerie open source Angular e Node.js pubblicate su npm con
-> oltre ${fmt(Math.floor(stats.npmMonthlyDownloads / 1000) * 1000)} download al mese. Programma dal 1999, sviluppatore dal 2004. Contributor
-> del core di Node.js e, in passato, di WordPress (5.5). Sito bilingue: italiano su /, inglese su /en/. Il sito espone i
+> oltre ${fmt(Math.floor(stats.npmMonthlyDownloads / 1000) * 1000)} download al mese. Programma dal 1999, sviluppatore dal 2004. Ha
+> contribuito con pull request al core di Node.js e ad Angular, e al core di WordPress (5.5). Sito bilingue: italiano su /, inglese su /en/. Il sito espone i
 > propri contenuti anche via WebMCP (navigator.modelContext): get_profile,
 > list_open_source_projects, list_contributions, list_articles, get_contacts.
 

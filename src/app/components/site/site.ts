@@ -12,6 +12,8 @@ import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 // reusing them avoids shipping the raw JSON just for the meta tags.
 import en from '../../../i18n/optimized/en.json';
 import it from '../../../i18n/optimized/it.json';
+import { formatThousands } from '../../data/format';
+import { OS_STATS } from '../../data/open-source';
 import { AudioVisuals } from '../../services/audio-visuals';
 import { LiveStats } from '../../services/live-stats';
 import { GridWarp } from '../../directives/grid-warp';
@@ -26,16 +28,19 @@ import { Hero } from '../hero/hero';
 import { Projects } from '../projects/projects';
 
 const SITE_URL = 'https://www.sndesign.it/';
+// The descriptions say "over N downloads": N comes from the data, like in the hero.
+const withDownloads = (text: string, lang: 'it' | 'en') =>
+  text.replace('{{downloads}}', formatThousands(OS_STATS.npmMonthlyDownloads, lang));
 const META = {
   it: {
     title: it['meta.title'],
-    description: it['meta.description'],
-    ogDescription: it['meta.ogDescription'],
+    description: withDownloads(it['meta.description'], 'it'),
+    ogDescription: withDownloads(it['meta.ogDescription'], 'it'),
   },
   en: {
     title: en['meta.title'],
-    description: en['meta.description'],
-    ogDescription: en['meta.ogDescription'],
+    description: withDownloads(en['meta.description'], 'en'),
+    ogDescription: withDownloads(en['meta.ogDescription'], 'en'),
   },
 } as const;
 

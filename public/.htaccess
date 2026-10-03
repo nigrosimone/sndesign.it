@@ -69,6 +69,21 @@ AddDefaultCharset utf-8
   RewriteEngine On
   # /en -> /en/ (slash finale, coerente con canonical e sitemap)
   RewriteRule ^en$ /en/ [R=301,L]
+
+  # Home con un browser non in italiano: alla versione inglese. Solo se c'è Accept-Language
+  # (Googlebot non lo manda, così / resta indicizzata) e se non si è scelto l'italiano dal
+  # menu delle lingue (cookie lang=it, scritto dall'header).
+  RewriteCond %{HTTP:Accept-Language} .
+  RewriteCond %{HTTP:Accept-Language} !^it [NC]
+  RewriteCond %{HTTP_COOKIE} !(^|;\s*)lang=it(;|$)
+  RewriteRule ^$ /en/ [R=302,L]
+</IfModule>
+
+# La home cambia con lingua e cookie: le cache non devono servirla a tutti uguale.
+<IfModule mod_headers.c>
+  <If "%{REQUEST_URI} =~ m#^/(index\.html)?$#">
+    Header always merge Vary "Accept-Language, Cookie"
+  </If>
 </IfModule>
 
 # --- Niente listing delle directory -------------------------

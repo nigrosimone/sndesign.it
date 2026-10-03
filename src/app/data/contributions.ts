@@ -6,7 +6,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 122234,
+    stars: 122236,
     number: 66316,
     title: 'src: avoid env lookups and a global handle in InternalCallbackScope',
     url: 'https://github.com/nodejs/node/pull/66316',
@@ -96,7 +96,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9162,
+    stars: 9163,
     number: 1339,
     title: 'Measure a two-byte string first when it may not fit in the pool',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1339',
@@ -105,7 +105,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9162,
+    stars: 9163,
     number: 1338,
     title: 'Never give the end of a full pool to an empty string',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1338',
@@ -114,7 +114,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9162,
+    stars: 9163,
     number: 1337,
     title: 'Skip the first write when a string has more characters than free pool bytes',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1337',
@@ -123,7 +123,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9162,
+    stars: 9163,
     number: 1335,
     title: 'Write strings to utf-8 in one pass, straight into the pool',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1335',
@@ -132,7 +132,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9162,
+    stars: 9163,
     number: 1331,
     title: 'Keep the onAborted capture in MoveOnlyFunction inline storage',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1331',
@@ -239,7 +239,7 @@ export const CONTRIBUTION_STATS: ContributionStats = {
 
 export const CONTRIBUTION_CALENDAR: ContributionCalendar = {
   from: '2025-09-28',
-  total: 2422,
+  total: 2423,
   levels:
     '00000001000000000001001110000000001201011121000000000001100000000000001100011100000100001101111011111100100010111111011010110011111112010000000100010001000011101101111110100012100111100010010011111000011010010001000110010000000000010010100000100001011120010100000011111000011000100001001000000111212144001114232222211121142112111111111011121121111221211111121111111111111',
   counts: [
@@ -255,6 +255,6 @@ export const CONTRIBUTION_CALENDAR: ContributionCalendar = {
     0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 17, 12, 2, 26, 7, 29, 7, 81, 250, 0, 0, 7, 16, 21, 141, 43, 59,
     33, 30, 39, 46, 40, 15, 2, 19, 27, 20, 25, 100, 39, 15, 21, 35, 17, 17, 25, 5, 2, 1, 3, 1, 1, 0,
     16, 14, 5, 32, 7, 5, 33, 8, 8, 7, 17, 30, 37, 14, 35, 11, 16, 12, 6, 8, 14, 28, 8, 8, 9, 10, 10,
-    7, 6, 7, 7, 8, 11, 6, 5,
+    7, 6, 7, 7, 8, 11, 6, 6,
   ],
 };

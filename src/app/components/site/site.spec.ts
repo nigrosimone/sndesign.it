@@ -67,9 +67,11 @@ describe('Contributions', () => {
     await fixture.whenStable();
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelectorAll('article.article-row').length).toBe(CONTRIBUTIONS.length);
-    expect(compiled.querySelector('.article-title a')?.getAttribute('href')).toBe(
-      CONTRIBUTIONS[0]?.url,
+    expect(compiled.querySelectorAll('.contrib-pr').length).toBe(CONTRIBUTIONS.length);
+    expect(compiled.querySelector('.contrib-pr a')?.getAttribute('href')).toBe(CONTRIBUTIONS[0]?.url);
+    // One heading per repo: the stars are not repeated on every pull request.
+    expect(compiled.querySelectorAll('.contrib-head').length).toBe(
+      new Set(CONTRIBUTIONS.map((c) => c.repo)).size,
     );
   });
 });

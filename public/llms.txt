@@ -2,8 +2,8 @@
 
 > Portfolio personale di Simone Nigro, full-stack developer e tech lead italiano (Avellino, Campania) in
 > ACCA software S.p.A. Autore di librerie open source Angular e Node.js pubblicate su npm con
-> oltre 95.000 download al mese. Programma dal 1999, sviluppatore dal 2004. Contributor
-> del core di Node.js e, in passato, di WordPress (5.5). Sito bilingue: italiano su /, inglese su /en/. Il sito espone i
+> oltre 95.000 download al mese. Programma dal 1999, sviluppatore dal 2004. Ha
+> contribuito con pull request al core di Node.js e ad Angular, e al core di WordPress (5.5). Sito bilingue: italiano su /, inglese su /en/. Il sito espone i
 > propri contenuti anche via WebMCP (navigator.modelContext): get_profile,
 > list_open_source_projects, list_contributions, list_articles, get_contacts.
 
@@ -18,25 +18,22 @@
 
 ## Progetti open source (dati npm/GitHub del 03/10/2026)
 
-- [ng-http-caching](https://www.npmjs.com/package/ng-http-caching): Cache for HTTP requests in Angular application. - 13.873 download/mese, 54 stelle
 - [ng-let](https://www.npmjs.com/package/ng-let): Angular structural directive for sharing data as local variable into html component template. - 67.825 download/mese, 47 stelle
-- [ng-simple-state](https://www.npmjs.com/package/ng-simple-state): Simple state management in Angular with only Services and Signal. - 855 download/mese, 46 stelle
-- [ng-for-track-by-property](https://www.npmjs.com/package/ng-for-track-by-property): Angular global trackBy property directive with strict type checking. - 605 download/mese, 28 stelle
+- [ng-http-caching](https://www.npmjs.com/package/ng-http-caching): Cache for HTTP requests in Angular application. - 13.873 download/mese, 54 stelle
 - [ng-generic-pipe](https://www.npmjs.com/package/ng-generic-pipe): Generic pipe for Angular application for use a component method into component template - 5122 download/mese, 21 stelle
 - [fulmine.js](https://www.npmjs.com/package/fulmine.js): Fulmine.js ⚡ A blazing-fast Express.js compatible HTTP server on uWebSockets.js. - 3138 download/mese, 18 stelle
+- [ng-as](https://www.npmjs.com/package/ng-as): Angular pipe and directive for type casting template variables. - 2986 download/mese, 9 stelle
+- [ng-simple-state](https://www.npmjs.com/package/ng-simple-state): Simple state management in Angular with only Services and Signal. - 855 download/mese, 46 stelle
+- [ng-for-track-by-property](https://www.npmjs.com/package/ng-for-track-by-property): Angular global trackBy property directive with strict type checking. - 605 download/mese, 28 stelle
+- [ng-lock](https://www.npmjs.com/package/ng-lock): Angular decorator for lock a function and user interface while a task running. - 162 download/mese, 10 stelle
 - [codice-fiscale](https://packagist.org/packages/nigrosimone/codicefiscale): Libreria PHP per la validazione dei Codici Fiscali italiani a 16 caratteri con supporto per l'omocodia - 17 stelle
 - [llms-robot-arena](https://github.com/nigrosimone/llms-robot-arena): An arena where LLMs write robot controllers and their code competes. - 13 stelle
-- [ng-lock](https://www.npmjs.com/package/ng-lock): Angular decorator for lock a function and user interface while a task running. - 162 download/mese, 10 stelle
-- [ng-as](https://www.npmjs.com/package/ng-as): Angular pipe and directive for type casting template variables. - 2986 download/mese, 9 stelle
 - [postgres-benchmarks](https://github.com/nigrosimone/postgres-benchmarks): A benchmark focusing on the performance of Postgres client libraries for Node.js, brianc/node-postgres VS porsager/postgres - 7 stelle
-- [turbo-array](https://www.npmjs.com/package/turbo-array): Turbo Array is a lightweight, high-performance library that allows you to build lazy evaluation pipelines for arrays. It supports operations like filter, map, reduce, forEach, and join, executing them efficiently.  A method build with Turbo Array is 4x faster than vanilla version. - 47 download/mese, 2 stelle
-- [express-fast-json-stringify](https://www.npmjs.com/package/express-fast-json-stringify): With express-fast-json-stringify, you can leverage fast-json-stringify in your Express application to improve JSON serialization performance - 373 download/mese, 1 stella
-- [ng-ssr-caching](https://www.npmjs.com/package/ng-ssr-caching): Cache for server-side rendered pages in Angular SSR. - 33 download/mese, 1 stella
 - Totale: 12 pacchetti npm, 95.065 download/mese, 305 stelle GitHub
 
 ## Contributi ad altri progetti open source
 
-- [src: avoid env lookups and a global handle in InternalCallbackScope](https://github.com/nodejs/node/pull/66316) su [nodejs/node](https://github.com/nodejs/node) (122.234 stelle)
+- [src: avoid env lookups and a global handle in InternalCallbackScope](https://github.com/nodejs/node/pull/66316) su [nodejs/node](https://github.com/nodejs/node) (122.236 stelle)
 - [refactor(core): make the animate.enter and animate.leave runtime tree-shakable](https://github.com/angular/angular/pull/70991) su [angular/angular](https://github.com/angular/angular) (101.014 stelle)
 - [Answer 400 to a request target that is not visible ASCII](https://github.com/uNetworking/uWebSockets/pull/1951) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (18.993 stelle)
 - [Skip trailer fields after the last chunk, and answer 400 to a bare LF in them](https://github.com/uNetworking/uWebSockets/pull/1950) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (18.993 stelle)
@@ -46,11 +43,11 @@
 - [fix: reject portal based queries in pipeline mode instead of TypeError](https://github.com/brianc/node-postgres/pull/3737) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.218 stelle)
 - [fix: fail pipelined queries when the connection dies instead of hanging](https://github.com/brianc/node-postgres/pull/3736) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.218 stelle)
 - [perf: cache parsers per column](https://github.com/brianc/node-postgres/pull/3568) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.218 stelle)
-- [Measure a two-byte string first when it may not fit in the pool](https://github.com/uNetworking/uWebSockets.js/pull/1339) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9162 stelle)
-- [Never give the end of a full pool to an empty string](https://github.com/uNetworking/uWebSockets.js/pull/1338) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9162 stelle)
-- [Skip the first write when a string has more characters than free pool bytes](https://github.com/uNetworking/uWebSockets.js/pull/1337) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9162 stelle)
-- [Write strings to utf-8 in one pass, straight into the pool](https://github.com/uNetworking/uWebSockets.js/pull/1335) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9162 stelle)
-- [Keep the onAborted capture in MoveOnlyFunction inline storage](https://github.com/uNetworking/uWebSockets.js/pull/1331) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9162 stelle)
+- [Measure a two-byte string first when it may not fit in the pool](https://github.com/uNetworking/uWebSockets.js/pull/1339) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9163 stelle)
+- [Never give the end of a full pool to an empty string](https://github.com/uNetworking/uWebSockets.js/pull/1338) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9163 stelle)
+- [Skip the first write when a string has more characters than free pool bytes](https://github.com/uNetworking/uWebSockets.js/pull/1337) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9163 stelle)
+- [Write strings to utf-8 in one pass, straight into the pool](https://github.com/uNetworking/uWebSockets.js/pull/1335) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9163 stelle)
+- [Keep the onAborted capture in MoveOnlyFunction inline storage](https://github.com/uNetworking/uWebSockets.js/pull/1331) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9163 stelle)
 - [fix: escape property names in the schema refs the generated code validates against](https://github.com/fastify/fast-json-stringify/pull/882) su [fastify/fast-json-stringify](https://github.com/fastify/fast-json-stringify) (3704 stelle)
 - [perf: short array and object](https://github.com/fastify/fast-json-stringify/pull/817) su [fastify/fast-json-stringify](https://github.com/fastify/fast-json-stringify) (3704 stelle)
 - [perf: cache json strings into const](https://github.com/fastify/fast-json-stringify/pull/713) su [fastify/fast-json-stringify](https://github.com/fastify/fast-json-stringify) (3704 stelle)
