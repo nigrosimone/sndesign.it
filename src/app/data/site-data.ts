@@ -25,11 +25,11 @@ export const SOCIALS = [
 export const SKILL_GROUPS = [
   {
     labelKey: 'about.groups.frontend',
-    skills: ['Angular', 'TypeScript', 'JavaScript', 'React', 'RxJS', 'Signals', 'HTML5', 'CSS / SCSS'],
+    skills: ['Angular', 'TypeScript', 'JavaScript', 'RxJS', 'Signals', 'HTML5', 'CSS / SCSS'],
   },
   {
     labelKey: 'about.groups.backend',
-    skills: ['Node.js', 'Express', 'PHP'],
+    skills: ['Node.js', 'Express', 'PHP', 'Symfony'],
   },
   {
     labelKey: 'about.groups.database',
