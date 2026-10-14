@@ -45,6 +45,7 @@ const HIDDEN_PULL_REQUESTS = new Set([
   'uNetworking/uWebSockets.js#1343',
   'dimdenGD/ultimate-express#325',
   'dimdenGD/ultimate-express#316',
+  'uNetworking/uSockets#261',
 ]);
 
 // PR chiuse ma integrate dai maintainer (es. commit-queue di Node.js): per GitHub non sono mergiate.

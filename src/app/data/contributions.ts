@@ -1,4 +1,4 @@
-// Pull request mergiate su progetti di altri (API pubblica GitHub, 03/10/2026).
+// Pull request mergiate su progetti di altri (API pubblica GitHub, 14/10/2026).
 // Per aggiornarle: npm run update-data (rigenera questo file).
 import type { Contribution, ContributionCalendar, ContributionStats } from './types';
 
@@ -6,7 +6,16 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 122236,
+    stars: 122472,
+    number: 66326,
+    title: 'src: keep ALS store in AsyncResource::MakeCallback',
+    url: 'https://github.com/nodejs/node/pull/66326',
+    date: '2026-10-14',
+  },
+  {
+    repo: 'nodejs/node',
+    repoUrl: 'https://github.com/nodejs/node',
+    stars: 122472,
     number: 66316,
     title: 'src: avoid env lookups and a global handle in InternalCallbackScope',
     url: 'https://github.com/nodejs/node/pull/66316',
@@ -15,7 +24,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'angular/angular',
     repoUrl: 'https://github.com/angular/angular',
-    stars: 101014,
+    stars: 101057,
     number: 70991,
     title: 'refactor(core): make the animate.enter and animate.leave runtime tree-shakable',
     url: 'https://github.com/angular/angular/pull/70991',
@@ -24,7 +33,16 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 18993,
+    stars: 18999,
+    number: 1952,
+    title: 'Accept the asterisk form for OPTIONS',
+    url: 'https://github.com/uNetworking/uWebSockets/pull/1952',
+    date: '2026-10-03',
+  },
+  {
+    repo: 'uNetworking/uWebSockets',
+    repoUrl: 'https://github.com/uNetworking/uWebSockets',
+    stars: 18999,
     number: 1951,
     title: 'Answer 400 to a request target that is not visible ASCII',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1951',
@@ -33,7 +51,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 18993,
+    stars: 18999,
     number: 1950,
     title: 'Skip trailer fields after the last chunk, and answer 400 to a bare LF in them',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1950',
@@ -42,7 +60,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 18993,
+    stars: 18999,
     number: 1949,
     title: 'Reject a Host header with a path, a query or a fragment',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1949',
@@ -51,7 +69,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13218,
+    stars: 13225,
     number: 3781,
     title: 'fix(pg): run a named statement with an empty text more than once',
     url: 'https://github.com/brianc/node-postgres/pull/3781',
@@ -60,7 +78,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13218,
+    stars: 13225,
     number: 3780,
     title: 'fix(pg): expose detail and hint on errors from the native client',
     url: 'https://github.com/brianc/node-postgres/pull/3780',
@@ -69,7 +87,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13218,
+    stars: 13225,
     number: 3737,
     title: 'fix: reject portal based queries in pipeline mode instead of TypeError',
     url: 'https://github.com/brianc/node-postgres/pull/3737',
@@ -78,7 +96,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13218,
+    stars: 13225,
     number: 3736,
     title: 'fix: fail pipelined queries when the connection dies instead of hanging',
     url: 'https://github.com/brianc/node-postgres/pull/3736',
@@ -87,7 +105,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13218,
+    stars: 13225,
     number: 3568,
     title: 'perf: cache parsers per column',
     url: 'https://github.com/brianc/node-postgres/pull/3568',
@@ -96,7 +114,16 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9163,
+    stars: 9174,
+    number: 1353,
+    title: 'NativeString: read the thread-local pool once per instance',
+    url: 'https://github.com/uNetworking/uWebSockets.js/pull/1353',
+    date: '2026-10-08',
+  },
+  {
+    repo: 'uNetworking/uWebSockets.js',
+    repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
+    stars: 9174,
     number: 1339,
     title: 'Measure a two-byte string first when it may not fit in the pool',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1339',
@@ -105,7 +132,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9163,
+    stars: 9174,
     number: 1338,
     title: 'Never give the end of a full pool to an empty string',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1338',
@@ -114,7 +141,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9163,
+    stars: 9174,
     number: 1337,
     title: 'Skip the first write when a string has more characters than free pool bytes',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1337',
@@ -123,25 +150,16 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9163,
+    stars: 9174,
     number: 1335,
     title: 'Write strings to utf-8 in one pass, straight into the pool',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1335',
     date: '2026-09-29',
   },
   {
-    repo: 'uNetworking/uWebSockets.js',
-    repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9163,
-    number: 1331,
-    title: 'Keep the onAborted capture in MoveOnlyFunction inline storage',
-    url: 'https://github.com/uNetworking/uWebSockets.js/pull/1331',
-    date: '2026-09-28',
-  },
-  {
     repo: 'fastify/fast-json-stringify',
     repoUrl: 'https://github.com/fastify/fast-json-stringify',
-    stars: 3704,
+    stars: 3705,
     number: 882,
     title: 'fix: escape property names in the schema refs the generated code validates against',
     url: 'https://github.com/fastify/fast-json-stringify/pull/882',
@@ -150,7 +168,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'fastify/fast-json-stringify',
     repoUrl: 'https://github.com/fastify/fast-json-stringify',
-    stars: 3704,
+    stars: 3705,
     number: 817,
     title: 'perf: short array and object',
     url: 'https://github.com/fastify/fast-json-stringify/pull/817',
@@ -159,7 +177,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'fastify/fast-json-stringify',
     repoUrl: 'https://github.com/fastify/fast-json-stringify',
-    stars: 3704,
+    stars: 3705,
     number: 713,
     title: 'perf: cache json strings into const',
     url: 'https://github.com/fastify/fast-json-stringify/pull/713',
@@ -168,7 +186,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'fastify/fast-json-stringify',
     repoUrl: 'https://github.com/fastify/fast-json-stringify',
-    stars: 3704,
+    stars: 3705,
     number: 689,
     title: 'fix: make asString monomorphic and trigger V8 optimization',
     url: 'https://github.com/fastify/fast-json-stringify/pull/689',
@@ -177,7 +195,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'fastify/fast-json-stringify',
     repoUrl: 'https://github.com/fastify/fast-json-stringify',
-    stars: 3704,
+    stars: 3705,
     number: 686,
     title: 'feat: unsafe string format',
     url: 'https://github.com/fastify/fast-json-stringify/pull/686',
@@ -186,7 +204,16 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'dimdenGD/ultimate-express',
     repoUrl: 'https://github.com/dimdenGD/ultimate-express',
-    stars: 1109,
+    stars: 1108,
+    number: 375,
+    title: 'fix: answer 413 for a body over the limit, as body-parser and finalhandler',
+    url: 'https://github.com/dimdenGD/ultimate-express/pull/375',
+    date: '2026-10-07',
+  },
+  {
+    repo: 'dimdenGD/ultimate-express',
+    repoUrl: 'https://github.com/dimdenGD/ultimate-express',
+    stars: 1108,
     number: 356,
     title: 'fix: stop body parsers from responding twice to an oversized body',
     url: 'https://github.com/dimdenGD/ultimate-express/pull/356',
@@ -195,7 +222,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'dimdenGD/ultimate-express',
     repoUrl: 'https://github.com/dimdenGD/ultimate-express',
-    stars: 1109,
+    stars: 1108,
     number: 355,
     title: 'perf: skip full headers build in req.fresh when no conditional headers',
     url: 'https://github.com/dimdenGD/ultimate-express/pull/355',
@@ -204,7 +231,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'dimdenGD/ultimate-express',
     repoUrl: 'https://github.com/dimdenGD/ultimate-express',
-    stars: 1109,
+    stars: 1108,
     number: 354,
     title: 'perf: remove per-request async overhead in router dispatch',
     url: 'https://github.com/dimdenGD/ultimate-express/pull/354',
@@ -213,48 +240,39 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'dimdenGD/ultimate-express',
     repoUrl: 'https://github.com/dimdenGD/ultimate-express',
-    stars: 1109,
+    stars: 1108,
     number: 305,
     title: 'fix: uws exclusive port',
     url: 'https://github.com/dimdenGD/ultimate-express/pull/305',
     date: '2026-03-28',
   },
-  {
-    repo: 'dimdenGD/ultimate-express',
-    repoUrl: 'https://github.com/dimdenGD/ultimate-express',
-    stars: 1109,
-    number: 296,
-    title: 'perf: replace arrays with Set',
-    url: 'https://github.com/dimdenGD/ultimate-express/pull/296',
-    date: '2026-03-07',
-  },
 ];
 
 export const CONTRIBUTION_STATS: ContributionStats = {
-  mergedPullRequests: 413,
-  repos: 37,
+  mergedPullRequests: 422,
+  repos: 39,
   searchUrl:
     'https://github.com/search?type=pullrequests&q=is%3Apr%20is%3Amerged%20author%3Anigrosimone%20-user%3Anigrosimone',
 };
 
 export const CONTRIBUTION_CALENDAR: ContributionCalendar = {
-  from: '2025-09-28',
-  total: 2423,
+  from: '2025-10-12',
+  total: 2555,
   levels:
-    '00000001000000000001001110000000001201011121000000000001100000000000001100011100000100001101111011111100100010111111011010110011111112010000000100010001000011101101111110100012100111100010010011111000011010010001000110010000000000010010100000100001011120010100000011111000011000100001001000000111212144001114232222211121142112111111111011121121111221211111121111111111111',
+    '00000100111000000000120101112100000000000110000000000000110001110000010000110111101111110010001011111101101011001111111201000000010001000100001110110111111010001210011110001001001111100001101001000100011001000000000001001010000010000101112001010000001111100001100010000100100000011121214400111423222221112114211211111111101112112111122121111112111111111111111011211111',
   counts: [
-    0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 5, 28, 0, 5, 0, 2, 5, 19, 27, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 7, 4, 0, 0, 0, 7, 1, 12, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 8, 7, 0, 6, 1, 6,
-    3, 0, 10, 2, 4, 5, 4, 4, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3, 8, 2, 3, 1, 0, 2, 3, 0, 1, 0, 1, 1, 0, 0,
-    4, 3, 1, 1, 1, 1, 10, 50, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0, 1, 0, 0, 0, 0, 24,
-    4, 1, 0, 8, 1, 0, 2, 1, 2, 3, 8, 4, 0, 1, 0, 0, 0, 2, 32, 1, 0, 0, 1, 1, 10, 19, 0, 0, 0, 11, 0,
-    0, 4, 0, 0, 1, 3, 4, 1, 9, 0, 0, 0, 0, 1, 1, 0, 3, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 3, 1, 0, 0, 3,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 5, 0, 3, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 8, 0, 5, 3,
-    21, 46, 0, 0, 2, 0, 6, 0, 0, 0, 0, 0, 0, 3, 11, 11, 3, 1, 0, 0, 0, 0, 3, 4, 0, 0, 0, 2, 0, 0, 0,
-    0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 17, 12, 2, 26, 7, 29, 7, 81, 250, 0, 0, 7, 16, 21, 141, 43, 59,
-    33, 30, 39, 46, 40, 15, 2, 19, 27, 20, 25, 100, 39, 15, 21, 35, 17, 17, 25, 5, 2, 1, 3, 1, 1, 0,
-    16, 14, 5, 32, 7, 5, 33, 8, 8, 7, 17, 30, 37, 14, 35, 11, 16, 12, 6, 8, 14, 28, 8, 8, 9, 10, 10,
-    7, 6, 7, 7, 8, 11, 6, 6,
+    0, 0, 0, 0, 0, 2, 0, 0, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 28, 0, 5, 0, 2, 5, 19, 27, 5, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 4, 0, 0, 0, 7, 1,
+    12, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 8, 7, 0, 6, 1, 6, 3, 0, 10, 2, 4, 5, 4, 4, 0, 0, 1, 0, 0, 0,
+    1, 0, 1, 3, 8, 2, 3, 1, 0, 2, 3, 0, 1, 0, 1, 1, 0, 0, 4, 3, 1, 1, 1, 1, 10, 50, 0, 1, 0, 0, 0,
+    0, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0, 1, 0, 0, 0, 0, 24, 4, 1, 0, 8, 1, 0, 2, 1, 2, 3, 8, 4, 0,
+    1, 0, 0, 0, 2, 32, 1, 0, 0, 1, 1, 10, 19, 0, 0, 0, 11, 0, 0, 4, 0, 0, 1, 3, 4, 1, 9, 0, 0, 0, 0,
+    1, 1, 0, 3, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0, 3, 1, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0,
+    0, 5, 0, 3, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 8, 0, 5, 3, 21, 46, 0, 0, 2, 0, 6, 0, 0, 0, 0, 0, 0,
+    3, 11, 11, 3, 1, 0, 0, 0, 0, 3, 4, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 17, 12,
+    2, 26, 7, 29, 7, 81, 250, 0, 0, 7, 16, 21, 141, 43, 59, 33, 30, 39, 46, 40, 15, 2, 19, 27, 20,
+    25, 100, 39, 15, 21, 35, 17, 17, 25, 5, 2, 1, 3, 1, 1, 0, 16, 14, 5, 32, 7, 5, 33, 8, 8, 7, 17,
+    30, 37, 14, 35, 11, 16, 12, 6, 8, 15, 31, 8, 8, 9, 11, 10, 7, 6, 7, 7, 8, 11, 8, 9, 9, 1, 0, 19,
+    20, 47, 7, 6, 1, 12, 3,
   ],
 };
