@@ -1,4 +1,4 @@
-// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 14/10/2026).
+// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 30/10/2026).
 // Per aggiornarli: npm run update-data (rigenera questo file).
 import type { Article } from './types';
 
@@ -9,7 +9,7 @@ export const ARTICLES: readonly Article[] = [
     date: '2026-09-05',
     readingMinutes: 1,
     tags: ['ai', 'claude', 'openai'],
-    reactions: 1,
+    reactions: 2,
   },
   {
     title: 'Fulmine.js: the drop-in Express 5 replacement, up to 20x faster by changing one line',
