@@ -372,6 +372,37 @@ ${contributions.map(contributionLine).join('\n')}
 
 await writeFile(join(PUBLIC_DIR, 'llms.txt'), llmsTxt);
 
+// README del profilo GitHub: se il repo nigrosimone e' clonato accanto a questo, riscrive
+// la sezione dei contributi tra i due marcatori. In CI la cartella non c'e' e si salta.
+const PROFILE_README = join(ROOT_DIR, '..', GITHUB_USER, 'README.md');
+const README_START = '<!-- contributions:start -->';
+const README_END = '<!-- contributions:end -->';
+const profileReadme = await readFile(PROFILE_README, 'utf8').catch(() => null);
+let profileUpdated = false;
+if (profileReadme?.includes(README_START) && profileReadme.includes(README_END)) {
+  const compact = new Intl.NumberFormat('en', { notation: 'compact' });
+  const byRepo = Map.groupBy(contributions, (c) => c.repo);
+  const section = [
+    README_START,
+    '### Open source contributions',
+    '',
+    `Merged pull requests to other projects, ${contributionStats.mergedPullRequests} in ${contributionStats.repos} repositories ([all of them](${contributionStats.searchUrl})). Some of them:`,
+    '',
+    ...[...byRepo].flatMap(([repo, prs]) => [
+      `- [${repo}](${prs[0].repoUrl}) (${compact.format(prs[0].stars)} stars)`,
+      ...prs.map((pr) => `  - [${pr.title}](${pr.url})`),
+    ]),
+    README_END,
+  ].join('\n');
+  const start = profileReadme.indexOf(README_START);
+  const end = profileReadme.indexOf(README_END) + README_END.length;
+  await writeFile(
+    PROFILE_README,
+    profileReadme.slice(0, start) + section + profileReadme.slice(end),
+  );
+  profileUpdated = true;
+}
+
 // public/sitemap.xml: aggiorna la data di ultimo aggiornamento (<lastmod>) di
 // ogni URL con quella odierna, così i motori di ricerca sanno che il contenuto
 // è cambiato dopo la rigenerazione dei dati.
@@ -388,4 +419,5 @@ console.log(`  ${stats.githubStars} stelle GitHub, ${articles.length} articoli d
 console.log(`  ${contributionStats.mergedPullRequests} PR mergiate su progetti di altri`);
 console.log(`  ${contributionCalendar.total} contributi GitHub nell'ultimo anno`);
 console.log('  Rigenerati: src/app/data/*.ts, public/llms.txt e public/sitemap.xml.');
+if (profileUpdated) console.log(`  Aggiornato anche ${PROFILE_README}.`);
 console.log('Ricontrolla il diff prima del commit.');
