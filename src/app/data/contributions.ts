@@ -6,7 +6,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 123870,
+    stars: 123868,
     number: 66344,
     title: 'src: do not shrink async resources on every pop',
     url: 'https://github.com/nodejs/node/pull/66344',
@@ -15,7 +15,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 123870,
+    stars: 123868,
     number: 66395,
     title: 'src: cut small costs in node::MakeCallback',
     url: 'https://github.com/nodejs/node/pull/66395',
@@ -24,7 +24,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 123870,
+    stars: 123868,
     number: 66326,
     title: 'src: keep ALS store in AsyncResource::MakeCallback',
     url: 'https://github.com/nodejs/node/pull/66326',
@@ -33,7 +33,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 123870,
+    stars: 123868,
     number: 66316,
     title: 'src: avoid env lookups and a global handle in InternalCallbackScope',
     url: 'https://github.com/nodejs/node/pull/66316',
@@ -42,7 +42,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'angular/angular',
     repoUrl: 'https://github.com/angular/angular',
-    stars: 101570,
+    stars: 101567,
     number: 70991,
     title: 'refactor(core): make the animate.enter and animate.leave runtime tree-shakable',
     url: 'https://github.com/angular/angular/pull/70991',
@@ -313,7 +313,7 @@ export const CONTRIBUTION_STATS: ContributionStats = {
 
 export const CONTRIBUTION_CALENDAR: ContributionCalendar = {
   from: '2025-11-16',
-  total: 2778,
+  total: 2780,
   levels:
     '00000011000000000000011000111000001000011011110111111001000101111110110101100111111120100000001000100010000111011011111101000121001111000100100111110000110100100010001100100000000000100101000001000010111200101000000111110000110001000010010000001112121440011142322222111211421121111111110111211211112212111111211111111111111101121111111111111011111111111111111111110111',
   counts: [
@@ -329,6 +329,6 @@ export const CONTRIBUTION_CALENDAR: ContributionCalendar = {
     15, 21, 35, 17, 17, 25, 5, 2, 1, 3, 1, 1, 0, 16, 14, 5, 32, 7, 5, 33, 8, 8, 7, 17, 30, 37, 14,
     35, 13, 16, 12, 6, 8, 15, 31, 8, 8, 9, 11, 10, 7, 6, 7, 7, 8, 11, 8, 9, 9, 1, 0, 19, 20, 47, 7,
     6, 1, 12, 15, 6, 3, 19, 18, 5, 9, 14, 2, 0, 1, 16, 6, 11, 7, 4, 2, 16, 13, 11, 11, 3, 13, 8, 10,
-    10, 14, 6, 13, 12, 20, 12, 0, 5, 9, 3,
+    10, 14, 6, 13, 12, 20, 12, 0, 5, 9, 5,
   ],
 };

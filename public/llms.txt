@@ -33,11 +33,11 @@
 
 ## Contributi ad altri progetti open source
 
-- [src: do not shrink async resources on every pop](https://github.com/nodejs/node/pull/66344) su [nodejs/node](https://github.com/nodejs/node) (123.870 stelle)
-- [src: cut small costs in node::MakeCallback](https://github.com/nodejs/node/pull/66395) su [nodejs/node](https://github.com/nodejs/node) (123.870 stelle)
-- [src: keep ALS store in AsyncResource::MakeCallback](https://github.com/nodejs/node/pull/66326) su [nodejs/node](https://github.com/nodejs/node) (123.870 stelle)
-- [src: avoid env lookups and a global handle in InternalCallbackScope](https://github.com/nodejs/node/pull/66316) su [nodejs/node](https://github.com/nodejs/node) (123.870 stelle)
-- [refactor(core): make the animate.enter and animate.leave runtime tree-shakable](https://github.com/angular/angular/pull/70991) su [angular/angular](https://github.com/angular/angular) (101.570 stelle)
+- [src: do not shrink async resources on every pop](https://github.com/nodejs/node/pull/66344) su [nodejs/node](https://github.com/nodejs/node) (123.868 stelle)
+- [src: cut small costs in node::MakeCallback](https://github.com/nodejs/node/pull/66395) su [nodejs/node](https://github.com/nodejs/node) (123.868 stelle)
+- [src: keep ALS store in AsyncResource::MakeCallback](https://github.com/nodejs/node/pull/66326) su [nodejs/node](https://github.com/nodejs/node) (123.868 stelle)
+- [src: avoid env lookups and a global handle in InternalCallbackScope](https://github.com/nodejs/node/pull/66316) su [nodejs/node](https://github.com/nodejs/node) (123.868 stelle)
+- [refactor(core): make the animate.enter and animate.leave runtime tree-shakable](https://github.com/angular/angular/pull/70991) su [angular/angular](https://github.com/angular/angular) (101.567 stelle)
 - [Accept the asterisk form for OPTIONS](https://github.com/uNetworking/uWebSockets/pull/1952) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.027 stelle)
 - [Answer 400 to a request target that is not visible ASCII](https://github.com/uNetworking/uWebSockets/pull/1951) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.027 stelle)
 - [Skip trailer fields after the last chunk, and answer 400 to a bare LF in them](https://github.com/uNetworking/uWebSockets/pull/1950) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.027 stelle)
