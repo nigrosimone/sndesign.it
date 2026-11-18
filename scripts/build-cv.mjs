@@ -14,7 +14,8 @@ const ROOT_DIR = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PUBLIC_DIR = join(ROOT_DIR, 'public');
 
 // Node importa i file .ts togliendo i tipi: i dati restano quelli del sito, senza copie.
-const { EXPERIENCE, PROFILE, SKILL_GROUPS, SOCIALS } = await import('../src/app/data/site-data.ts');
+const { EXPERIENCE, LANGUAGE_KEYS, PROFILE, SKILL_GROUPS, SOCIALS } =
+  await import('../src/app/data/site-data.ts');
 const { OS_STATS, PROJECTS } = await import('../src/app/data/open-source.ts');
 const { CONTRIBUTION_STATS, CONTRIBUTIONS } = await import('../src/app/data/contributions.ts');
 const { formatThousands } = await import('../src/app/data/format.ts');
@@ -139,7 +140,9 @@ function render(lang, i18n) {
       l.skills,
       `<dl class="skills">${SKILL_GROUPS.map(
         (g) => `<dt>${t(g.labelKey)}</dt><dd>${g.skills.map(esc).join(', ')}</dd>`,
-      ).join('')}</dl>`,
+      ).join(
+        '',
+      )}<dt>${t('about.groups.languages')}</dt><dd>${LANGUAGE_KEYS.map(t).join(', ')}</dd></dl>`,
     ],
     [
       l.openSource,

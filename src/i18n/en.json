@@ -42,7 +42,9 @@
       "database": "Database",
       "infra": "Servers & DevOps",
       "testing": "Testing",
-      "other": "Other"
+      "ai": "AI",
+      "other": "Other",
+      "languages": "Languages"
     },
     "experience": "Experience",
     "present": "present",
@@ -68,6 +70,10 @@
         "role": "Degree in Communication Sciences",
         "desc": "Audiovisual communication and multimedia processing."
       }
+    },
+    "languages": {
+      "it": "Italian (native)",
+      "en": "English (technical)"
     }
   },
   "projects": {

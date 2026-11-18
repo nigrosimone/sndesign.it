@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { formatThousands, type Lang } from '../../data/format';
 import { OS_STATS } from '../../data/open-source';
-import { EXPERIENCE, SKILL_GROUPS } from '../../data/site-data';
+import { EXPERIENCE, LANGUAGE_KEYS, SKILL_GROUPS } from '../../data/site-data';
 import { AsciiPortrait } from '../../directives/ascii-portrait';
 import { Reveal } from '../../directives/reveal';
 import { Scramble } from '../../directives/scramble';
@@ -17,6 +17,7 @@ export class About {
 
   protected readonly bioKeys = ['about.bio1', 'about.bio2', 'about.bio3'];
   protected readonly skillGroups = SKILL_GROUPS;
+  protected readonly languageKeys = LANGUAGE_KEYS;
   protected readonly experience = EXPERIENCE;
   // Same number as the hero, rounded down because the text says "over".
   protected readonly bioParams = { downloads: formatThousands(OS_STATS.npmMonthlyDownloads, this.lang) };

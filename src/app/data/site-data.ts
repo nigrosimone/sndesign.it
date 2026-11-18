@@ -16,8 +16,16 @@ export const SOCIALS = [
   { label: 'github', name: 'GitHub', url: 'https://github.com/nigrosimone' },
   { label: 'npm', name: 'npm', url: 'https://www.npmjs.com/~nigro.simone' },
   { label: 'dev.to', name: 'DEV Community', url: 'https://dev.to/nigrosimone' },
-  { label: 'stackoverflow', name: 'Stack Overflow', url: 'https://stackoverflow.com/users/3043248/simone-nigro' },
-  { label: 'openjs', name: 'OpenJS Foundation', url: 'https://insights.linuxfoundation.org/collection/details/ojsf/contributors' },
+  {
+    label: 'stackoverflow',
+    name: 'Stack Overflow',
+    url: 'https://stackoverflow.com/users/3043248/simone-nigro',
+  },
+  {
+    label: 'openjs',
+    name: 'OpenJS Foundation',
+    url: 'https://insights.linuxfoundation.org/collection/details/ojsf/contributors',
+  },
   { label: 'linkedin', name: 'LinkedIn', url: 'https://www.linkedin.com/in/simonenigro/' },
   { label: 'wordpress', name: 'WordPress.org', url: 'https://profiles.wordpress.org/nigrosimone/' },
 ] as const;
@@ -25,11 +33,20 @@ export const SOCIALS = [
 export const SKILL_GROUPS = [
   {
     labelKey: 'about.groups.frontend',
-    skills: ['Angular', 'TypeScript', 'JavaScript', 'RxJS', 'Signals', 'HTML5', 'CSS / SCSS'],
+    skills: [
+      'Angular',
+      'TypeScript',
+      'JavaScript',
+      'RxJS',
+      'Signals',
+      'HTML5',
+      'CSS / SCSS',
+      'React',
+    ],
   },
   {
     labelKey: 'about.groups.backend',
-    skills: ['Node.js', 'Express', 'PHP', 'Symfony'],
+    skills: ['Node.js', 'Express', 'REST API', 'OpenAPI', 'WebSocket', 'PHP', 'Symfony'],
   },
   {
     labelKey: 'about.groups.database',
@@ -37,17 +54,24 @@ export const SKILL_GROUPS = [
   },
   {
     labelKey: 'about.groups.infra',
-    skills: ['nginx', 'Apache', 'Redis', 'CDN', 'Docker', 'Git', 'GitLab CI/CD'],
+    skills: ['AWS', 'Docker', 'nginx', 'Apache', 'Redis', 'CDN', 'Git', 'GitLab CI/CD'],
   },
   {
     labelKey: 'about.groups.testing',
     skills: ['Vitest', 'Jest', 'Playwright', 'Cypress'],
   },
   {
+    labelKey: 'about.groups.ai',
+    skills: ['AI coding agents', 'AI agents', 'LLM integration', 'MCP', 'WebMCP'],
+  },
+  {
     labelKey: 'about.groups.other',
-    skills: ['Web Performance', 'AI coding agents', 'MCP', 'WebMCP', 'WordPress', 'SEO', 'Accessibility', 'Open Source'],
+    skills: ['Web Performance', 'Open Source', 'Accessibility', 'SEO', 'WordPress'],
   },
 ] as const;
+
+// Spoken languages: i18n keys under about.languages, translated on the site and in the CV.
+export const LANGUAGE_KEYS = ['about.languages.it', 'about.languages.en'] as const;
 
 // Role and description are in i18n under about.jobs.<id>.
 export const EXPERIENCE: readonly Experience[] = [

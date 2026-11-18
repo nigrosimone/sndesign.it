@@ -42,7 +42,9 @@
       "database": "Database",
       "infra": "Server e DevOps",
       "testing": "Test",
-      "other": "Altro"
+      "ai": "AI",
+      "other": "Altro",
+      "languages": "Lingue"
     },
     "experience": "Esperienza",
     "present": "oggi",
@@ -68,6 +70,10 @@
         "role": "Laurea in Scienze della Comunicazione",
         "desc": "Comunicazione audiovisiva ed elaborazioni multimediali."
       }
+    },
+    "languages": {
+      "it": "Italiano (madrelingua)",
+      "en": "Inglese (tecnico)"
     }
   },
   "projects": {

@@ -39,6 +39,18 @@
         </ul>
       </div>
     }
+    <div class="skill-group" [appReveal]="skillGroups.length * 90">
+      <h3 class="skill-title font-mono">
+        <span aria-hidden="true">&gt; </span>
+        <span class="sr-only">{{ t('about.groups.languages') }}</span>
+        <span aria-hidden="true" appScramble>{{ t('about.groups.languages') }}</span>
+      </h3>
+      <ul class="chips" role="list">
+        @for (key of languageKeys; track key) {
+          <li class="chip font-mono">{{ t(key) }}</li>
+        }
+      </ul>
+    </div>
   </div>
 
   <div class="experience">
@@ -50,7 +62,9 @@
     <ol class="timeline" role="list">
       @for (job of experience; track job.id; let i = $index) {
         <li class="timeline-item" [appReveal]="i * 90">
-          <p class="timeline-period font-mono">{{ job.from }} - {{ job.to ?? t('about.present') }}</p>
+          <p class="timeline-period font-mono">
+            {{ job.from }} - {{ job.to ?? t('about.present') }}
+          </p>
           <div>
             <h4 class="timeline-role">
               {{ t('about.jobs.' + job.id + '.role') }}
@@ -62,7 +76,9 @@
       }
     </ol>
     <p class="section-cta font-mono" appReveal>
-      <a class="bracket-link" [href]="cvUrl" target="_blank" rel="noopener">[{{ t('about.cv') }}]</a>
+      <a class="bracket-link" [href]="cvUrl" target="_blank" rel="noopener"
+        >[{{ t('about.cv') }}]</a
+      >
     </p>
   </div>
 </section>
