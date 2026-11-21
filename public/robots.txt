@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.sndesign.it/sitemap.xml
-Agentmap: https://www.sndesign.it/.well-known/ard.json

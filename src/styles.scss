@@ -380,6 +380,9 @@ ol[role='list'] {
 }
 
 .nav-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px; /* WCAG 2.5.8 touch target */
   color: var(--text-dim);
   text-decoration: none;
   white-space: nowrap;
@@ -1444,7 +1447,7 @@ ol[role='list'] {
   .nav-links {
     font-size: 0.72rem;
     flex-wrap: wrap;
-    row-gap: 0.3rem;
+    row-gap: 0;
   }
 
   .hero-stats {
