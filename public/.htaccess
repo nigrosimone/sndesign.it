@@ -76,6 +76,10 @@ AddDefaultCharset utf-8
   # /en -> /en/ (slash finale, coerente con canonical e sitemap)
   RewriteRule ^en$ https://%{HTTP_HOST}/en/ [R=301,L]
 
+  # Agenti che chiedono markdown (Accept: text/markdown): la home in markdown è llms.txt
+  RewriteCond %{HTTP:Accept} text/markdown [NC]
+  RewriteRule ^(en/)?$ /llms.txt [E=MARKDOWN:1,L]
+
   # JS e CSS precompressi a brotli 11 (scripts/precompress.mjs), se il browser accetta br
   RewriteCond %{HTTP:Accept-Encoding} \bbr\b
   RewriteCond %{REQUEST_FILENAME}.br -f
@@ -95,6 +99,16 @@ AddDefaultCharset utf-8
   <If "%{REQUEST_URI} =~ m#^/(index\.html)?$#">
     Header always merge Vary "Accept-Language, Cookie"
   </If>
+  # Home (it/en): risorse per gli agenti, e la risposta cambia con Accept (markdown).
+  <If "%{REQUEST_URI} =~ m#^/(en/)?(index\.html)?$#">
+    Header merge Vary Accept
+    Header set Link "</llms.txt>; rel=\"alternate\"; type=\"text/markdown\", </.well-known/ard.json>; rel=\"ard\", </sitemap.xml>; rel=\"sitemap\""
+  </If>
+  # llms.txt servito al posto della home: dopo il rewrite la variabile prende il prefisso REDIRECT_
+  Header set Content-Type "text/markdown; charset=utf-8" env=REDIRECT_MARKDOWN
+  Header merge Vary Accept env=REDIRECT_MARKDOWN
+  Header set Content-Type "text/markdown; charset=utf-8" env=MARKDOWN
+  Header merge Vary Accept env=MARKDOWN
 </IfModule>
 
 # --- File .br serviti dalla regola sopra --------------------
