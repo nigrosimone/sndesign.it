@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "Simone Nigro - Full-Stack Developer & Tech Lead · Angular & Node.js",
-    "description": "Simone Nigro, full-stack developer and tech lead from Avellino, Italy. Author of Angular and Node.js open source libraries with {{downloads}}+ monthly npm downloads: ng-let, ng-http-caching, ng-simple-state and more.",
+    "title": "Simone Nigro - Full-Stack Developer & Tech Lead",
+    "description": "Simone Nigro, full-stack developer and tech lead from Avellino, Italy. Angular and Node.js open source libraries with {{downloads}}+ monthly npm downloads.",
     "ogDescription": "Angular and Node.js open source libraries with {{downloads}}+ monthly npm downloads. Full-stack developer and tech lead @ ACCA software."
   },
   "nav": {
