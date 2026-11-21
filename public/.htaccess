@@ -71,6 +71,11 @@ AddDefaultCharset utf-8
   # /en -> /en/ (slash finale, coerente con canonical e sitemap)
   RewriteRule ^en$ /en/ [R=301,L]
 
+  # JS e CSS precompressi a brotli 11 (scripts/precompress.mjs), se il browser accetta br
+  RewriteCond %{HTTP:Accept-Encoding} \bbr\b
+  RewriteCond %{REQUEST_FILENAME}.br -f
+  RewriteRule ^(.+\.(?:js|css))$ $1.br [L]
+
   # Home con un browser non in italiano: alla versione inglese. Solo se c'è Accept-Language
   # (Googlebot non lo manda, così / resta indicizzata) e se non si è scelto l'italiano dal
   # menu delle lingue (cookie lang=it, scritto dall'header).
@@ -86,6 +91,24 @@ AddDefaultCharset utf-8
     Header always merge Vary "Accept-Language, Cookie"
   </If>
 </IfModule>
+
+# --- File .br serviti dalla regola sopra --------------------
+# Tipo dell'originale, già compressi: niente compressione al volo.
+<FilesMatch "\.js\.br$">
+  ForceType text/javascript
+</FilesMatch>
+<FilesMatch "\.css\.br$">
+  ForceType text/css
+</FilesMatch>
+<FilesMatch "\.(js|css)\.br$">
+  SetEnv no-gzip 1
+  SetEnv no-brotli 1
+  <IfModule mod_headers.c>
+    Header set Content-Encoding br
+    Header merge Vary Accept-Encoding
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </IfModule>
+</FilesMatch>
 
 # --- Niente listing delle directory -------------------------
 Options -Indexes

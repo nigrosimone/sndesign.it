@@ -49,3 +49,10 @@ jobs:
         run: |
           curl -sS --fail https://www.sndesign.it/ | cmp - index.html
           curl -sS --fail https://www.sndesign.it/en/ | cmp - en/index.html
+          # The precompressed main bundle must arrive as br and decode to the built file.
+          js=$(ls main-*.js)
+          curl -sS --fail -D headers.txt -o /dev/null -H 'Accept-Encoding: br' "https://www.sndesign.it/$js"
+          grep -qi '^content-encoding: br' headers.txt
+          grep -qi '^content-type: text/javascript' headers.txt
+          curl -sS --fail -H 'Accept-Encoding: br' "https://www.sndesign.it/$js" | cmp - "$js.br"
+          rm headers.txt
