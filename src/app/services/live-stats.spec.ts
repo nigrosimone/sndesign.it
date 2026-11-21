@@ -3,6 +3,14 @@ import { vi } from 'vitest';
 import { OS_STATS } from '../data/open-source';
 import { LiveStats } from './live-stats';
 
+const DAY = 24 * 60 * 60 * 1000;
+
+/** Moves the clock to `days` after the build-time data date. */
+function setDataAge(days: number): void {
+  vi.useFakeTimers({ toFake: ['Date'] });
+  vi.setSystemTime(Date.parse(OS_STATS.updatedAt) + days * DAY);
+}
+
 function stubIdleCallback(): void {
   vi.stubGlobal('requestIdleCallback', (cb: () => void) => {
     cb();
@@ -13,9 +21,11 @@ function stubIdleCallback(): void {
 describe('LiveStats', () => {
   afterEach(() => {
     vi.unstubAllGlobals();
+    vi.useRealTimers();
   });
 
   it('updates signals with data from npm and GitHub APIs', async () => {
+    setDataAge(31);
     stubIdleCallback();
     vi.stubGlobal(
       'fetch',
@@ -58,6 +68,7 @@ describe('LiveStats', () => {
   });
 
   it('keeps the baked-in values when the network fails', async () => {
+    setDataAge(31);
     stubIdleCallback();
     vi.stubGlobal(
       'fetch',
@@ -70,5 +81,19 @@ describe('LiveStats', () => {
 
     expect(stats.npmDownloads()).toBe(OS_STATS.npmMonthlyDownloads);
     expect(stats.githubStars()).toBe(OS_STATS.githubStars);
+  });
+
+  it('does not call the APIs when the build-time data is less than a month old', async () => {
+    setDataAge(29);
+    stubIdleCallback();
+    const fetchSpy = vi.fn();
+    vi.stubGlobal('fetch', fetchSpy);
+
+    const stats = TestBed.inject(LiveStats);
+    stats.start();
+    await Promise.resolve();
+
+    expect(fetchSpy).not.toHaveBeenCalled();
+    expect(stats.npmDownloads()).toBe(OS_STATS.npmMonthlyDownloads);
   });
 });

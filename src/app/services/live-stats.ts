@@ -4,6 +4,8 @@ import { OS_STATS, PACKAGES } from '../data/open-source';
 const GITHUB_REPOS_URL = 'https://api.github.com/users/nigrosimone/repos?per_page=100&type=owner';
 const GITHUB_RATE_URL = 'https://api.github.com/rate_limit';
 const NPM_DOWNLOADS_URL = 'https://api.npmjs.org/downloads/point/last-month/';
+/** Build-time data younger than this is shown as is, without calling the APIs. */
+const MAX_DATA_AGE_MS = 30 * 24 * 60 * 60 * 1000;
 
 interface GitHubRepo {
   name: string;
@@ -18,8 +20,8 @@ interface NpmDownloads {
 
 /**
  * Live npm/GitHub stats: starts from the build-time static values (good for SEO
- * and first paint), then refreshes them on idle from the public APIs. On failure
- * the static values stay.
+ * and first paint). Only when those are older than a month, refreshes them on idle
+ * from the public APIs. On failure the static values stay.
  */
 @Service()
 export class LiveStats {
@@ -35,6 +37,9 @@ export class LiveStats {
       return;
     }
     this.started = true;
+    if (Date.now() - Date.parse(OS_STATS.updatedAt) < MAX_DATA_AGE_MS) {
+      return;
+    }
     const idle =
       typeof requestIdleCallback === 'function'
         ? requestIdleCallback
