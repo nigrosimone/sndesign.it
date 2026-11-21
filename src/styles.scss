@@ -800,6 +800,7 @@ ol[role='list'] {
 .about-photo img {
   display: block;
   width: 100%;
+  aspect-ratio: 1; /* CSS overrides width/height attrs: keeps the lazy image box sized */
   border: 1px solid var(--line-bright);
   filter: grayscale(25%) contrast(1.05);
   transition:
