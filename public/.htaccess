@@ -14,12 +14,12 @@ AddDefaultCharset utf-8
 # --- Compressione (Brotli se disponibile, altrimenti gzip) --
 <IfModule mod_brotli.c>
   AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/xml
-  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS text/javascript application/javascript application/json
   AddOutputFilterByType BROTLI_COMPRESS application/xml image/svg+xml
 </IfModule>
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml
-  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE text/javascript application/javascript application/json
   AddOutputFilterByType DEFLATE application/xml image/svg+xml
   # I font woff2 e le immagini sono già compressi: non ricomprimerli
   SetEnvIfNoCase Request_URI \.(?:woff2?|png|jpe?g|webp|avif|ico)$ no-gzip
@@ -34,6 +34,7 @@ AddDefaultCharset utf-8
   ExpiresByType text/html "access plus 0 seconds"
   ExpiresByType application/xml "access plus 1 day"
   ExpiresByType text/plain "access plus 1 day"
+  ExpiresByType text/javascript "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
   ExpiresByType text/css "access plus 1 year"
   ExpiresByType font/woff2 "access plus 1 year"
