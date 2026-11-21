@@ -1,0 +1,35 @@
+{
+  "entries": [
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:sndesign.it:webmcp:portfolio",
+      "displayName": "Simone Nigro portfolio",
+      "type": "application/webmcp+json",
+      "description": "WebMCP tools (navigator.modelContext) on https://www.sndesign.it/ with the profile, open source projects, contributions, articles and contacts of Simone Nigro, full-stack developer and tech lead.",
+      "capabilities": [
+        "get_profile",
+        "list_open_source_projects",
+        "list_contributions",
+        "list_articles",
+        "get_contacts"
+      ],
+      "representativeQueries": [
+        "who is Simone Nigro",
+        "which open source projects does Simone Nigro maintain",
+        "pull requests of Simone Nigro to Node.js and Angular",
+        "how to contact Simone Nigro"
+      ],
+      "data": {
+        "url": "https://www.sndesign.it/",
+        "llms": "https://www.sndesign.it/llms.txt",
+        "tools": [
+          "get_profile",
+          "list_open_source_projects",
+          "list_contributions",
+          "list_articles",
+          "get_contacts"
+        ]
+      }
+    }
+  ]
+}

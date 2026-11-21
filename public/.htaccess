@@ -53,7 +53,7 @@ AddDefaultCharset utf-8
     Header set Cache-Control "no-cache"
   </FilesMatch>
   # File per crawler e agenti AI: rivalida ogni giorno
-  <FilesMatch "^(robots\.txt|sitemap\.xml|llms\.txt|humans\.txt)$">
+  <FilesMatch "^(robots\.txt|sitemap\.xml|llms\.txt|humans\.txt|ard\.json)$">
     Header set Cache-Control "public, max-age=86400"
   </FilesMatch>
 

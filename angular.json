@@ -34,6 +34,10 @@
               {
                 "glob": ".htaccess",
                 "input": "public"
+              },
+              {
+                "glob": ".well-known/**/*",
+                "input": "public"
               }
             ],
             "styles": ["src/styles.scss"]
