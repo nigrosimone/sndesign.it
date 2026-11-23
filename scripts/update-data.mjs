@@ -30,7 +30,7 @@ const HIDDEN_PACKAGES = new Set([
 
 // Contributi: PR mergiate su repo altrui con almeno MIN_CONTRIBUTION_STARS stelle.
 const MIN_CONTRIBUTION_STARS = 500;
-const PRS_PER_REPO = 5;
+const PRS_PER_REPO = 6;
 
 // Siti di benchmark e liste awesome: non sono contributi al codice di una libreria.
 const HIDDEN_CONTRIBUTION_REPOS_RE = /bench|awesome/i;

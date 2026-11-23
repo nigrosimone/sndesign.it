@@ -1,4 +1,4 @@
-// Dati raccolti dalle API pubbliche di GitHub e npm il 18/11/2026.
+// Dati raccolti dalle API pubbliche di GitHub e npm il 23/11/2026.
 // Per aggiornarli: npm run update-data (rigenera questo file).
 import type { NpmPackage, OpenSourceStats, Project } from './types';
 
@@ -9,7 +9,7 @@ export const PROJECTS: readonly Project[] = [
       'Angular structural directive for sharing data as local variable into html component template.',
     language: 'TypeScript',
     stars: 47,
-    monthlyDownloads: 69612,
+    monthlyDownloads: 72713,
     repoUrl: 'https://github.com/nigrosimone/ng-let',
     packageUrl: 'https://www.npmjs.com/package/ng-let',
   },
@@ -18,7 +18,7 @@ export const PROJECTS: readonly Project[] = [
     description: 'Cache for HTTP requests in Angular application.',
     language: 'TypeScript',
     stars: 54,
-    monthlyDownloads: 15056,
+    monthlyDownloads: 15461,
     repoUrl: 'https://github.com/nigrosimone/ng-http-caching',
     packageUrl: 'https://www.npmjs.com/package/ng-http-caching',
   },
@@ -27,10 +27,19 @@ export const PROJECTS: readonly Project[] = [
     description:
       'Fulmine.js ⚡ A blazing-fast Express.js compatible HTTP server on uWebSockets.js.',
     language: 'JavaScript',
-    stars: 32,
-    monthlyDownloads: 4669,
+    stars: 33,
+    monthlyDownloads: 5238,
     repoUrl: 'https://github.com/nigrosimone/fulmine.js',
     packageUrl: 'https://www.npmjs.com/package/fulmine.js',
+  },
+  {
+    name: 'ng-as',
+    description: 'Angular pipe and directive for type casting template variables.',
+    language: 'TypeScript',
+    stars: 9,
+    monthlyDownloads: 3790,
+    repoUrl: 'https://github.com/nigrosimone/ng-as',
+    packageUrl: 'https://www.npmjs.com/package/ng-as',
   },
   {
     name: 'ng-generic-pipe',
@@ -38,25 +47,16 @@ export const PROJECTS: readonly Project[] = [
       'Generic pipe for Angular application for use a component method into component template',
     language: 'TypeScript',
     stars: 21,
-    monthlyDownloads: 3864,
+    monthlyDownloads: 3487,
     repoUrl: 'https://github.com/nigrosimone/ng-generic-pipe',
     packageUrl: 'https://www.npmjs.com/package/ng-generic-pipe',
-  },
-  {
-    name: 'ng-as',
-    description: 'Angular pipe and directive for type casting template variables.',
-    language: 'TypeScript',
-    stars: 9,
-    monthlyDownloads: 3286,
-    repoUrl: 'https://github.com/nigrosimone/ng-as',
-    packageUrl: 'https://www.npmjs.com/package/ng-as',
   },
   {
     name: 'ng-for-track-by-property',
     description: 'Angular global trackBy property directive with strict type checking.',
     language: 'TypeScript',
     stars: 28,
-    monthlyDownloads: 1120,
+    monthlyDownloads: 1300,
     repoUrl: 'https://github.com/nigrosimone/ng-for-track-by-property',
     packageUrl: 'https://www.npmjs.com/package/ng-for-track-by-property',
   },
@@ -65,7 +65,7 @@ export const PROJECTS: readonly Project[] = [
     description: 'Simple state management in Angular with only Services and Signal.',
     language: 'TypeScript',
     stars: 46,
-    monthlyDownloads: 515,
+    monthlyDownloads: 666,
     repoUrl: 'https://github.com/nigrosimone/ng-simple-state',
     packageUrl: 'https://www.npmjs.com/package/ng-simple-state',
   },
@@ -74,7 +74,7 @@ export const PROJECTS: readonly Project[] = [
     description: 'Angular decorator for lock a function and user interface while a task running.',
     language: 'TypeScript',
     stars: 10,
-    monthlyDownloads: 177,
+    monthlyDownloads: 230,
     repoUrl: 'https://github.com/nigrosimone/ng-lock',
     packageUrl: 'https://www.npmjs.com/package/ng-lock',
   },
@@ -110,44 +110,44 @@ export const PACKAGES: readonly NpmPackage[] = [
     description:
       'Angular structural directive for sharing data as local variable into html component template.',
     version: '22.0.0',
-    monthlyDownloads: 69612,
+    monthlyDownloads: 72713,
     url: 'https://www.npmjs.com/package/ng-let',
   },
   {
     name: 'ng-http-caching',
     description: 'Cache for HTTP requests in Angular application.',
     version: '22.5.1',
-    monthlyDownloads: 15056,
+    monthlyDownloads: 15461,
     url: 'https://www.npmjs.com/package/ng-http-caching',
   },
   {
     name: 'fulmine.js',
     description:
       'Drop-in Express 5 replacement on uWebSockets.js, up to 17x faster. Same API, your middleware and framework keep working.',
-    version: '5.34.0',
-    monthlyDownloads: 4669,
+    version: '5.34.3',
+    monthlyDownloads: 5238,
     url: 'https://www.npmjs.com/package/fulmine.js',
+  },
+  {
+    name: 'ng-as',
+    description: 'Angular pipe and directive for type casting template variables.',
+    version: '22.1.0',
+    monthlyDownloads: 3790,
+    url: 'https://www.npmjs.com/package/ng-as',
   },
   {
     name: 'ng-generic-pipe',
     description:
       'Generic pipe for Angular application for use a component method into component template.',
     version: '22.0.0',
-    monthlyDownloads: 3864,
+    monthlyDownloads: 3487,
     url: 'https://www.npmjs.com/package/ng-generic-pipe',
-  },
-  {
-    name: 'ng-as',
-    description: 'Angular pipe and directive for type casting template variables.',
-    version: '22.1.0',
-    monthlyDownloads: 3286,
-    url: 'https://www.npmjs.com/package/ng-as',
   },
   {
     name: 'ng-for-track-by-property',
     description: 'Angular global trackBy property directive with strict type checking.',
     version: '22.0.0',
-    monthlyDownloads: 1120,
+    monthlyDownloads: 1300,
     url: 'https://www.npmjs.com/package/ng-for-track-by-property',
   },
   {
@@ -155,28 +155,28 @@ export const PACKAGES: readonly NpmPackage[] = [
     description:
       'With express-fast-json-stringify, you can leverage fast-json-stringify in your Express application to improve JSON serialization performance',
     version: '3.0.2',
-    monthlyDownloads: 807,
+    monthlyDownloads: 835,
     url: 'https://www.npmjs.com/package/express-fast-json-stringify',
   },
   {
     name: 'ng-simple-state',
     description: 'Simple state management in Angular with only Services and Signal.',
     version: '22.1.0',
-    monthlyDownloads: 515,
+    monthlyDownloads: 666,
     url: 'https://www.npmjs.com/package/ng-simple-state',
   },
   {
     name: 'ng-ssr-caching',
     description: 'Cache for server-side rendered pages in Angular SSR (and any Express handler).',
     version: '22.3.0',
-    monthlyDownloads: 497,
+    monthlyDownloads: 518,
     url: 'https://www.npmjs.com/package/ng-ssr-caching',
   },
   {
     name: 'ng-lock',
     description: 'Angular decorator for lock a function and user interface while a task running.',
     version: '22.0.0',
-    monthlyDownloads: 177,
+    monthlyDownloads: 230,
     url: 'https://www.npmjs.com/package/ng-lock',
   },
   {
@@ -184,7 +184,7 @@ export const PACKAGES: readonly NpmPackage[] = [
     description:
       'A sql tagged template for node-postgres, with pipelined queries underneath, without replacing its Pool',
     version: '1.0.0',
-    monthlyDownloads: 33,
+    monthlyDownloads: 38,
     url: 'https://www.npmjs.com/package/pg-telaio',
   },
   {
@@ -192,15 +192,15 @@ export const PACKAGES: readonly NpmPackage[] = [
     description:
       'Turbo Array is a lightweight, high-performance, fast library that allows you to build lazy evaluation pipelines for arrays.',
     version: '1.3.0',
-    monthlyDownloads: 25,
+    monthlyDownloads: 37,
     url: 'https://www.npmjs.com/package/turbo-array',
   },
 ];
 
 export const OS_STATS: OpenSourceStats = {
-  npmMonthlyDownloads: 99661,
+  npmMonthlyDownloads: 104313,
   npmPackages: 12,
-  githubStars: 321,
+  githubStars: 322,
   githubRepos: 95,
-  updatedAt: '2026-11-18',
+  updatedAt: '2026-11-23',
 };
