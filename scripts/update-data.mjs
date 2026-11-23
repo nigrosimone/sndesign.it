@@ -40,6 +40,7 @@ const HIDDEN_CONTRIBUTION_REPOS = new Set([]);
 // Formato "owner/repo#numero".
 const HIDDEN_PULL_REQUESTS = new Set([
   // Esempi, CI, packaging e tipi: non dicono niente del lavoro sul codice.
+  'uNetworking/uWebSockets.js#1360',
   'uNetworking/uWebSockets.js#1347',
   'uNetworking/uWebSockets.js#1345',
   'uNetworking/uWebSockets.js#1343',
