@@ -345,7 +345,7 @@ const llmsTxt = `# Simone Nigro - Full-Stack Developer & Tech Lead
 ## Profilo
 
 - Ruolo: Full-Stack Developer e Tech Lead (Angular, TypeScript, Node.js, PHP, PostgreSQL)
-- Azienda: ACCA software S.p.A. (dal 2011, guida il team web)
+- Azienda: ACCA software S.p.A. (dal 2011)
 - Esperienze precedenti: programmatore web in Estrogeni srl (2010-2011), insegnante di informatica all'ITI Sarrocchi di Siena (2009-2010), web developer freelance con il marchio SN.DESIGN (2004-2011)
 - Località: Avellino, Campania, Italia
 - Formazione: Laurea in Scienze della Comunicazione, Università degli Studi di Salerno

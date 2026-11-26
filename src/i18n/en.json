@@ -33,7 +33,7 @@
   "about": {
     "title": "About me",
     "photoAlt": "Portrait of Simone Nigro",
-    "bio1": "I have been programming since 1999 and working as a developer since 2004: first websites as a freelancer under the SN.DESIGN brand, since 2011 full-stack development at ACCA software S.p.A., where I also lead the web team.",
+    "bio1": "I have been programming since 1999 and working as a developer since 2004: first websites as a freelancer under the SN.DESIGN brand, since 2011 full-stack development at ACCA software S.p.A.",
     "bio2": "Open source is my passion: I maintain about ten Angular and Node.js libraries published on npm - {{downloads}}+ downloads per month - including Fulmine.js, the third fastest framework on HttpArena and the first among the JavaScript ones. I contributed pull requests to Node.js core and to Angular, I was a WordPress core contributor (5.5) and I am the author of the «Speed Up» plugin series. I write about Angular, Node.js and performance on DEV Community.",
     "bio3": "My style has always been the same: clean, almost minimalist, without neglecting the user experience. With one extra obsession: performance. Benchmarks, profiling, understanding what a millisecond costs in production. And I can open a beer with anything: lighters, keys, and so on.",
     "groups": {
@@ -52,7 +52,7 @@
     "jobs": {
       "acca": {
         "role": "Full-Stack Developer and Tech Lead",
-        "desc": "Angular and TypeScript web applications: architecture, shared libraries, loading and rendering performance. Node.js and Delphi back-end on PostgreSQL. I lead the web team with code review, code standards and mentoring. I use AI coding agents every day."
+        "desc": "Angular and TypeScript web applications: architecture, shared libraries, loading and rendering performance. Node.js and Delphi back-end on PostgreSQL. I use AI coding agents every day."
       },
       "estrogeni": {
         "role": "Web developer",
