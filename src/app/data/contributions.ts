@@ -1,4 +1,4 @@
-// Pull request mergiate su progetti di altri (API pubblica GitHub, 23/11/2026).
+// Pull request mergiate su progetti di altri (API pubblica GitHub, 26/11/2026).
 // Per aggiornarle: npm run update-data (rigenera questo file).
 import type { Contribution, ContributionCalendar, ContributionStats } from './types';
 
@@ -6,7 +6,16 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 123955,
+    stars: 124023,
+    number: 66509,
+    title: 'node-api: find the Environment once',
+    url: 'https://github.com/nodejs/node/pull/66509',
+    date: '2026-11-25',
+  },
+  {
+    repo: 'nodejs/node',
+    repoUrl: 'https://github.com/nodejs/node',
+    stars: 124023,
     number: 66596,
     title: 'stream: run a replaced write() in the flowing pipe',
     url: 'https://github.com/nodejs/node/pull/66596',
@@ -15,7 +24,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 123955,
+    stars: 124023,
     number: 66511,
     title: 'src: skip the async id stack when nobody sees it',
     url: 'https://github.com/nodejs/node/pull/66511',
@@ -24,7 +33,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 123955,
+    stars: 124023,
     number: 66344,
     title: 'src: do not shrink async resources on every pop',
     url: 'https://github.com/nodejs/node/pull/66344',
@@ -33,7 +42,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 123955,
+    stars: 124023,
     number: 66395,
     title: 'src: cut small costs in node::MakeCallback',
     url: 'https://github.com/nodejs/node/pull/66395',
@@ -42,25 +51,16 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 123955,
+    stars: 124023,
     number: 66326,
     title: 'src: keep ALS store in AsyncResource::MakeCallback',
     url: 'https://github.com/nodejs/node/pull/66326',
     date: '2026-10-14',
   },
   {
-    repo: 'nodejs/node',
-    repoUrl: 'https://github.com/nodejs/node',
-    stars: 123955,
-    number: 66316,
-    title: 'src: avoid env lookups and a global handle in InternalCallbackScope',
-    url: 'https://github.com/nodejs/node/pull/66316',
-    date: '2026-09-29',
-  },
-  {
     repo: 'angular/angular',
     repoUrl: 'https://github.com/angular/angular',
-    stars: 101562,
+    stars: 101597,
     number: 70991,
     title: 'refactor(core): make the animate.enter and animate.leave runtime tree-shakable',
     url: 'https://github.com/angular/angular/pull/70991',
@@ -69,7 +69,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 19029,
+    stars: 19030,
     number: 1972,
     title: 'Stop reading frames after a dropped PONG ended the socket',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1972',
@@ -78,7 +78,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 19029,
+    stars: 19030,
     number: 1952,
     title: 'Accept the asterisk form for OPTIONS',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1952',
@@ -87,7 +87,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 19029,
+    stars: 19030,
     number: 1951,
     title: 'Answer 400 to a request target that is not visible ASCII',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1951',
@@ -96,7 +96,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 19029,
+    stars: 19030,
     number: 1950,
     title: 'Skip trailer fields after the last chunk, and answer 400 to a bare LF in them',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1950',
@@ -105,7 +105,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 19029,
+    stars: 19030,
     number: 1949,
     title: 'Reject a Host header with a path, a query or a fragment',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1949',
@@ -114,7 +114,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13241,
+    stars: 13243,
     number: 3781,
     title: 'fix(pg): run a named statement with an empty text more than once',
     url: 'https://github.com/brianc/node-postgres/pull/3781',
@@ -123,7 +123,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13241,
+    stars: 13243,
     number: 3780,
     title: 'fix(pg): expose detail and hint on errors from the native client',
     url: 'https://github.com/brianc/node-postgres/pull/3780',
@@ -132,7 +132,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13241,
+    stars: 13243,
     number: 3737,
     title: 'fix: reject portal based queries in pipeline mode instead of TypeError',
     url: 'https://github.com/brianc/node-postgres/pull/3737',
@@ -141,7 +141,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13241,
+    stars: 13243,
     number: 3736,
     title: 'fix: fail pipelined queries when the connection dies instead of hanging',
     url: 'https://github.com/brianc/node-postgres/pull/3736',
@@ -150,7 +150,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13241,
+    stars: 13243,
     number: 3568,
     title: 'perf: cache parsers per column',
     url: 'https://github.com/brianc/node-postgres/pull/3568',
@@ -159,7 +159,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13241,
+    stars: 13243,
     number: 3250,
     title: 'perf: pre allocate array instead of push item',
     url: 'https://github.com/brianc/node-postgres/pull/3250',
@@ -168,7 +168,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9198,
+    stars: 9200,
     number: 1354,
     title: 'NativeString: the pool only on the string path',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1354',
@@ -177,7 +177,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9198,
+    stars: 9200,
     number: 1353,
     title: 'NativeString: read the thread-local pool once per instance',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1353',
@@ -186,7 +186,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9198,
+    stars: 9200,
     number: 1339,
     title: 'Measure a two-byte string first when it may not fit in the pool',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1339',
@@ -195,7 +195,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9198,
+    stars: 9200,
     number: 1338,
     title: 'Never give the end of a full pool to an empty string',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1338',
@@ -204,7 +204,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9198,
+    stars: 9200,
     number: 1337,
     title: 'Skip the first write when a string has more characters than free pool bytes',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1337',
@@ -213,7 +213,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets.js',
     repoUrl: 'https://github.com/uNetworking/uWebSockets.js',
-    stars: 9198,
+    stars: 9200,
     number: 1335,
     title: 'Write strings to utf-8 in one pass, straight into the pool',
     url: 'https://github.com/uNetworking/uWebSockets.js/pull/1335',
@@ -296,6 +296,24 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
     repo: 'tsedio/tsed',
     repoUrl: 'https://github.com/tsedio/tsed',
     stars: 3092,
+    number: 3542,
+    title: 'feat(graphql-ws): serve the subscriptions on the uWebSockets.js app of PlatformFulmine',
+    url: 'https://github.com/tsedio/tsed/pull/3542',
+    date: '2026-11-25',
+  },
+  {
+    repo: 'tsedio/tsed',
+    repoUrl: 'https://github.com/tsedio/tsed',
+    stars: 3092,
+    number: 3539,
+    title: 'feat(passport): initialize Passport on the fulmine.js platform',
+    url: 'https://github.com/tsedio/tsed/pull/3539',
+    date: '2026-11-24',
+  },
+  {
+    repo: 'tsedio/tsed',
+    repoUrl: 'https://github.com/tsedio/tsed',
+    stars: 3092,
     number: 3538,
     title: 'feat(apollo): bind Apollo on the fulmine.js platform',
     url: 'https://github.com/tsedio/tsed/pull/3538',
@@ -309,16 +327,6 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
     title: 'feat(socketio): attach to the uWebSockets.js app of PlatformFulmine',
     url: 'https://github.com/tsedio/tsed/pull/3532',
     date: '2026-11-13',
-  },
-  {
-    repo: 'tsedio/tsed',
-    repoUrl: 'https://github.com/tsedio/tsed',
-    stars: 3092,
-    number: 3485,
-    title:
-      'feat(platform-fulmine): add a platform on fulmine.js, the Express 5 API on uWebSockets.js',
-    url: 'https://github.com/tsedio/tsed/pull/3485',
-    date: '2026-11-08',
   },
   {
     repo: 'dimdenGD/ultimate-express',
@@ -377,7 +385,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
 ];
 
 export const CONTRIBUTION_STATS: ContributionStats = {
-  mergedPullRequests: 497,
+  mergedPullRequests: 503,
   repos: 45,
   searchUrl:
     'https://github.com/search?type=pullrequests&q=is%3Apr%20is%3Amerged%20author%3Anigrosimone%20-user%3Anigrosimone',
@@ -385,9 +393,9 @@ export const CONTRIBUTION_STATS: ContributionStats = {
 
 export const CONTRIBUTION_CALENDAR: ContributionCalendar = {
   from: '2025-11-23',
-  total: 2834,
+  total: 2861,
   levels:
-    '100000000000001100011100000100001101111011111100100010111111011010110011111112010000000100010001000011101101111110100012100111100010010011111000011010010001000110010000000000010010100000100001011120010100000011111000011000100001001000000111212144001114232222211121142112111111111011121121111221211111121111111111111110112111111111111101111111111111111111111011110211',
+    '100000000000001100011100000100001101111011111100100010111111011010110011111112010000000100010001000011101101111110100012100111100010010011111000011010010001000110010000000000010010100000100001011120010100000011111000011000100001001000000111212144001114232222211121142112111111111011121121111221211111121111111111111110112111111111111101111111111111111111111011110211110',
   counts: [
     7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 4, 0, 0, 0, 7, 1, 12, 0, 0, 0, 0, 0, 13, 0, 0, 0,
     0, 8, 7, 0, 6, 1, 6, 3, 0, 10, 2, 4, 5, 4, 4, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3, 8, 2, 3, 1, 0, 2, 3,
@@ -400,7 +408,7 @@ export const CONTRIBUTION_CALENDAR: ContributionCalendar = {
     16, 21, 141, 43, 59, 33, 30, 39, 46, 40, 15, 2, 19, 27, 20, 25, 100, 39, 15, 21, 35, 17, 17, 25,
     5, 2, 1, 3, 1, 1, 0, 16, 14, 5, 32, 7, 5, 33, 8, 8, 7, 17, 30, 37, 14, 35, 13, 16, 12, 6, 8, 15,
     31, 8, 8, 9, 11, 10, 7, 6, 7, 7, 8, 11, 8, 9, 9, 1, 0, 19, 20, 47, 7, 6, 1, 12, 15, 6, 3, 19,
-    18, 5, 9, 14, 2, 0, 1, 16, 6, 11, 7, 4, 2, 16, 13, 11, 11, 3, 13, 8, 10, 10, 14, 6, 13, 12, 21,
-    12, 0, 5, 10, 8, 1, 0, 26, 17, 6,
+    18, 5, 9, 14, 2, 0, 1, 16, 6, 11, 7, 4, 2, 16, 13, 11, 11, 3, 13, 8, 10, 10, 14, 6, 13, 12, 24,
+    12, 0, 5, 10, 8, 1, 0, 26, 17, 17, 1, 12, 0,
   ],
 };
