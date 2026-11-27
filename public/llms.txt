@@ -2,7 +2,7 @@
 
 > Portfolio personale di Simone Nigro, full-stack developer e tech lead italiano (Avellino, Campania) in
 > ACCA software S.p.A. Autore di librerie open source Angular e Node.js pubblicate su npm con
-> oltre 110.000 download al mese. Programma dal 1999, sviluppatore dal 2004. Ha
+> oltre 111.000 download al mese. Programma dal 1999, sviluppatore dal 2004. Ha
 > contribuito con pull request al core di Node.js e ad Angular, e al core di WordPress (5.5). Sito bilingue: italiano su /, inglese su /en/. Il sito espone i
 > propri contenuti anche via WebMCP (navigator.modelContext): get_profile,
 > list_open_source_projects, list_contributions, list_articles, get_contacts.
@@ -16,41 +16,41 @@
 - Formazione: Laurea in Scienze della Comunicazione, Università degli Studi di Salerno
 - Email: nigro.simone@gmail.com
 
-## Progetti open source (dati npm/GitHub del 26/11/2026)
+## Progetti open source (dati npm/GitHub del 27/11/2026)
 
-- [ng-let](https://www.npmjs.com/package/ng-let): Angular structural directive for sharing data as local variable into html component template. - 77.344 download/mese, 47 stelle
-- [ng-http-caching](https://www.npmjs.com/package/ng-http-caching): Cache for HTTP requests in Angular application. - 16.800 download/mese, 54 stelle
-- [fulmine.js](https://www.npmjs.com/package/fulmine.js): Fulmine.js ⚡ A blazing-fast Express.js compatible HTTP server on uWebSockets.js. - 4999 download/mese, 34 stelle
-- [ng-as](https://www.npmjs.com/package/ng-as): Angular pipe and directive for type casting template variables. - 4178 download/mese, 9 stelle
-- [ng-generic-pipe](https://www.npmjs.com/package/ng-generic-pipe): Generic pipe for Angular application for use a component method into component template - 3708 download/mese, 21 stelle
-- [ng-for-track-by-property](https://www.npmjs.com/package/ng-for-track-by-property): Angular global trackBy property directive with strict type checking. - 1381 download/mese, 28 stelle
-- [ng-simple-state](https://www.npmjs.com/package/ng-simple-state): Simple state management in Angular with only Services and Signal. - 746 download/mese, 46 stelle
-- [ng-lock](https://www.npmjs.com/package/ng-lock): Angular decorator for lock a function and user interface while a task running. - 229 download/mese, 10 stelle
+- [ng-let](https://www.npmjs.com/package/ng-let): Angular structural directive for sharing data as local variable into html component template. - 78.109 download/mese, 47 stelle
+- [ng-http-caching](https://www.npmjs.com/package/ng-http-caching): Cache for HTTP requests in Angular application. - 16.575 download/mese, 54 stelle
+- [fulmine.js](https://www.npmjs.com/package/fulmine.js): Fulmine.js ⚡ A blazing-fast Express.js compatible HTTP server on uWebSockets.js. - 5042 download/mese, 34 stelle
+- [ng-as](https://www.npmjs.com/package/ng-as): Angular pipe and directive for type casting template variables. - 4232 download/mese, 9 stelle
+- [ng-generic-pipe](https://www.npmjs.com/package/ng-generic-pipe): Generic pipe for Angular application for use a component method into component template - 3682 download/mese, 21 stelle
+- [ng-for-track-by-property](https://www.npmjs.com/package/ng-for-track-by-property): Angular global trackBy property directive with strict type checking. - 1404 download/mese, 28 stelle
+- [ng-simple-state](https://www.npmjs.com/package/ng-simple-state): Simple state management in Angular with only Services and Signal. - 764 download/mese, 46 stelle
+- [ng-lock](https://www.npmjs.com/package/ng-lock): Angular decorator for lock a function and user interface while a task running. - 228 download/mese, 10 stelle
 - [codice-fiscale](https://packagist.org/packages/nigrosimone/codicefiscale): Libreria PHP per la validazione dei Codici Fiscali italiani a 16 caratteri con supporto per l'omocodia - 17 stelle
 - [llms-robot-arena](https://github.com/nigrosimone/llms-robot-arena): An arena where LLMs write robot controllers and their code competes. - 13 stelle
 - [postgres-benchmarks](https://github.com/nigrosimone/postgres-benchmarks): A benchmark focusing on the performance of Postgres client libraries for Node.js, brianc/node-postgres VS porsager/postgres - 8 stelle
-- Totale: 12 pacchetti npm, 110.835 download/mese, 323 stelle GitHub
+- Totale: 12 pacchetti npm, 111.486 download/mese, 323 stelle GitHub
 
 ## Contributi ad altri progetti open source
 
-- [node-api: find the Environment once](https://github.com/nodejs/node/pull/66509) su [nodejs/node](https://github.com/nodejs/node) (124.023 stelle)
-- [stream: run a replaced write() in the flowing pipe](https://github.com/nodejs/node/pull/66596) su [nodejs/node](https://github.com/nodejs/node) (124.023 stelle)
-- [src: skip the async id stack when nobody sees it](https://github.com/nodejs/node/pull/66511) su [nodejs/node](https://github.com/nodejs/node) (124.023 stelle)
-- [src: do not shrink async resources on every pop](https://github.com/nodejs/node/pull/66344) su [nodejs/node](https://github.com/nodejs/node) (124.023 stelle)
-- [src: cut small costs in node::MakeCallback](https://github.com/nodejs/node/pull/66395) su [nodejs/node](https://github.com/nodejs/node) (124.023 stelle)
-- [src: keep ALS store in AsyncResource::MakeCallback](https://github.com/nodejs/node/pull/66326) su [nodejs/node](https://github.com/nodejs/node) (124.023 stelle)
-- [refactor(core): make the animate.enter and animate.leave runtime tree-shakable](https://github.com/angular/angular/pull/70991) su [angular/angular](https://github.com/angular/angular) (101.597 stelle)
-- [Stop reading frames after a dropped PONG ended the socket](https://github.com/uNetworking/uWebSockets/pull/1972) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.030 stelle)
-- [Accept the asterisk form for OPTIONS](https://github.com/uNetworking/uWebSockets/pull/1952) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.030 stelle)
-- [Answer 400 to a request target that is not visible ASCII](https://github.com/uNetworking/uWebSockets/pull/1951) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.030 stelle)
-- [Skip trailer fields after the last chunk, and answer 400 to a bare LF in them](https://github.com/uNetworking/uWebSockets/pull/1950) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.030 stelle)
-- [Reject a Host header with a path, a query or a fragment](https://github.com/uNetworking/uWebSockets/pull/1949) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.030 stelle)
-- [fix(pg): run a named statement with an empty text more than once](https://github.com/brianc/node-postgres/pull/3781) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.243 stelle)
-- [fix(pg): expose detail and hint on errors from the native client](https://github.com/brianc/node-postgres/pull/3780) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.243 stelle)
-- [fix: reject portal based queries in pipeline mode instead of TypeError](https://github.com/brianc/node-postgres/pull/3737) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.243 stelle)
-- [fix: fail pipelined queries when the connection dies instead of hanging](https://github.com/brianc/node-postgres/pull/3736) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.243 stelle)
-- [perf: cache parsers per column](https://github.com/brianc/node-postgres/pull/3568) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.243 stelle)
-- [perf: pre allocate array instead of push item](https://github.com/brianc/node-postgres/pull/3250) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.243 stelle)
+- [src: add MakeCallback() taking an Environment](https://github.com/nodejs/node/pull/66510) su [nodejs/node](https://github.com/nodejs/node) (124.051 stelle)
+- [node-api: find the Environment once](https://github.com/nodejs/node/pull/66509) su [nodejs/node](https://github.com/nodejs/node) (124.051 stelle)
+- [stream: run a replaced write() in the flowing pipe](https://github.com/nodejs/node/pull/66596) su [nodejs/node](https://github.com/nodejs/node) (124.051 stelle)
+- [src: skip the async id stack when nobody sees it](https://github.com/nodejs/node/pull/66511) su [nodejs/node](https://github.com/nodejs/node) (124.051 stelle)
+- [src: do not shrink async resources on every pop](https://github.com/nodejs/node/pull/66344) su [nodejs/node](https://github.com/nodejs/node) (124.051 stelle)
+- [src: cut small costs in node::MakeCallback](https://github.com/nodejs/node/pull/66395) su [nodejs/node](https://github.com/nodejs/node) (124.051 stelle)
+- [refactor(core): make the animate.enter and animate.leave runtime tree-shakable](https://github.com/angular/angular/pull/70991) su [angular/angular](https://github.com/angular/angular) (101.609 stelle)
+- [Stop reading frames after a dropped PONG ended the socket](https://github.com/uNetworking/uWebSockets/pull/1972) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.031 stelle)
+- [Accept the asterisk form for OPTIONS](https://github.com/uNetworking/uWebSockets/pull/1952) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.031 stelle)
+- [Answer 400 to a request target that is not visible ASCII](https://github.com/uNetworking/uWebSockets/pull/1951) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.031 stelle)
+- [Skip trailer fields after the last chunk, and answer 400 to a bare LF in them](https://github.com/uNetworking/uWebSockets/pull/1950) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.031 stelle)
+- [Reject a Host header with a path, a query or a fragment](https://github.com/uNetworking/uWebSockets/pull/1949) su [uNetworking/uWebSockets](https://github.com/uNetworking/uWebSockets) (19.031 stelle)
+- [fix(pg): run a named statement with an empty text more than once](https://github.com/brianc/node-postgres/pull/3781) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.244 stelle)
+- [fix(pg): expose detail and hint on errors from the native client](https://github.com/brianc/node-postgres/pull/3780) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.244 stelle)
+- [fix: reject portal based queries in pipeline mode instead of TypeError](https://github.com/brianc/node-postgres/pull/3737) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.244 stelle)
+- [fix: fail pipelined queries when the connection dies instead of hanging](https://github.com/brianc/node-postgres/pull/3736) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.244 stelle)
+- [perf: cache parsers per column](https://github.com/brianc/node-postgres/pull/3568) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.244 stelle)
+- [perf: pre allocate array instead of push item](https://github.com/brianc/node-postgres/pull/3250) su [brianc/node-postgres](https://github.com/brianc/node-postgres) (13.244 stelle)
 - [NativeString: the pool only on the string path](https://github.com/uNetworking/uWebSockets.js/pull/1354) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9200 stelle)
 - [NativeString: read the thread-local pool once per instance](https://github.com/uNetworking/uWebSockets.js/pull/1353) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9200 stelle)
 - [Measure a two-byte string first when it may not fit in the pool](https://github.com/uNetworking/uWebSockets.js/pull/1339) su [uNetworking/uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) (9200 stelle)
@@ -75,11 +75,11 @@
 - [perf: remove per-request async overhead in router dispatch](https://github.com/dimdenGD/ultimate-express/pull/354) su [dimdenGD/ultimate-express](https://github.com/dimdenGD/ultimate-express) (1110 stelle)
 - [fix: uws exclusive port](https://github.com/dimdenGD/ultimate-express/pull/305) su [dimdenGD/ultimate-express](https://github.com/dimdenGD/ultimate-express) (1110 stelle)
 - [perf: replace arrays with Set](https://github.com/dimdenGD/ultimate-express/pull/296) su [dimdenGD/ultimate-express](https://github.com/dimdenGD/ultimate-express) (1110 stelle)
-- Totale: [503 pull request mergiate](https://github.com/search?type=pullrequests&q=is%3Apr%20is%3Amerged%20author%3Anigrosimone%20-user%3Anigrosimone) in 45 repository di altri
+- Totale: [469 pull request mergiate](https://github.com/search?type=pullrequests&q=is%3Apr%20is%3Amerged%20author%3Anigrosimone%20-user%3Anigrosimone) in 44 repository di altri
 
 ## Collegamenti
 
-- [GitHub](https://github.com/nigrosimone): 95 repository pubblici
+- [GitHub](https://github.com/nigrosimone): 96 repository pubblici
 - [npm](https://www.npmjs.com/~nigro.simone): tutti i pacchetti
 - [DEV Community](https://dev.to/nigrosimone): 16 articoli su Angular, Node.js e performance
 - [LinkedIn](https://www.linkedin.com/in/simonenigro/): profilo professionale

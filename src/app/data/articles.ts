@@ -1,4 +1,4 @@
-// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 26/11/2026).
+// Articoli pubblicati su https://dev.to/nigrosimone (API pubblica dev.to, 27/11/2026).
 // Per aggiornarli: npm run update-data (rigenera questo file).
 import type { Article } from './types';
 
@@ -8,7 +8,7 @@ export const ARTICLES: readonly Article[] = [
     url: 'https://dev.to/nigrosimone/i-built-a-small-arena-where-ai-models-write-robot-brains-and-then-fight-each-other-3do7',
     date: '2026-09-05',
     readingMinutes: 1,
-    tags: ['ai', 'claude', 'openai'],
+    tags: ['ai', 'claude', 'openai', 'anthropic'],
     reactions: 2,
   },
   {

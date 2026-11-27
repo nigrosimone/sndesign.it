@@ -1,4 +1,4 @@
-// Pull request mergiate su progetti di altri (API pubblica GitHub, 26/11/2026).
+// Pull request mergiate su progetti di altri (API pubblica GitHub, 27/11/2026).
 // Per aggiornarle: npm run update-data (rigenera questo file).
 import type { Contribution, ContributionCalendar, ContributionStats } from './types';
 
@@ -6,7 +6,16 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 124023,
+    stars: 124051,
+    number: 66510,
+    title: 'src: add MakeCallback() taking an Environment',
+    url: 'https://github.com/nodejs/node/pull/66510',
+    date: '2026-11-26',
+  },
+  {
+    repo: 'nodejs/node',
+    repoUrl: 'https://github.com/nodejs/node',
+    stars: 124051,
     number: 66509,
     title: 'node-api: find the Environment once',
     url: 'https://github.com/nodejs/node/pull/66509',
@@ -15,7 +24,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 124023,
+    stars: 124051,
     number: 66596,
     title: 'stream: run a replaced write() in the flowing pipe',
     url: 'https://github.com/nodejs/node/pull/66596',
@@ -24,7 +33,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 124023,
+    stars: 124051,
     number: 66511,
     title: 'src: skip the async id stack when nobody sees it',
     url: 'https://github.com/nodejs/node/pull/66511',
@@ -33,7 +42,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 124023,
+    stars: 124051,
     number: 66344,
     title: 'src: do not shrink async resources on every pop',
     url: 'https://github.com/nodejs/node/pull/66344',
@@ -42,25 +51,16 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'nodejs/node',
     repoUrl: 'https://github.com/nodejs/node',
-    stars: 124023,
+    stars: 124051,
     number: 66395,
     title: 'src: cut small costs in node::MakeCallback',
     url: 'https://github.com/nodejs/node/pull/66395',
     date: '2026-10-20',
   },
   {
-    repo: 'nodejs/node',
-    repoUrl: 'https://github.com/nodejs/node',
-    stars: 124023,
-    number: 66326,
-    title: 'src: keep ALS store in AsyncResource::MakeCallback',
-    url: 'https://github.com/nodejs/node/pull/66326',
-    date: '2026-10-14',
-  },
-  {
     repo: 'angular/angular',
     repoUrl: 'https://github.com/angular/angular',
-    stars: 101597,
+    stars: 101609,
     number: 70991,
     title: 'refactor(core): make the animate.enter and animate.leave runtime tree-shakable',
     url: 'https://github.com/angular/angular/pull/70991',
@@ -69,7 +69,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 19030,
+    stars: 19031,
     number: 1972,
     title: 'Stop reading frames after a dropped PONG ended the socket',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1972',
@@ -78,7 +78,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 19030,
+    stars: 19031,
     number: 1952,
     title: 'Accept the asterisk form for OPTIONS',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1952',
@@ -87,7 +87,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 19030,
+    stars: 19031,
     number: 1951,
     title: 'Answer 400 to a request target that is not visible ASCII',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1951',
@@ -96,7 +96,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 19030,
+    stars: 19031,
     number: 1950,
     title: 'Skip trailer fields after the last chunk, and answer 400 to a bare LF in them',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1950',
@@ -105,7 +105,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'uNetworking/uWebSockets',
     repoUrl: 'https://github.com/uNetworking/uWebSockets',
-    stars: 19030,
+    stars: 19031,
     number: 1949,
     title: 'Reject a Host header with a path, a query or a fragment',
     url: 'https://github.com/uNetworking/uWebSockets/pull/1949',
@@ -114,7 +114,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13243,
+    stars: 13244,
     number: 3781,
     title: 'fix(pg): run a named statement with an empty text more than once',
     url: 'https://github.com/brianc/node-postgres/pull/3781',
@@ -123,7 +123,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13243,
+    stars: 13244,
     number: 3780,
     title: 'fix(pg): expose detail and hint on errors from the native client',
     url: 'https://github.com/brianc/node-postgres/pull/3780',
@@ -132,7 +132,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13243,
+    stars: 13244,
     number: 3737,
     title: 'fix: reject portal based queries in pipeline mode instead of TypeError',
     url: 'https://github.com/brianc/node-postgres/pull/3737',
@@ -141,7 +141,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13243,
+    stars: 13244,
     number: 3736,
     title: 'fix: fail pipelined queries when the connection dies instead of hanging',
     url: 'https://github.com/brianc/node-postgres/pull/3736',
@@ -150,7 +150,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13243,
+    stars: 13244,
     number: 3568,
     title: 'perf: cache parsers per column',
     url: 'https://github.com/brianc/node-postgres/pull/3568',
@@ -159,7 +159,7 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
   {
     repo: 'brianc/node-postgres',
     repoUrl: 'https://github.com/brianc/node-postgres',
-    stars: 13243,
+    stars: 13244,
     number: 3250,
     title: 'perf: pre allocate array instead of push item',
     url: 'https://github.com/brianc/node-postgres/pull/3250',
@@ -385,17 +385,17 @@ export const CONTRIBUTIONS: readonly Contribution[] = [
 ];
 
 export const CONTRIBUTION_STATS: ContributionStats = {
-  mergedPullRequests: 503,
-  repos: 45,
+  mergedPullRequests: 469,
+  repos: 44,
   searchUrl:
     'https://github.com/search?type=pullrequests&q=is%3Apr%20is%3Amerged%20author%3Anigrosimone%20-user%3Anigrosimone',
 };
 
 export const CONTRIBUTION_CALENDAR: ContributionCalendar = {
   from: '2025-11-23',
-  total: 2861,
+  total: 2876,
   levels:
-    '100000000000001100011100000100001101111011111100100010111111011010110011111112010000000100010001000011101101111110100012100111100010010011111000011010010001000110010000000000010010100000100001011120010100000011111000011000100001001000000111212144001114232222211121142112111111111011121121111221211111121111111111111110112111111111111101111111111111111111111011110211110',
+    '1000000000000011000111000001000011011110111111001000101111110110101100111111120100000001000100010000111011011111101000121001111000100100111110000110100100010001100100000000000100101000001000010111200101000000111110000110001000010010000001112121440011142322222111211421121111111110111211211112212111111211111111111111101121111111111111011111111111111111111110111102111111',
   counts: [
     7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 4, 0, 0, 0, 7, 1, 12, 0, 0, 0, 0, 0, 13, 0, 0, 0,
     0, 8, 7, 0, 6, 1, 6, 3, 0, 10, 2, 4, 5, 4, 4, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3, 8, 2, 3, 1, 0, 2, 3,
@@ -409,6 +409,6 @@ export const CONTRIBUTION_CALENDAR: ContributionCalendar = {
     5, 2, 1, 3, 1, 1, 0, 16, 14, 5, 32, 7, 5, 33, 8, 8, 7, 17, 30, 37, 14, 35, 13, 16, 12, 6, 8, 15,
     31, 8, 8, 9, 11, 10, 7, 6, 7, 7, 8, 11, 8, 9, 9, 1, 0, 19, 20, 47, 7, 6, 1, 12, 15, 6, 3, 19,
     18, 5, 9, 14, 2, 0, 1, 16, 6, 11, 7, 4, 2, 16, 13, 11, 11, 3, 13, 8, 10, 10, 14, 6, 13, 12, 24,
-    12, 0, 5, 10, 8, 1, 0, 26, 17, 17, 1, 12, 0,
+    12, 0, 5, 10, 8, 1, 0, 26, 17, 17, 1, 12, 13, 2,
   ],
 };
